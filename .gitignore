@@ -1,57 +1,25 @@
-# gradle
-
-.gradle/
-build/
-out/
-classes/
-
 # eclipse
-
+bin
 *.launch
-
-# idea
-
-.idea/
-*.iml
-*.ipr
-*.iws
-
-# vscode
-
-.settings/
-.vscode/
-bin/
+.settings
+.metadata
 .classpath
 .project
 
-# macos
+# idea
+out
+*.ipr
+*.iws
+*.iml
+.idea
 
-*.DS_Store
+# gradle
+build
+.gradle
 
-# fabric
+# other
+eclipse
+run
 
-# run/
-run/.fabric/
-run/config/
-run/crash-reports/
-run/data/
-run/defaultconfigs/
-run/logs/*
-run/resourcepacks/
-run/resources/
-run/saves/
-run/schematics/
-run/screenshots/
-run/fabricloader.log
-run/options.txt
-run/usercache.json
-run/usernamecache.json
-run/emi.json
-
-# java
-
-hs_err_*.log
-replay_*.log
-*.hprof
-*.jfr
-old_git/*
+# Files from Forge MDK
+forge*changelog.txt

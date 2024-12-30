@@ -11,8 +11,6 @@ import net.nuclearteam.createnuclear.content.enriching.fire.EnrichingFireBlock;
 
 public class CNBlocks {
 
-    public static final BlockEntry<Block> TEST = CreateNuclear.REGISTRATE.block("test", Block::new).tag(CNTags.CNBlockTags.ENRICHING_FIRE_BASE_BLOCKS.tag).register();
-
     public static final BlockEntry<EnrichingFireBlock> ENRICHING_FIRE =
             CreateNuclear.REGISTRATE.block("enriching_fire", properties -> new EnrichingFireBlock(properties, 3.0f))
                     .initialProperties(() -> Blocks.FIRE)

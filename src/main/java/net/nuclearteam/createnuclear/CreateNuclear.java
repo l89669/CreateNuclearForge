@@ -47,6 +47,7 @@ public class CreateNuclear {
 
         REGISTRATE.registerEventListeners(modEventBus);
 
+        CNTags.init();
         CNPackets.registerPackets();
         CNMenus.register();
 

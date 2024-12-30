@@ -3,6 +3,7 @@ package net.nuclearteam.createnuclear;
 import com.simibubi.create.foundation.utility.Lang;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.tags.BlockTags;
+import net.minecraft.tags.ItemTags;
 import net.minecraft.tags.TagKey;
 import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.item.Item;
@@ -108,8 +109,53 @@ public class CNTags {
         private static void init() {}
     }
 
+    public enum CNItemTags {
+        ;
+
+        public final TagKey<Item> tag;
+        public final boolean alwaysDatagen;
+
+        CNItemTags() {
+            this(MOD);
+        }
+
+        CNItemTags(NameSpace namespace) {
+            this(namespace, namespace.optionalDefault, namespace.alwayDatagenDefault);
+        }
+
+        CNItemTags(NameSpace nameSpace, String path) {
+            this(nameSpace, path, nameSpace.optionalDefault, nameSpace.alwayDatagenDefault);
+        }
+
+        CNItemTags(NameSpace nameSpace, boolean optional, boolean alwayDatagenDefault) {
+            this(nameSpace, null, optional, alwayDatagenDefault);
+        }
+
+        CNItemTags(NameSpace nameSpace, String path, boolean optional, boolean alwayDatagenDefault) {
+            ResourceLocation id = new ResourceLocation(nameSpace.id, path == null ? Lang.asId(name()) : path);
+            if (optional) {
+                tag = optionalTag(ForgeRegistries.ITEMS, id);
+            } else {
+                tag = ItemTags.create(id);
+            }
+            this.alwaysDatagen = alwayDatagenDefault;
+        }
+
+        @SuppressWarnings("deprecation")
+        public boolean matches(Item item) {
+            return item.builtInRegistryHolder().is(tag);
+        }
+
+        public boolean matches(ItemStack stack) {
+            return stack.is(tag);
+        }
+
+        private static void init() {}
+    }
+
 
     public static void init() {
         CNBlockTags.init();
+        CNItemTags.init();
     }
 }

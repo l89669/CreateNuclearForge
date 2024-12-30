@@ -1,0 +1,9 @@
+// 1.20.1	2024-12-30T19:03:26.4305208	Registrate Provider for createnuclear [Recipes, Advancements, Loot Tables, Tags (blocks), Tags (items), Tags (fluids), Tags (entity_types), Blockstates, Item models, Lang (en_us/en_ud)]
+41d2222cb4f17c8c035f1937873518ad2adca3db assets/createnuclear/blockstates/enriching_fire.json
+0a0917bd351944d743ab087fe6404a4ce37596e7 assets/createnuclear/lang/en_ud.json
+9f38cb557da2435c057e3a3475ce83d258420c03 assets/createnuclear/lang/en_us.json
+aa8efeb48b11261953f7d90e6d7db38411550694 data/createnuclear/loot_tables/blocks/enriching_fire.json
+3206babfa42429478935375acd710b4028884941 data/createnuclear/tags/blocks/fan_processing_catalysts/enriched.json
+35133e95f1c8fdd7a1c21afcc231fc0bffefb9a8 data/createnuclear/tags/entity_types/irradiated_immune.json
+3206babfa42429478935375acd710b4028884941 data/minecraft/tags/blocks/dragon_transparent.json
+3206babfa42429478935375acd710b4028884941 data/minecraft/tags/blocks/fire.json

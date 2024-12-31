@@ -51,6 +51,7 @@ public class CreateNuclear {
 
         CNTags.init();
         CNBlocks.register();
+        CNBlockEntityTypes.register();
         CNItems.register();
         CNPackets.registerPackets();
         CNMenus.register();

@@ -1,10 +1,17 @@
-// 1.20.1	2024-12-30T19:16:24.7176731	Registrate Provider for createnuclear [Recipes, Advancements, Loot Tables, Tags (blocks), Tags (items), Tags (fluids), Tags (entity_types), Blockstates, Item models, Lang (en_us/en_ud)]
+// 1.20.1	2024-12-31T23:32:40.7408975	Registrate Provider for createnuclear [Recipes, Advancements, Loot Tables, Tags (blocks), Tags (items), Tags (fluids), Tags (entity_types), Blockstates, Item models, Lang (en_us/en_ud)]
+f6b762b1e80656d932e990210b43e4bfb209e4d8 assets/createnuclear/blockstates/enriching_campfire.json
 41d2222cb4f17c8c035f1937873518ad2adca3db assets/createnuclear/blockstates/enriching_fire.json
-ee1370ceeae7a1d83acfb7f7766d3b3c9e38e75b assets/createnuclear/lang/en_ud.json
-87f3b6fd092b95956fd0746669206fc6468ea997 assets/createnuclear/lang/en_us.json
+51d8221aa408a553eb6516cf3ea23c9832957db3 assets/createnuclear/lang/en_ud.json
+15823fee82bb8e75bebd51e9ced544ba70a28668 assets/createnuclear/lang/en_us.json
+875513d47ccf4e68111ec52d9abe01ec91cce20e assets/createnuclear/models/item/enriching_campfire.json
 8bdc2fabbfc9fcc7c2ad4a3273897659d90b95ab assets/createnuclear/models/item/yellowcake.json
+8f701470cd720dfb658f57d457245a633e277634 data/createnuclear/loot_tables/blocks/enriching_campfire.json
 aa8efeb48b11261953f7d90e6d7db38411550694 data/createnuclear/loot_tables/blocks/enriching_fire.json
-3206babfa42429478935375acd710b4028884941 data/createnuclear/tags/blocks/fan_processing_catalysts/enriched.json
+509b5baa813ae0dc3345fd97754e4088132359ec data/createnuclear/tags/blocks/fan_processing_catalysts/enriched.json
 35133e95f1c8fdd7a1c21afcc231fc0bffefb9a8 data/createnuclear/tags/entity_types/irradiated_immune.json
+e84d8e1fa924bec3e226b8917b4973b9629a5f52 data/minecraft/tags/blocks/all/campfires.json
+e84d8e1fa924bec3e226b8917b4973b9629a5f52 data/minecraft/tags/blocks/campfire.json
 3206babfa42429478935375acd710b4028884941 data/minecraft/tags/blocks/dragon_transparent.json
 3206babfa42429478935375acd710b4028884941 data/minecraft/tags/blocks/fire.json
+e84d8e1fa924bec3e226b8917b4973b9629a5f52 data/minecraft/tags/blocks/mineable/axe.json
+e84d8e1fa924bec3e226b8917b4973b9629a5f52 data/minecraft/tags/blocks/mineable/pickaxe.json

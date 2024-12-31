@@ -1,6 +1,6 @@
 {
   "parent": "minecraft:block/template_fire_up",
   "textures": {
-    "fire": "createnuclear:block/enriched/fire/fire_1"
+    "fire": "createnuclear:block/enriching/fire/fire_1"
   }
 }

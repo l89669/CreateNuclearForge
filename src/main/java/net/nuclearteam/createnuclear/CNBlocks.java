@@ -94,7 +94,7 @@ public class CNBlocks {
                     .properties(Properties::noOcclusion)
                     .properties(Properties::ignitedByLava)
                     //.properties(Properties::replaceable)
-                    .addLayer(() -> RenderType::cutout)
+                    .addLayer(() -> RenderType::cutoutMipped)
                     .transform(axeOrPickaxe())
                     .tag(CNTags.CNBlockTags.CAMPFIRE.tag, CNTags.CNBlockTags.ALL_CAMPFIRES.tag)
                     //.loot((lt, b) -> lt.add(b, RegistrateBlockLootTables.createSilkTouchDispatchTable(b, lt.applyExplosionDecay(b, LootItem.lootTableItem(CNBlocks.ENRICHING_SOUL_SOIL)))))

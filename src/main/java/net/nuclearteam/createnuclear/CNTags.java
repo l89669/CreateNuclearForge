@@ -69,7 +69,7 @@ public class CNTags {
     public enum CNBlockTags {
         FAN_PROCESSING_CATALYSTS_ENRICHED(MOD, "fan_processing_catalysts/enriched"),
         ENRICHING_FIRE_BASE_BLOCKS,
-        CAMPFIRE(MINECRAFT),
+        CAMPFIRES(MINECRAFT),
         ALL_CAMPFIRES(MINECRAFT, "all/campfires"),
         DRAGON_TRANSPARENT(MINECRAFT),
         FIRE(MINECRAFT),

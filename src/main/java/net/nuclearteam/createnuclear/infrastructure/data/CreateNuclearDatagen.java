@@ -41,12 +41,13 @@ public class CreateNuclearDatagen {
         CreateNuclear.REGISTRATE.addDataGenerator(ProviderType.LANG, provider -> {
             BiConsumer<String, String> langConsumer = provider::add;
 
+            provideDefaultLang("interface", langConsumer);
             providePonderLang(langConsumer);
         });
     }
 
     private static void provideDefaultLang(String fileName, BiConsumer<String, String> consumer) {
-        String path = "assets/create/lang/default/" + fileName + ".json";
+        String path = "assets/createnuclear/lang/default/" + fileName + ".json";
         JsonElement jsonElement = FilesHelper.loadJsonResource(path);
         if (jsonElement == null) {
             throw new IllegalStateException(String.format("Could not find default lang file: %s", path));

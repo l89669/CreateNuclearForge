@@ -1,19 +1,16 @@
 package net.nuclearteam.createnuclear;
 
 import com.simibubi.create.foundation.data.AssetLookup;
-import com.tterrag.registrate.providers.loot.RegistrateBlockLootTables;
 import com.tterrag.registrate.util.entry.BlockEntry;
 import net.minecraft.client.renderer.RenderType;
 import net.minecraft.core.Direction;
 import net.minecraft.data.loot.BlockLootSubProvider;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.SoundType;
-import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.state.BlockBehaviour.Properties;
 import net.minecraft.world.level.block.state.properties.BlockStateProperties;
 import net.minecraft.world.level.block.state.properties.NoteBlockInstrument;
 import net.minecraft.world.level.material.MapColor;
-import net.minecraft.world.level.storage.loot.entries.LootItem;
 import net.minecraftforge.client.model.generators.ConfiguredModel;
 import net.minecraftforge.client.model.generators.ModelFile;
 import net.nuclearteam.createnuclear.content.enriching.campfire.EnrichingCampfireBlock;
@@ -96,7 +93,7 @@ public class CNBlocks {
                     //.properties(Properties::replaceable)
                     .addLayer(() -> RenderType::cutoutMipped)
                     .transform(axeOrPickaxe())
-                    .tag(CNTags.CNBlockTags.CAMPFIRE.tag, CNTags.CNBlockTags.ALL_CAMPFIRES.tag)
+                    .tag(CNTags.CNBlockTags.CAMPFIRES.tag, CNTags.CNBlockTags.ALL_CAMPFIRES.tag)
                     //.loot((lt, b) -> lt.add(b, RegistrateBlockLootTables.createSilkTouchDispatchTable(b, lt.applyExplosionDecay(b, LootItem.lootTableItem(CNBlocks.ENRICHING_SOUL_SOIL)))))
                     .blockstate((c, p) ->
                         p.getVariantBuilder(c.getEntry()).forAllStatesExcept(state -> {

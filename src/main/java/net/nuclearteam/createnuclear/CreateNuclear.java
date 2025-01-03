@@ -50,6 +50,7 @@ public class CreateNuclear {
         REGISTRATE.registerEventListeners(modEventBus);
 
         CNTags.init();
+        CNCreativeModeTabs.register(modEventBus);
         CNBlocks.register();
         CNBlockEntityTypes.register();
         CNItems.register();

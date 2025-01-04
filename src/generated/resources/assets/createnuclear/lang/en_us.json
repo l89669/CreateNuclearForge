@@ -1,6 +1,9 @@
 {
   "block.createnuclear.enriching_campfire": "Enriching Campfire",
   "block.createnuclear.enriching_fire": "Enriching Fire",
+  "block.createnuclear.uranium": "Uranium",
+  "fluid.createnuclear.uranium": "Liquid Uranium",
+  "item.createnuclear.uranium_bucket": "Uranium Bucket",
   "item.createnuclear.yellowcake": "Yellowcake",
   "itemGroup.createnuclear.main": "Create Nuclear"
 }

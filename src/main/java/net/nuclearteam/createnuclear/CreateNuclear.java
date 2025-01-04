@@ -56,9 +56,11 @@ public class CreateNuclear {
         CNItems.register();
         CNPackets.registerPackets();
         CNMenus.register();
+        CNFluids.register();
 
         modEventBus.addListener(CreateNuclear::init);
         modEventBus.addListener(EventPriority.LOWEST, CreateNuclearDatagen::gatherData);
+        forgeEventBus.addListener(CNFluids::handleFluidEffect);
 
 
         DistExecutor.unsafeRunWhenOn(Dist.CLIENT, () -> () -> CreateNuclearClient.onCtorClient(modEventBus, forgeEventBus));

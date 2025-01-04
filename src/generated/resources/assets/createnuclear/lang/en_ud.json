@@ -1,6 +1,9 @@
 {
   "block.createnuclear.enriching_campfire": "ǝɹıɟdɯɐƆ buıɥɔıɹuƎ",
   "block.createnuclear.enriching_fire": "ǝɹıℲ buıɥɔıɹuƎ",
+  "block.createnuclear.uranium": "ɯnıuɐɹ∩",
+  "fluid.createnuclear.uranium": "ɯnıuɐɹ∩ pınbıꞀ",
+  "item.createnuclear.uranium_bucket": "ʇǝʞɔnᗺ ɯnıuɐɹ∩",
   "item.createnuclear.yellowcake": "ǝʞɐɔʍoןןǝʎ",
   "itemGroup.createnuclear.main": "ɹɐǝןɔnN ǝʇɐǝɹƆ"
 }

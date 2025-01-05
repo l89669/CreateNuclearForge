@@ -8,7 +8,10 @@
   "entity.createnuclear.irradiated_chicken": "uǝʞɔıɥƆ pǝʇɐıpɐɹɹI",
   "entity.createnuclear.irradiated_wolf": "ɟןoM pǝʇɐıpɐɹɹI",
   "fluid.createnuclear.uranium": "ɯnıuɐɹ∩ pınbıꞀ",
+  "item.createnuclear.cat_irradiated_spawn_egg": "bbƎ uʍɐdS ʇɐƆ pǝʇɐıpɐɹɹI",
+  "item.createnuclear.chicken_irradiated_spawn_egg": "bbƎ uʍɐdS uǝʞɔıɥƆ pǝʇɐıpɐɹɹI",
   "item.createnuclear.uranium_bucket": "ʇǝʞɔnᗺ ɯnıuɐɹ∩",
+  "item.createnuclear.wolf_irradiated_spawn_egg": "bbƎ uʍɐdS ɟןoM pǝʇɐıpɐɹɹI",
   "item.createnuclear.yellowcake": "ǝʞɐɔʍoןןǝʎ",
   "itemGroup.createnuclear.main": "ɹɐǝןɔnN ǝʇɐǝɹƆ"
 }

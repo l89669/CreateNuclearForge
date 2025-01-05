@@ -3,6 +3,7 @@ package net.nuclearteam.createnuclear;
 import com.simibubi.create.content.decoration.encasing.EncasedCTBehaviour;
 import com.simibubi.create.foundation.data.AssetLookup;
 import com.simibubi.create.foundation.data.CreateRegistrate;
+import com.simibubi.create.foundation.data.SharedProperties;
 import com.tterrag.registrate.util.entry.BlockEntry;
 import net.minecraft.client.renderer.RenderType;
 import net.minecraft.core.Direction;
@@ -19,6 +20,7 @@ import net.nuclearteam.createnuclear.content.enriching.campfire.EnrichingCampfir
 import net.nuclearteam.createnuclear.content.enriching.fire.EnrichingFireBlock;
 import net.nuclearteam.createnuclear.content.multiblock.casing.ReactorCasing;
 import net.nuclearteam.createnuclear.CNTags.CNBlockTags;
+import net.nuclearteam.createnuclear.content.multiblock.reactorCoolingFrame.ReactorCoolingFrame;
 
 import static com.simibubi.create.foundation.data.CreateRegistrate.casingConnectivity;
 import static com.simibubi.create.foundation.data.ModelGen.customItemModel;
@@ -31,13 +33,26 @@ public class CNBlocks {
             CreateNuclear.REGISTRATE.block("reactor_casing", properties -> new ReactorCasing(properties, ReactorCasing.TypeBlock.CASING))
                     .properties(p -> p.explosionResistance(3F)
                             .destroyTime(4F))
-                    .transform(pickaxeOnly())
                     .blockstate((c,p) ->
                             p.getVariantBuilder(c.getEntry()).forAllStates((state) -> ConfiguredModel.builder()
                                     .modelFile(p.models().getExistingFile(p.modLoc("block/reactor_casing")))
                                     .build()))
                     .onRegister(CreateRegistrate.connectedTextures(() -> new EncasedCTBehaviour(CNSpriteShifts.REACTOR_CASING)))
                     .onRegister(casingConnectivity((block,cc) -> cc.makeCasing(block, CNSpriteShifts.REACTOR_CASING)))
+                    .tag(CNBlockTags.NEEDS_DIAMOND_TOOL.tag)
+                    .simpleItem()
+                    .transform(pickaxeOnly())
+                    .register();
+
+    public static final BlockEntry<ReactorCoolingFrame> REACTOR_COOLING_FRAME =
+            CreateNuclear.REGISTRATE.block("reactor_cooling_frame", properties -> new ReactorCoolingFrame(properties))
+                    .properties(p -> p.explosionResistance(3F)
+                            .destroyTime(4F))
+
+                    .blockstate((c,p) ->
+                            p.getVariantBuilder(c.getEntry()).forAllStates((state) -> ConfiguredModel.builder()
+                                    .modelFile(p.models().getExistingFile(p.modLoc("block/reactor_cooling_frame")))
+                                    .build()))
                     .tag(CNBlockTags.NEEDS_DIAMOND_TOOL.tag)
                     .simpleItem()
                     .transform(pickaxeOnly())

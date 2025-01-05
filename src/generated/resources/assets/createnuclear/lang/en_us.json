@@ -2,6 +2,7 @@
   "block.createnuclear.enriching_campfire": "Enriching Campfire",
   "block.createnuclear.enriching_fire": "Enriching Fire",
   "block.createnuclear.reactor_casing": "Reactor Casing",
+  "block.createnuclear.reactor_cooling_frame": "Reactor Cooling Frame",
   "block.createnuclear.uranium": "Uranium",
   "entity.createnuclear.irradiated_cat": "Irradiated Cat",
   "entity.createnuclear.irradiated_chicken": "Irradiated Chicken",

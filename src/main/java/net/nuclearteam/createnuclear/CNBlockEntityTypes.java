@@ -1,5 +1,6 @@
 package net.nuclearteam.createnuclear;
 
+import com.simibubi.create.content.kinetics.base.IRotate;
 import com.tterrag.registrate.util.entry.BlockEntityEntry;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.nuclearteam.createnuclear.content.enriching.campfire.EnrichingCampfireBlockEntity;

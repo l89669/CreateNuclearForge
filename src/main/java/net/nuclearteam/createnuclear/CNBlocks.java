@@ -4,10 +4,13 @@ import com.simibubi.create.content.decoration.encasing.EncasedCTBehaviour;
 import com.simibubi.create.foundation.data.AssetLookup;
 import com.simibubi.create.foundation.data.CreateRegistrate;
 import com.simibubi.create.foundation.data.SharedProperties;
+import com.tterrag.registrate.providers.loot.RegistrateBlockLootTables;
 import com.tterrag.registrate.util.entry.BlockEntry;
 import net.minecraft.client.renderer.RenderType;
 import net.minecraft.core.Direction;
 import net.minecraft.data.loot.BlockLootSubProvider;
+import net.minecraft.resources.ResourceLocation;
+import net.minecraft.tags.BlockTags;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.SoundType;
 import net.minecraft.world.level.block.state.BlockBehaviour.Properties;
@@ -21,11 +24,13 @@ import net.nuclearteam.createnuclear.content.enriching.fire.EnrichingFireBlock;
 import net.nuclearteam.createnuclear.content.multiblock.casing.ReactorCasing;
 import net.nuclearteam.createnuclear.CNTags.CNBlockTags;
 import net.nuclearteam.createnuclear.content.multiblock.reactorCoolingFrame.ReactorCoolingFrame;
+import net.nuclearteam.createnuclear.content.multiblock.reinforced.ReinforcedGlassBlock;
 
 import static com.simibubi.create.foundation.data.CreateRegistrate.casingConnectivity;
 import static com.simibubi.create.foundation.data.ModelGen.customItemModel;
 import static com.simibubi.create.foundation.data.TagGen.axeOrPickaxe;
 import static com.simibubi.create.foundation.data.TagGen.pickaxeOnly;
+
 
 public class CNBlocks {
 
@@ -35,7 +40,7 @@ public class CNBlocks {
                             .destroyTime(4F))
                     .blockstate((c,p) ->
                             p.getVariantBuilder(c.getEntry()).forAllStates((state) -> ConfiguredModel.builder()
-                                    .modelFile(p.models().getExistingFile(p.modLoc("block/reactor_casing")))
+                                    .modelFile(p.models().getExistingFile(p.modLoc("block/reactor/casing/block")))
                                     .build()))
                     .onRegister(CreateRegistrate.connectedTextures(() -> new EncasedCTBehaviour(CNSpriteShifts.REACTOR_CASING)))
                     .onRegister(casingConnectivity((block,cc) -> cc.makeCasing(block, CNSpriteShifts.REACTOR_CASING)))
@@ -45,18 +50,38 @@ public class CNBlocks {
                     .register();
 
     public static final BlockEntry<ReactorCoolingFrame> REACTOR_COOLING_FRAME =
-            CreateNuclear.REGISTRATE.block("reactor_cooling_frame", properties -> new ReactorCoolingFrame(properties))
+            CreateNuclear.REGISTRATE.block("reactor_cooling_frame", ReactorCoolingFrame::new)
                     .properties(p -> p.explosionResistance(3F)
                             .destroyTime(4F))
-
                     .blockstate((c,p) ->
                             p.getVariantBuilder(c.getEntry()).forAllStates((state) -> ConfiguredModel.builder()
-                                    .modelFile(p.models().getExistingFile(p.modLoc("block/reactor_cooling_frame")))
+                                    .modelFile(p.models().getExistingFile(p.modLoc("block/reactor/cooling_frame/block")))
                                     .build()))
                     .tag(CNBlockTags.NEEDS_DIAMOND_TOOL.tag)
                     .simpleItem()
                     .transform(pickaxeOnly())
                     .register();
+
+    public static final BlockEntry<ReinforcedGlassBlock> REINFORCED_GLASS = CreateNuclear.REGISTRATE
+            .block("reinforced_glass", ReinforcedGlassBlock::new)
+            .initialProperties(() -> Blocks.GLASS)
+            .properties(p -> p.explosionResistance(1200F).destroyTime(2F))
+            .loot(RegistrateBlockLootTables::dropWhenSilkTouch)
+            .tag(CNTags.forgeBlockTag("glass"), BlockTags.IMPERMEABLE)
+            .blockstate((c, p) -> p.getVariantBuilder(c.getEntry())
+                .forAllStates(state -> ConfiguredModel.builder().modelFile(p.models()
+                    .withExistingParent("reinforced_glass",new ResourceLocation("block/cube_all"))
+                    .texture("all", p.modLoc("block/reactor/reinforced/glass"))
+                    .texture("particle", p.modLoc("block/reactor/reinforced/glass"))
+                )
+                .build())
+            )
+            .addLayer(() -> RenderType::translucent)
+            .item()
+            .tag(CNTags.forgeItemTag("glass"))
+            .build()
+            .register();
+
 
 
     public static final BlockEntry<EnrichingFireBlock> ENRICHING_FIRE =

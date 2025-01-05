@@ -1,17 +1,20 @@
-// 1.20.1	2025-01-05T16:23:34.013686	Registrate Provider for createnuclear [Recipes, Advancements, Loot Tables, Tags (blocks), Tags (items), Tags (fluids), Tags (entity_types), Blockstates, Item models, Lang (en_us/en_ud)]
+// 1.20.1	2025-01-05T18:38:59.8886026	Registrate Provider for createnuclear [Recipes, Advancements, Loot Tables, Tags (blocks), Tags (items), Tags (fluids), Tags (entity_types), Blockstates, Item models, Lang (en_us/en_ud)]
 f6b762b1e80656d932e990210b43e4bfb209e4d8 assets/createnuclear/blockstates/enriching_campfire.json
 41d2222cb4f17c8c035f1937873518ad2adca3db assets/createnuclear/blockstates/enriching_fire.json
-805d33f2cd7d0141d6fff763109f1461573cc930 assets/createnuclear/blockstates/reactor_casing.json
-3f4203719b108b4b78e69c2d9304bc0a150eec7a assets/createnuclear/blockstates/reactor_cooling_frame.json
+0fbc9288622efc18fe39b6c8ba89e7e2281dee26 assets/createnuclear/blockstates/reactor_casing.json
+081ed92accc72d20692ae24be937e9a099fea223 assets/createnuclear/blockstates/reactor_cooling_frame.json
+f7504d5f748fe938bf07d2eb5d0ba46bbfa0499d assets/createnuclear/blockstates/reinforced_glass.json
 de2884054a21315d8b167f64b206be331d388420 assets/createnuclear/blockstates/uranium.json
-c49d3298f04daa76b599eabe270a417fd8081e0c assets/createnuclear/lang/en_ud.json
-a01f0976ff60ddffa72cb55e7b040d39871ef407 assets/createnuclear/lang/en_us.json
+1cd1341c606d5aa5728cf08e1be2873b4364c8d7 assets/createnuclear/lang/en_ud.json
+2e283a937841bd812d2cf271b225000f51165745 assets/createnuclear/lang/en_us.json
+7cdeee7f4740b6a86802354534be24dbb251e211 assets/createnuclear/models/block/reinforced_glass.json
 d234edb3b6bc81b7300ee65722973b66db0b82d9 assets/createnuclear/models/block/uranium.json
 63ec6c618a3a23eab4cab9c52d7d3250de9b516e assets/createnuclear/models/item/cat_irradiated_spawn_egg.json
 63ec6c618a3a23eab4cab9c52d7d3250de9b516e assets/createnuclear/models/item/chicken_irradiated_spawn_egg.json
 875513d47ccf4e68111ec52d9abe01ec91cce20e assets/createnuclear/models/item/enriching_campfire.json
-cb90a0a4a9afbc7b9367a66696be77942078a9f4 assets/createnuclear/models/item/reactor_casing.json
-f5dba8804568b52e64ada91d80e75f6b1c7f8272 assets/createnuclear/models/item/reactor_cooling_frame.json
+ee9b06de6d4e5f722543a83e5d9f7564ac6d7f70 assets/createnuclear/models/item/reactor_casing.json
+759b8690a57854f54b2d5d3239a3e5c5b08c352f assets/createnuclear/models/item/reactor_cooling_frame.json
+78a9e80073512a111cb936a516d290a824846ff2 assets/createnuclear/models/item/reinforced_glass.json
 2b6958059c3a4c8aee7fb4c003feba12dd0ab252 assets/createnuclear/models/item/uranium_bucket.json
 63ec6c618a3a23eab4cab9c52d7d3250de9b516e assets/createnuclear/models/item/wolf_irradiated_spawn_egg.json
 8bdc2fabbfc9fcc7c2ad4a3273897659d90b95ab assets/createnuclear/models/item/yellowcake.json
@@ -19,6 +22,7 @@ f5dba8804568b52e64ada91d80e75f6b1c7f8272 assets/createnuclear/models/item/reacto
 aa8efeb48b11261953f7d90e6d7db38411550694 data/createnuclear/loot_tables/blocks/enriching_fire.json
 af059cd55441441329347fbd569245b539b095db data/createnuclear/loot_tables/blocks/reactor_casing.json
 cfdc17ed6f2371c67b39073fc5497a3e1a05c36e data/createnuclear/loot_tables/blocks/reactor_cooling_frame.json
+88c7cfbf28fdbe53241453e073722791c780de75 data/createnuclear/loot_tables/blocks/reinforced_glass.json
 fba1a7bdb0835c034aa5ef52ebf589123d41b33e data/createnuclear/loot_tables/entities/irradiated_cat.json
 2d8f5d7d7babd2b02ae836846e62daabf84de427 data/createnuclear/loot_tables/entities/irradiated_chicken.json
 f91f43a39c80f583f878ea1a0d944798c05f2388 data/createnuclear/loot_tables/entities/irradiated_wolf.json
@@ -33,12 +37,15 @@ bfd5a561b60a7d59d7f7c248ec75e3571a0f2fed data/createnuclear/tags/fluids/uranium.
 35133e95f1c8fdd7a1c21afcc231fc0bffefb9a8 data/createnuclear/tags/items/fuel.json
 35133e95f1c8fdd7a1c21afcc231fc0bffefb9a8 data/createnuclear/tags/items/lead_ores.json
 35133e95f1c8fdd7a1c21afcc231fc0bffefb9a8 data/createnuclear/tags/items/uranium_ores.json
+75f0600da4891d0f4a3329fb44cac6c4945a0b49 data/forge/tags/blocks/glass.json
 a63487094743744be756ad497f483fcd4d11e9bc data/forge/tags/fluids/uranium.json
 9ac9f967f480bbbe186815331a7e1771c8feea57 data/forge/tags/items/buckets/uranium.json
+75f0600da4891d0f4a3329fb44cac6c4945a0b49 data/forge/tags/items/glass.json
 e84d8e1fa924bec3e226b8917b4973b9629a5f52 data/minecraft/tags/blocks/all/campfires.json
 e84d8e1fa924bec3e226b8917b4973b9629a5f52 data/minecraft/tags/blocks/campfires.json
 3206babfa42429478935375acd710b4028884941 data/minecraft/tags/blocks/dragon_transparent.json
 3206babfa42429478935375acd710b4028884941 data/minecraft/tags/blocks/fire.json
+75f0600da4891d0f4a3329fb44cac6c4945a0b49 data/minecraft/tags/blocks/impermeable.json
 e84d8e1fa924bec3e226b8917b4973b9629a5f52 data/minecraft/tags/blocks/mineable/axe.json
 994a93231108738b049ff37250d2f6536e789768 data/minecraft/tags/blocks/mineable/pickaxe.json
 ddbef4961d505612c8897d8cd3942d65dd042575 data/minecraft/tags/blocks/needs_diamond_tool.json

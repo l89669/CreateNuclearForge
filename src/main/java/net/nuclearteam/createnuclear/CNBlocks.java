@@ -1,6 +1,8 @@
 package net.nuclearteam.createnuclear;
 
+import com.simibubi.create.content.decoration.encasing.EncasedCTBehaviour;
 import com.simibubi.create.foundation.data.AssetLookup;
+import com.simibubi.create.foundation.data.CreateRegistrate;
 import com.tterrag.registrate.util.entry.BlockEntry;
 import net.minecraft.client.renderer.RenderType;
 import net.minecraft.core.Direction;
@@ -15,11 +17,33 @@ import net.minecraftforge.client.model.generators.ConfiguredModel;
 import net.minecraftforge.client.model.generators.ModelFile;
 import net.nuclearteam.createnuclear.content.enriching.campfire.EnrichingCampfireBlock;
 import net.nuclearteam.createnuclear.content.enriching.fire.EnrichingFireBlock;
+import net.nuclearteam.createnuclear.content.multiblock.casing.ReactorCasing;
 
+import static com.simibubi.create.foundation.data.CreateRegistrate.casingConnectivity;
 import static com.simibubi.create.foundation.data.ModelGen.customItemModel;
 import static com.simibubi.create.foundation.data.TagGen.axeOrPickaxe;
+import static com.simibubi.create.foundation.data.TagGen.pickaxeOnly;
 
 public class CNBlocks {
+
+    public static final BlockEntry<ReactorCasing> REACTOR_CASING =
+            CreateNuclear.REGISTRATE.block("reactor_casing", properties -> new ReactorCasing(properties, ReactorCasing.TypeBlock.CASING))
+                    .properties(p -> p.explosionResistance(3F)
+                            .destroyTime(4F))
+                    .transform(pickaxeOnly())
+                    .blockstate((c,p) ->
+                            p.getVariantBuilder(c.getEntry()).forAllStates((state) -> ConfiguredModel.builder()
+                                    .modelFile(p.models().getExistingFile(p.modLoc("block/reactor_casing")))
+                                    .build()))
+                    .onRegister(CreateRegistrate.connectedTextures(() -> new EncasedCTBehaviour(CNSpriteShifts.REACTOR_CASING)))
+                    .onRegister(casingConnectivity((block,cc) -> cc.makeCasing(block, CNSpriteShifts.REACTOR_CASING)))
+                    .tag(CNTags.CNBlockTags.NEEDS_DIAMOND_TOOL.tag)
+                    .simpleItem()
+                    .transform(pickaxeOnly())
+                    .register();
+
+
+
 
     public static final BlockEntry<EnrichingFireBlock> ENRICHING_FIRE =
             CreateNuclear.REGISTRATE.block("enriching_fire", properties -> new EnrichingFireBlock(properties, 3.0f))

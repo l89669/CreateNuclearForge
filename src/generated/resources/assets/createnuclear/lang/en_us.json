@@ -7,7 +7,10 @@
   "entity.createnuclear.irradiated_chicken": "Irradiated Chicken",
   "entity.createnuclear.irradiated_wolf": "Irradiated Wolf",
   "fluid.createnuclear.uranium": "Liquid Uranium",
+  "item.createnuclear.cat_irradiated_spawn_egg": "Irradiated Cat Spawn Egg",
+  "item.createnuclear.chicken_irradiated_spawn_egg": "Irradiated Chicken Spawn Egg",
   "item.createnuclear.uranium_bucket": "Uranium Bucket",
+  "item.createnuclear.wolf_irradiated_spawn_egg": "Irradiated Wolf Spawn Egg",
   "item.createnuclear.yellowcake": "Yellowcake",
   "itemGroup.createnuclear.main": "Create Nuclear"
 }

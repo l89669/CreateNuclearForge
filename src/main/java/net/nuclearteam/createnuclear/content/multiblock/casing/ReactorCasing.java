@@ -94,7 +94,7 @@ public class ReactorCasing extends Block implements IWrenchable, IBE<ReactorCasi
     @Override
     public BlockEntityType<? extends ReactorCasingEntity> getBlockEntityType() {
         return switch (typeBlock) {
-            case CORE -> null; //CNBlockEntities.REACTOR_CORE.get();
+            case CORE -> CNBlockEntityTypes.REACTOR_CORE.get();
             case CASING -> CNBlockEntityTypes.REACTOR_CASING.get();
         };
 

@@ -3,7 +3,6 @@ package net.nuclearteam.createnuclear;
 import com.simibubi.create.content.decoration.encasing.EncasedCTBehaviour;
 import com.simibubi.create.foundation.data.AssetLookup;
 import com.simibubi.create.foundation.data.CreateRegistrate;
-import com.simibubi.create.foundation.data.SharedProperties;
 import com.tterrag.registrate.providers.loot.RegistrateBlockLootTables;
 import com.tterrag.registrate.util.entry.BlockEntry;
 import net.minecraft.client.renderer.RenderType;
@@ -23,6 +22,7 @@ import net.nuclearteam.createnuclear.content.enriching.campfire.EnrichingCampfir
 import net.nuclearteam.createnuclear.content.enriching.fire.EnrichingFireBlock;
 import net.nuclearteam.createnuclear.content.multiblock.casing.ReactorCasing;
 import net.nuclearteam.createnuclear.CNTags.CNBlockTags;
+import net.nuclearteam.createnuclear.content.multiblock.core.ReactorCore;
 import net.nuclearteam.createnuclear.content.multiblock.reactorCoolingFrame.ReactorCoolingFrame;
 import net.nuclearteam.createnuclear.content.multiblock.reinforced.ReinforcedGlassBlock;
 
@@ -47,6 +47,23 @@ public class CNBlocks {
                     .tag(CNBlockTags.NEEDS_DIAMOND_TOOL.tag)
                     .simpleItem()
                     .transform(pickaxeOnly())
+                    .register();
+
+    public static final BlockEntry<ReactorCore> REACTOR_CORE =
+            CreateNuclear.REGISTRATE.block("reactor_core", ReactorCore::new)
+                    .properties(p -> p.explosionResistance(6F))
+                    .properties(p -> p.destroyTime(4F))
+                    .tag(CNBlockTags.NEEDS_DIAMOND_TOOL.tag)
+                    .blockstate((c, p) ->
+                        p.getVariantBuilder(c.getEntry())
+                            .forAllStates(state -> ConfiguredModel.builder()
+                                .modelFile(p.models().getExistingFile(p.modLoc("block/reactor/core/block")))
+                                .uvLock(false)
+                                .build()
+                            )
+                    )
+                    .transform(pickaxeOnly())
+                    .simpleItem()
                     .register();
 
     public static final BlockEntry<ReactorCoolingFrame> REACTOR_COOLING_FRAME =

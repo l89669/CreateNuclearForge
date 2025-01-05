@@ -1,6 +1,7 @@
 {
   "values": [
     "createnuclear:reactor_casing",
+    "createnuclear:reactor_core",
     "createnuclear:reactor_cooling_frame"
   ]
 }

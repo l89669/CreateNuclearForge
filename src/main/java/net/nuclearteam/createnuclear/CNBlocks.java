@@ -3,6 +3,7 @@ package net.nuclearteam.createnuclear;
 import com.simibubi.create.content.decoration.encasing.EncasedCTBehaviour;
 import com.simibubi.create.foundation.data.AssetLookup;
 import com.simibubi.create.foundation.data.CreateRegistrate;
+import com.simibubi.create.foundation.data.SharedProperties;
 import com.tterrag.registrate.providers.loot.RegistrateBlockLootTables;
 import com.tterrag.registrate.util.entry.BlockEntry;
 import net.minecraft.client.renderer.RenderType;
@@ -23,6 +24,8 @@ import net.nuclearteam.createnuclear.content.enriching.fire.EnrichingFireBlock;
 import net.nuclearteam.createnuclear.content.multiblock.casing.ReactorCasing;
 import net.nuclearteam.createnuclear.CNTags.CNBlockTags;
 import net.nuclearteam.createnuclear.content.multiblock.core.ReactorCore;
+import net.nuclearteam.createnuclear.content.multiblock.gauge.ReactorGauge;
+import net.nuclearteam.createnuclear.content.multiblock.gauge.ReactorGaugeItem;
 import net.nuclearteam.createnuclear.content.multiblock.reactorCoolingFrame.ReactorCoolingFrame;
 import net.nuclearteam.createnuclear.content.multiblock.reinforced.ReinforcedGlassBlock;
 
@@ -30,6 +33,7 @@ import static com.simibubi.create.foundation.data.CreateRegistrate.casingConnect
 import static com.simibubi.create.foundation.data.ModelGen.customItemModel;
 import static com.simibubi.create.foundation.data.TagGen.axeOrPickaxe;
 import static com.simibubi.create.foundation.data.TagGen.pickaxeOnly;
+import static net.nuclearteam.createnuclear.content.multiblock.gauge.ReactorGauge.Part.*;
 
 
 public class CNBlocks {
@@ -64,6 +68,37 @@ public class CNBlocks {
                     )
                     .transform(pickaxeOnly())
                     .simpleItem()
+                    .register();
+
+    public static final BlockEntry<ReactorGauge> REACTOR_GAUGE =
+            CreateNuclear.REGISTRATE.block("reactor_gauge", ReactorGauge::new)
+                    .initialProperties(SharedProperties::stone)
+                    .properties(p -> p.explosionResistance(3F).destroyTime(2F))
+                    .addLayer(() -> RenderType::cutoutMipped)
+                    .transform(pickaxeOnly())
+                    .tag(CNBlockTags.NEEDS_DIAMOND_TOOL.tag)
+                    .blockstate((c, p) ->
+                        p.getVariantBuilder(c.getEntry())
+                        .forAllStatesExcept(state -> {
+                            ReactorGauge.Part part = state.getValue(ReactorGauge.PART);
+                            String baseFile = "block/reactor/gauge/gauge_";
+                            ModelFile start = p.models().getExistingFile(p.modLoc(baseFile + "top"));
+                            ModelFile middle = p.models().getExistingFile(p.modLoc(baseFile + "middle"));
+                            ModelFile bottom = p.models().getExistingFile(p.modLoc(baseFile + "bottom"));
+                            ModelFile none = p.models().getExistingFile(p.modLoc(baseFile + "none"));
+                            return ConfiguredModel.builder().modelFile(switch (part) {
+                                case START -> start;
+                                case MIDDLE -> middle;
+                                case END -> bottom;
+                                default -> none;
+                            })
+                            .uvLock(false)
+                            .build();
+                        })
+                    )
+                    .item(ReactorGaugeItem::new)
+                    .model(AssetLookup.customBlockItemModel("reactor", "gauge", "item"))
+                    .build()
                     .register();
 
     public static final BlockEntry<ReactorCoolingFrame> REACTOR_COOLING_FRAME =

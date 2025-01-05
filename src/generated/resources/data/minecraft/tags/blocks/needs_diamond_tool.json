@@ -2,6 +2,7 @@
   "values": [
     "createnuclear:reactor_casing",
     "createnuclear:reactor_core",
+    "createnuclear:reactor_gauge",
     "createnuclear:reactor_cooling_frame"
   ]
 }

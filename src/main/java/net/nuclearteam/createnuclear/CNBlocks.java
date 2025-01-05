@@ -18,6 +18,7 @@ import net.minecraftforge.client.model.generators.ModelFile;
 import net.nuclearteam.createnuclear.content.enriching.campfire.EnrichingCampfireBlock;
 import net.nuclearteam.createnuclear.content.enriching.fire.EnrichingFireBlock;
 import net.nuclearteam.createnuclear.content.multiblock.casing.ReactorCasing;
+import net.nuclearteam.createnuclear.CNTags.CNBlockTags;
 
 import static com.simibubi.create.foundation.data.CreateRegistrate.casingConnectivity;
 import static com.simibubi.create.foundation.data.ModelGen.customItemModel;
@@ -37,12 +38,10 @@ public class CNBlocks {
                                     .build()))
                     .onRegister(CreateRegistrate.connectedTextures(() -> new EncasedCTBehaviour(CNSpriteShifts.REACTOR_CASING)))
                     .onRegister(casingConnectivity((block,cc) -> cc.makeCasing(block, CNSpriteShifts.REACTOR_CASING)))
-                    .tag(CNTags.CNBlockTags.NEEDS_DIAMOND_TOOL.tag)
+                    .tag(CNBlockTags.NEEDS_DIAMOND_TOOL.tag)
                     .simpleItem()
                     .transform(pickaxeOnly())
                     .register();
-
-
 
 
     public static final BlockEntry<EnrichingFireBlock> ENRICHING_FIRE =
@@ -52,7 +51,7 @@ public class CNBlocks {
                     .properties(Properties::noCollission)
                     .properties(Properties::noOcclusion)
                     .properties(EnrichingFireBlock.getLight())
-                    .tag(CNTags.CNBlockTags.FAN_PROCESSING_CATALYSTS_ENRICHED.tag, CNTags.CNBlockTags.FIRE.tag, CNTags.CNBlockTags.DRAGON_TRANSPARENT.tag)
+                    .tag(CNBlockTags.FAN_PROCESSING_CATALYSTS_ENRICHED.tag)
                     .loot((lt, b) -> lt.add(b, BlockLootSubProvider.noDrop()))
                     .addLayer(() -> RenderType::cutout)
                     .blockstate((c, p) -> {
@@ -117,7 +116,7 @@ public class CNBlocks {
                     //.properties(Properties::replaceable)
                     .addLayer(() -> RenderType::cutoutMipped)
                     .transform(axeOrPickaxe())
-                    .tag(CNTags.CNBlockTags.CAMPFIRES.tag, CNTags.CNBlockTags.ALL_CAMPFIRES.tag)
+                    .tag(CNBlockTags.ALL_CAMPFIRES.tag)
                     //.loot((lt, b) -> lt.add(b, RegistrateBlockLootTables.createSilkTouchDispatchTable(b, lt.applyExplosionDecay(b, LootItem.lootTableItem(CNBlocks.ENRICHING_SOUL_SOIL)))))
                     .blockstate((c, p) ->
                         p.getVariantBuilder(c.getEntry()).forAllStatesExcept(state -> {

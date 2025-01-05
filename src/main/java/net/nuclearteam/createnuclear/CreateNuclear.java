@@ -57,6 +57,7 @@ public class CreateNuclear {
         CNPackets.registerPackets();
         CNMenus.register();
         CNFluids.register();
+        CNEntityType.register();
 
         modEventBus.addListener(CreateNuclear::init);
         modEventBus.addListener(EventPriority.LOWEST, CreateNuclearDatagen::gatherData);

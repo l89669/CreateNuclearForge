@@ -69,10 +69,7 @@ public class CNTags {
     public enum CNBlockTags {
         FAN_PROCESSING_CATALYSTS_ENRICHED(MOD, "fan_processing_catalysts/enriched"),
         ENRICHING_FIRE_BASE_BLOCKS,
-        CAMPFIRES(MINECRAFT),
         ALL_CAMPFIRES(MINECRAFT, "all/campfires"),
-        DRAGON_TRANSPARENT(MINECRAFT),
-        FIRE(MINECRAFT),
         NEEDS_DIAMOND_TOOL(MINECRAFT),
         NEEDS_IRON_TOOL(MINECRAFT),
         NEEDS_STONE_TOOL(MINECRAFT),
@@ -176,8 +173,7 @@ public class CNTags {
     }
 
     public enum CNFluidTags {
-        URANIUM,
-        LAVA(MINECRAFT)
+        URANIUM
         ;
 
         public final TagKey<Fluid> tag;
@@ -222,7 +218,6 @@ public class CNTags {
     }
 
     public enum CNEntityTags {
-        FALL_DAMAGE_IMMUNE(MINECRAFT, "fall_damage_immune"),
         IRRADIATED_IMMUNE
         ;
 

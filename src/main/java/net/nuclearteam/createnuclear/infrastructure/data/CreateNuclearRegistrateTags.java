@@ -3,12 +3,16 @@ package net.nuclearteam.createnuclear.infrastructure.data;
 import com.simibubi.create.foundation.data.TagGen.CreateTagsProvider;
 import com.tterrag.registrate.providers.ProviderType;
 import com.tterrag.registrate.providers.RegistrateTagsProvider;
+import net.minecraft.tags.BlockTags;
+import net.minecraft.tags.EntityTypeTags;
 import net.minecraft.tags.FluidTags;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.material.Fluid;
 import net.minecraftforge.common.Tags;
+import net.nuclearteam.createnuclear.CNBlocks;
+import net.nuclearteam.createnuclear.CNEntityType;
 import net.nuclearteam.createnuclear.CNTags;
 import net.nuclearteam.createnuclear.CNTags.CNFluidTags;
 import net.nuclearteam.createnuclear.CNTags.CNItemTags;
@@ -26,6 +30,18 @@ public class CreateNuclearRegistrateTags {
 
     private static void genBlockTags(RegistrateTagsProvider<Block> provIn) {
         CreateTagsProvider<Block> prov = new CreateTagsProvider<>(provIn, Block::builtInRegistryHolder);
+
+        prov.tag(BlockTags.CAMPFIRES)
+                .add(CNBlocks.ENRICHING_CAMPFIRE.get())
+        ;
+
+        prov.tag(BlockTags.FIRE)
+                .add(CNBlocks.ENRICHING_FIRE.get())
+        ;
+
+        prov.tag(BlockTags.DRAGON_TRANSPARENT)
+                .add(CNBlocks.ENRICHING_FIRE.get())
+        ;
 
         for (CNBlockTags tag : CNBlockTags.values()) {
             if (tag.alwaysDatagen) {
@@ -65,6 +81,11 @@ public class CreateNuclearRegistrateTags {
 
     private static void genEntityTags(RegistrateTagsProvider<EntityType<?>> provIn) {
         CreateTagsProvider<EntityType<?>> prov = new CreateTagsProvider<>(provIn, EntityType::builtInRegistryHolder);
+
+        prov.tag(EntityTypeTags.FALL_DAMAGE_IMMUNE)
+                .add(CNEntityType.IRRADIATED_CAT.get())
+                .add(CNEntityType.IRRADIATED_CHICKEN.get())
+        ;
 
         for (CNEntityTags tag : CNEntityTags.values()) {
             if (tag.alwaysDatagen) {

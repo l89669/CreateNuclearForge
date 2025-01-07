@@ -26,6 +26,8 @@ import net.nuclearteam.createnuclear.CNTags.CNBlockTags;
 import net.nuclearteam.createnuclear.content.multiblock.core.ReactorCore;
 import net.nuclearteam.createnuclear.content.multiblock.gauge.ReactorGauge;
 import net.nuclearteam.createnuclear.content.multiblock.gauge.ReactorGaugeItem;
+import net.nuclearteam.createnuclear.content.multiblock.input.ReactorInput;
+import net.nuclearteam.createnuclear.content.multiblock.input.ReactorInputGenerator;
 import net.nuclearteam.createnuclear.content.multiblock.reactorCoolingFrame.ReactorCoolingFrame;
 import net.nuclearteam.createnuclear.content.multiblock.reinforced.ReinforcedGlassBlock;
 
@@ -99,6 +101,19 @@ public class CNBlocks {
                     .item(ReactorGaugeItem::new)
                     .model(AssetLookup.customBlockItemModel("reactor", "gauge", "item"))
                     .build()
+                    .register();
+
+    public static final BlockEntry<ReactorInput> REACTOR_INPUT =
+            CreateNuclear.REGISTRATE.block("reactor_input", ReactorInput::new)
+                    .initialProperties(SharedProperties::stone)
+                    .properties(p -> p.explosionResistance(6F))
+                    .properties(p -> p.destroyTime(2F))
+                    .addLayer(() -> RenderType::cutoutMipped)
+                    .transform(pickaxeOnly())
+                    .tag(CNBlockTags.NEEDS_DIAMOND_TOOL.tag)
+                    .blockstate(new ReactorInputGenerator()::generate)
+                    .item()
+                    .transform(customItemModel())
                     .register();
 
     public static final BlockEntry<ReactorCoolingFrame> REACTOR_COOLING_FRAME =

@@ -31,8 +31,12 @@ public class ReactorOutputGenerator extends SpecialBlockStateGen {
 
     @Override
     public <T extends Block> ModelFile getModel(DataGenContext<Block, T> ctx, RegistrateBlockstateProvider prov, BlockState state) {
-        return state.getValue(ReactorOutput.FACING).getAxis().isVertical()
-                ? AssetLookup.partialBaseModel(ctx, prov, "vertical")
-                : AssetLookup.partialBaseModel(ctx, prov);
+        return prov
+                .models()
+                .getExistingFile(prov
+                        .modLoc("block/reactor/output/output" + (state.getValue(ReactorOutput.FACING).getAxis().isVertical()
+                            ? "_vertical"
+                            : ""
+        )));
     }
 }

@@ -86,7 +86,7 @@ public class CNBlocks {
                     .transform(BlockStressDefaults.setCapacity(10240))
                     .item()
                     .properties(p -> p.rarity(Rarity.EPIC))
-                    .transform(customItemModel())
+                    .transform(customItemModel("reactor", "output", "item"))
                     .register();
 
     public static final BlockEntry<ReactorGauge> REACTOR_GAUGE =

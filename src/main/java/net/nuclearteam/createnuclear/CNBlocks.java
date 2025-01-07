@@ -1,6 +1,8 @@
 package net.nuclearteam.createnuclear;
 
+import com.simibubi.create.AllTags;
 import com.simibubi.create.content.decoration.encasing.EncasedCTBehaviour;
+import com.simibubi.create.content.kinetics.BlockStressDefaults;
 import com.simibubi.create.foundation.data.AssetLookup;
 import com.simibubi.create.foundation.data.CreateRegistrate;
 import com.simibubi.create.foundation.data.SharedProperties;
@@ -11,6 +13,7 @@ import net.minecraft.core.Direction;
 import net.minecraft.data.loot.BlockLootSubProvider;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.tags.BlockTags;
+import net.minecraft.world.item.Rarity;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.SoundType;
 import net.minecraft.world.level.block.state.BlockBehaviour.Properties;
@@ -26,6 +29,8 @@ import net.nuclearteam.createnuclear.CNTags.CNBlockTags;
 import net.nuclearteam.createnuclear.content.multiblock.core.ReactorCore;
 import net.nuclearteam.createnuclear.content.multiblock.gauge.ReactorGauge;
 import net.nuclearteam.createnuclear.content.multiblock.gauge.ReactorGaugeItem;
+import net.nuclearteam.createnuclear.content.multiblock.output.ReactorOutput;
+import net.nuclearteam.createnuclear.content.multiblock.output.ReactorOutputGenerator;
 import net.nuclearteam.createnuclear.content.multiblock.reactorCoolingFrame.ReactorCoolingFrame;
 import net.nuclearteam.createnuclear.content.multiblock.reinforced.ReinforcedGlassBlock;
 
@@ -68,6 +73,20 @@ public class CNBlocks {
                     )
                     .transform(pickaxeOnly())
                     .simpleItem()
+                    .register();
+
+    public static final BlockEntry<ReactorOutput> REACTOR_OUTPUT =
+            CreateNuclear.REGISTRATE.block("reactor_output", ReactorOutput::new)
+                    .properties(p -> p.explosionResistance(6F).destroyTime(4F))
+                    .initialProperties(SharedProperties::stone)
+                    .properties(p -> p.mapColor(MapColor.COLOR_PURPLE).forceSolidOn())
+                    .tag(AllTags.AllBlockTags.SAFE_NBT.tag, CNBlockTags.NEEDS_DIAMOND_TOOL.tag)
+                    .transform(pickaxeOnly())
+                    .blockstate(new ReactorOutputGenerator()::generate)
+                    .transform(BlockStressDefaults.setCapacity(10240))
+                    .item()
+                    .properties(p -> p.rarity(Rarity.EPIC))
+                    .transform(customItemModel())
                     .register();
 
     public static final BlockEntry<ReactorGauge> REACTOR_GAUGE =

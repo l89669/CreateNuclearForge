@@ -21,7 +21,7 @@ import java.util.List;
 
 public class ReactorInputEntity extends SmartBlockEntity implements MenuProvider, SidedStorageBlockEntity {
     protected BlockPos block;
-    protected ReactorControllerBlockEntity controller;
+    //protected ReactorControllerBlockEntity controller;
 
     public ReactorInputInventory inventory;
 
@@ -61,7 +61,7 @@ public class ReactorInputEntity extends SmartBlockEntity implements MenuProvider
     }
 
 
-    private static BlockPos FindController(char character) {
+    /*private static BlockPos FindController(char character) {
         return SimpleMultiBlockAislePatternBuilder.start()
                 .aisle(AAAAA, AAAAA, AAAAA, AAAAA, AAAAA)
                 .aisle(AABAA, ADADA, BACAB, ADADA, AABAA)
@@ -78,7 +78,7 @@ public class ReactorInputEntity extends SmartBlockEntity implements MenuProvider
                 .where('O', a -> a.getState().is(CNBlocks.REACTOR_OUTPUT.get()))
                 .where('I', a -> a.getState().is(CNBlocks.REACTOR_INPUT.get()))
                 .getDistanceController(character);
-    }
+    }*/
 
     @Override
     public Component getDisplayName() {

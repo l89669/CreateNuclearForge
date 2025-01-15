@@ -11,12 +11,17 @@ import net.minecraft.core.Direction;
 import net.minecraft.data.loot.BlockLootSubProvider;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.tags.BlockTags;
+import net.minecraft.world.item.Item;
+import net.minecraft.world.item.enchantment.Enchantments;
+import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.SoundType;
 import net.minecraft.world.level.block.state.BlockBehaviour.Properties;
 import net.minecraft.world.level.block.state.properties.BlockStateProperties;
 import net.minecraft.world.level.block.state.properties.NoteBlockInstrument;
 import net.minecraft.world.level.material.MapColor;
+import net.minecraft.world.level.storage.loot.entries.LootItem;
+import net.minecraft.world.level.storage.loot.functions.ApplyBonusCount;
 import net.minecraftforge.client.model.generators.ConfiguredModel;
 import net.minecraftforge.client.model.generators.ModelFile;
 import net.nuclearteam.createnuclear.content.enriching.campfire.EnrichingCampfireBlock;
@@ -231,6 +236,71 @@ public class CNBlocks {
                     .model(AssetLookup.customBlockItemModel("enriching", "campfire", "block"))
                     .build()
                     .tag(CNTags.CNBlockTags.FAN_PROCESSING_CATALYSTS_ENRICHED.tag)
+                    .register();
+
+    public static final BlockEntry<Block> DEEPSLATE_LEAD_ORE =
+            CreateNuclear.REGISTRATE.block("deepslate_lead_ore", Block::new)
+                    .initialProperties(() -> Blocks.DIAMOND_ORE)
+                    .simpleItem()
+                    .transform(pickaxeOnly())
+                    .loot((lt, b) -> lt.add(b,
+                            RegistrateBlockLootTables.createSilkTouchDispatchTable(b,
+                                    lt.applyExplosionDecay(b, LootItem.lootTableItem(CNItems.RAW_LEAD)
+                                            .apply(ApplyBonusCount.addOreBonusCount(Enchantments.BLOCK_FORTUNE))
+                                    ))))
+                    .tag(CNTags.CNBlockTags.NEEDS_IRON_TOOL.tag,
+                            CNTags.forgeBlockTag("ores"),
+                            CNTags.forgeBlockTag("ores_in_ground/deepslate"),
+                            CNTags.CNBlockTags.LEAD_ORES.tag
+
+                    )
+                    .item()
+                    .tag(CNTags.CNItemTags.LEAD_ORES.tag)
+                    .build()
+                    .register();
+
+    public static final BlockEntry<Block> LEAD_ORE =
+            CreateNuclear.REGISTRATE.block("lead_ore", Block::new)
+                    .initialProperties(SharedProperties::stone)
+                    .simpleItem()
+                    .transform(pickaxeOnly())
+                    .loot((lt, b) -> lt.add(b,
+                            RegistrateBlockLootTables.createSilkTouchDispatchTable(b,
+                                    lt.applyExplosionDecay(b, LootItem.lootTableItem(CNItems.RAW_LEAD)
+                                            .apply(ApplyBonusCount.addOreBonusCount(Enchantments.BLOCK_FORTUNE))
+                                    ))))
+                    .tag(CNTags.CNBlockTags.NEEDS_IRON_TOOL.tag,
+                            CNTags.forgeBlockTag("ores"),
+                            CNTags.forgeBlockTag("ores_in_ground/stone"),
+                            CNTags.CNBlockTags.LEAD_ORES.tag
+                    )
+                    .item()
+                    .tag(CNTags.CNItemTags.LEAD_ORES.tag)
+                    .build()
+                    .register();
+
+    public static final BlockEntry<Block> RAW_LEAD_BLOCK =
+            CreateNuclear.REGISTRATE.block("raw_lead_block", Block::new)
+                    .initialProperties(SharedProperties::stone)
+                    .simpleItem()
+                    .transform(pickaxeOnly())
+                    .tag(CNTags.forgeBlockTag("storage_blocks/raw_lead"))
+                    .register();
+
+    public static final BlockEntry<Block> LEAD_BLOCK =
+            CreateNuclear.REGISTRATE.block("lead_block", Block::new)
+                    .initialProperties(SharedProperties::stone)
+                    .simpleItem()
+                    .transform(pickaxeOnly())
+                    .tag(CNTags.forgeBlockTag("storage_blocks/lead"))
+                    .register();
+
+    public static final BlockEntry<Block> ENRICHED_SOUL_SOIL =
+            CreateNuclear.REGISTRATE.block("enriched_soul_soil", Block::new)
+                    .initialProperties(() -> Blocks.SOUL_SOIL)
+                    .simpleItem()
+                    .tag(CNTags.CNBlockTags.SHOVEL.tag)
+                    .tag(CNTags.CNBlockTags.ENRICHING_FIRE_BASE_BLOCKS.tag, CNTags.CNBlockTags.NEEDS_DIAMOND_TOOL.tag)
                     .register();
 
 

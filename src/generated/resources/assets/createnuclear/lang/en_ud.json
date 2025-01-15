@@ -1,6 +1,10 @@
 {
+  "block.createnuclear.deepslate_lead_ore": "ǝɹO pɐǝꞀ ǝʇɐןsdǝǝᗡ",
   "block.createnuclear.enriching_campfire": "ǝɹıɟdɯɐƆ buıɥɔıɹuƎ",
   "block.createnuclear.enriching_fire": "ǝɹıℲ buıɥɔıɹuƎ",
+  "block.createnuclear.lead_block": "ʞɔoןᗺ pɐǝꞀ",
+  "block.createnuclear.lead_ore": "ǝɹO pɐǝꞀ",
+  "block.createnuclear.raw_lead_block": "ʞɔoןᗺ pɐǝꞀ ʍɐᴚ",
   "block.createnuclear.reactor_casing": "buısɐƆ ɹoʇɔɐǝᴚ",
   "block.createnuclear.reactor_cooling_frame": "ǝɯɐɹℲ buıןooƆ ɹoʇɔɐǝᴚ",
   "block.createnuclear.reactor_core": "ǝɹoƆ ɹoʇɔɐǝᴚ",
@@ -13,6 +17,7 @@
   "fluid.createnuclear.uranium": "ɯnıuɐɹ∩ pınbıꞀ",
   "item.createnuclear.cat_irradiated_spawn_egg": "bbƎ uʍɐdS ʇɐƆ pǝʇɐıpɐɹɹI",
   "item.createnuclear.chicken_irradiated_spawn_egg": "bbƎ uʍɐdS uǝʞɔıɥƆ pǝʇɐıpɐɹɹI",
+  "item.createnuclear.raw_lead": "pɐǝꞀ ʍɐᴚ",
   "item.createnuclear.uranium_bucket": "ʇǝʞɔnᗺ ɯnıuɐɹ∩",
   "item.createnuclear.wolf_irradiated_spawn_egg": "bbƎ uʍɐdS ɟןoM pǝʇɐıpɐɹɹI",
   "item.createnuclear.yellowcake": "ǝʞɐɔʍoןןǝʎ",

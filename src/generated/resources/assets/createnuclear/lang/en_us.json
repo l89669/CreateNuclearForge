@@ -1,6 +1,10 @@
 {
+  "block.createnuclear.deepslate_lead_ore": "Deepslate Lead Ore",
   "block.createnuclear.enriching_campfire": "Enriching Campfire",
   "block.createnuclear.enriching_fire": "Enriching Fire",
+  "block.createnuclear.lead_block": "Lead Block",
+  "block.createnuclear.lead_ore": "Lead Ore",
+  "block.createnuclear.raw_lead_block": "Raw Lead Block",
   "block.createnuclear.reactor_casing": "Reactor Casing",
   "block.createnuclear.reactor_cooling_frame": "Reactor Cooling Frame",
   "block.createnuclear.reactor_core": "Reactor Core",
@@ -13,6 +17,7 @@
   "fluid.createnuclear.uranium": "Liquid Uranium",
   "item.createnuclear.cat_irradiated_spawn_egg": "Irradiated Cat Spawn Egg",
   "item.createnuclear.chicken_irradiated_spawn_egg": "Irradiated Chicken Spawn Egg",
+  "item.createnuclear.raw_lead": "Raw Lead",
   "item.createnuclear.uranium_bucket": "Uranium Bucket",
   "item.createnuclear.wolf_irradiated_spawn_egg": "Irradiated Wolf Spawn Egg",
   "item.createnuclear.yellowcake": "Yellowcake",

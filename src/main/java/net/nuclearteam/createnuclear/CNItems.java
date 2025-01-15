@@ -6,6 +6,10 @@ import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.Mob;
 import net.minecraft.world.item.Item;
 import net.minecraftforge.common.ForgeSpawnEggItem;
+import net.nuclearteam.createnuclear.content.equipment.cloth.ClothItem;
+import net.nuclearteam.createnuclear.content.equipment.cloth.ClothItem.DyeItemList;
+import net.nuclearteam.createnuclear.foundation.utility.TextUtils;
+
 
 import java.util.function.Supplier;
 
@@ -14,7 +18,16 @@ public class CNItems {
     public static final ItemEntry<Item>
         YELLOWCAKE = CreateNuclear.REGISTRATE
             .item("yellowcake", Item::new)
-            .register()
+            .register(),
+
+        RAW_LEAD = CreateNuclear.REGISTRATE
+                .item("raw_lead", Item::new)
+                .tag(CNTags.forgeItemTag("raw_ores"), CNTags.forgeItemTag("raw_materials"), CNTags.forgeItemTag("raw_materials/lead"))
+                .register(),
+        RAW_URANIUM = CreateNuclear.REGISTRATE
+                .item("raw_uranium", Item::new)
+                .tag(CNTags.forgeItemTag("raw_ores"), CNTags.forgeItemTag("raw_materials"), CNTags.forgeItemTag("raw_materials/uranium"))
+                .register()
     ;
 
     public static final ItemEntry<ForgeSpawnEggItem> SPAWN_WOLF = registerSpawnEgg("wolf_irradiated_spawn_egg", CNEntityType.IRRADIATED_WOLF, 0x42452B,0x4C422B, "Irradiated Wolf Spawn Egg");
@@ -30,6 +43,15 @@ public class CNItems {
                 .register();
 
     }
+
+    public static final DyeItemList<ClothItem> CLOTHS = new ClothItem.DyeItemList<>(color -> {
+        String colorName = color.getSerializedName();
+        return CreateNuclear.REGISTRATE.item(colorName+ "_cloth", p -> new ClothItem(p, color))
+                .tag(CNTags.CNItemTags.CLOTH.tag)
+                .lang(TextUtils.titleCaseConversion(color.getName()) + " Cloth")
+                .model((c, p) -> p.generated(c, CreateNuclear.asResource("item/cloth/" + colorName + "_cloth")))
+                .register();
+    });
 
 
     public static void register() {}

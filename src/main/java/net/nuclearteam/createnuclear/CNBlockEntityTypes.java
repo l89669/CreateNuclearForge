@@ -8,6 +8,7 @@ import net.nuclearteam.createnuclear.content.multiblock.casing.ReactorCasingEnti
 import net.nuclearteam.createnuclear.content.multiblock.core.ReactorCoreEntity;
 import net.nuclearteam.createnuclear.content.multiblock.output.ReactorOutputEntity;
 import net.nuclearteam.createnuclear.content.multiblock.output.ReactorOutputRenderer;
+import net.nuclearteam.createnuclear.content.multiblock.input.ReactorInputEntity;
 
 public class CNBlockEntityTypes {
     public static final BlockEntityEntry<EnrichingCampfireBlockEntity> ENRICHING_CAMPFIRE_BLOCK =
@@ -30,6 +31,11 @@ public class CNBlockEntityTypes {
                     .instance(() -> HalfShaftInstance::new, false)
                     .validBlocks(CNBlocks.REACTOR_OUTPUT)
                     .renderer(() -> ReactorOutputRenderer::new)
+                    .register();
+
+    public static final BlockEntityEntry<ReactorInputEntity> REACTOR_INPUT =
+            CreateNuclear.REGISTRATE.blockEntity("reactor_input", ReactorInputEntity::new)
+                    .validBlocks(CNBlocks.REACTOR_INPUT)
                     .register();
 
     public static void register() {}

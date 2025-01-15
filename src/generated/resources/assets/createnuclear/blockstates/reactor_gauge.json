@@ -1,0 +1,16 @@
+{
+  "variants": {
+    "part=end": {
+      "model": "createnuclear:block/reactor/gauge/gauge_bottom"
+    },
+    "part=middle": {
+      "model": "createnuclear:block/reactor/gauge/gauge_middle"
+    },
+    "part=none": {
+      "model": "createnuclear:block/reactor/gauge/gauge_none"
+    },
+    "part=start": {
+      "model": "createnuclear:block/reactor/gauge/gauge_top"
+    }
+  }
+}

@@ -1,11 +1,17 @@
 package net.nuclearteam.createnuclear;
 
+import static net.nuclearteam.createnuclear.content.equipment.armor.AntiRadiationArmorItem.Boot;
+import static net.nuclearteam.createnuclear.content.equipment.armor.AntiRadiationArmorItem.Chestplate;
+import static net.nuclearteam.createnuclear.content.equipment.armor.AntiRadiationArmorItem.Helmet;
+import static net.nuclearteam.createnuclear.content.equipment.armor.AntiRadiationArmorItem.Leggings;
+
 import com.tterrag.registrate.util.entry.ItemEntry;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.Mob;
 import net.minecraft.world.item.Item;
 import net.minecraftforge.common.ForgeSpawnEggItem;
+import net.nuclearteam.createnuclear.content.equipment.armor.AntiRadiationArmorItem;
 import net.nuclearteam.createnuclear.content.equipment.cloth.ClothItem;
 import net.nuclearteam.createnuclear.content.equipment.cloth.ClothItem.DyeItemList;
 import net.nuclearteam.createnuclear.foundation.utility.TextUtils;
@@ -48,6 +54,11 @@ public class CNItems {
                 .tag(CNTags.forgeItemTag("rods"), CNTags.CNItemTags.COOLER.tag)
                 .register(),
 
+        LEAD_INGOT = CreateNuclear.REGISTRATE
+                .item("lead_ingot", Item::new)
+                .tag(CNTags.forgeItemTag("ingots"), CNTags.forgeItemTag("ingots/lead"))
+                .register(),
+
         STEEL_NUGGET = CreateNuclear.REGISTRATE
                 .item("steel_nugget", Item::new)
                 .tag(CNTags.forgeItemTag("nuggets"), CNTags.forgeItemTag("nuggets/steel"))
@@ -58,6 +69,43 @@ public class CNItems {
             .tag(CNTags.forgeItemTag("rods"), CNTags.CNItemTags.FUEL.tag)
             .register()
     ;
+
+    public static final Helmet.DyeItemHelmetList<Helmet> ANTI_RADIATION_HELMETS = new Helmet.DyeItemHelmetList<>(color -> {
+        String colorName = color.getSerializedName();
+        return CreateNuclear.REGISTRATE.item(colorName + "_anti_radiation_helmet", p -> new Helmet(p, color))
+                .tag(CNTags.forgeItemTag("helmets"), CNTags.forgeItemTag("armors"))
+                .lang(TextUtils.titleCaseConversion(color.getName()) +" Anti Radiation Helmet")
+                .model((c, p) -> p.generated(c, CreateNuclear.asResource("item/armors/helmets/" + colorName + "_anti_radiation_helmet")))
+                .register();
+
+    });
+
+    public static final Chestplate.DyeItemChestplateList<Chestplate> ANTI_RADIATION_CHESTPLATES = new Chestplate.DyeItemChestplateList<>(color -> {
+        String colorName = color.getSerializedName();
+        return CreateNuclear.REGISTRATE.item(colorName + "_anti_radiation_chestplate",  p -> new Chestplate(p, color))
+                .tag(CNTags.forgeItemTag("chestplates"), CNTags.forgeItemTag("armors"))
+                .lang(TextUtils.titleCaseConversion(color.getName()) +" Anti Radiation Chestplate")
+                .model((c, p) -> p.generated(c, CreateNuclear.asResource("item/armors/chestplates/" + colorName + "_anti_radiation_chestplate")))
+                .register();
+
+    });
+
+    public static final Leggings.DyeItemLeggingsList<Leggings> ANTI_RADIATION_LEGGINGS = new Leggings.DyeItemLeggingsList<>(color -> {
+        String colorName = color.getSerializedName();
+        return CreateNuclear.REGISTRATE.item(colorName + "_anti_radiation_leggings",  p -> new Leggings(p, color))
+                .tag(CNTags.forgeItemTag("leggings"), CNTags.forgeItemTag("armors"))
+                .lang(TextUtils.titleCaseConversion(color.getName()) +" Anti Radiation Leggings")
+                .model((c, p) -> p.generated(c, CreateNuclear.asResource("item/armors/leggings/" + colorName + "_anti_radiation_leggings")))
+                .register();
+
+    });
+
+    public static final ItemEntry<? extends AntiRadiationArmorItem.Boot>
+            ANTI_RADIATION_BOOTS = CreateNuclear.REGISTRATE.item("anti_radiation_boots", Boot::new)
+            .tag(CNTags.forgeItemTag("boots"), CNTags.forgeItemTag("armors"))
+            .lang("Anti Radiation Boots")
+            .model((c, p) -> p.generated(c, CreateNuclear.asResource("item/armors/anti_radiation_boots")))
+            .register();
 
     public static final ItemEntry<ForgeSpawnEggItem> SPAWN_WOLF = registerSpawnEgg("wolf_irradiated_spawn_egg", CNEntityType.IRRADIATED_WOLF, 0x42452B,0x4C422B, "Irradiated Wolf Spawn Egg");
     public static final ItemEntry<ForgeSpawnEggItem> SPAWN_CAT = registerSpawnEgg("cat_irradiated_spawn_egg", CNEntityType.IRRADIATED_CAT, 0x382C19, 0x742728, "Irradiated Cat Spawn Egg");

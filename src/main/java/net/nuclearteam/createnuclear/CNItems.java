@@ -66,6 +66,14 @@ public class CNItems {
     LEAD_NUGGET = CreateNuclear.REGISTRATE
             .item("lead_nugget", Item::new)
             .tag(CNTags.forgeItemTag("nuggets"), CNTags.forgeItemTag("nuggets/lead"))
+            .register(),
+
+    GRAPHENE = CreateNuclear.REGISTRATE
+            .item("graphene", Item::new)
+            .register(),
+
+    ENRICHED_YELLOWCAKE = CreateNuclear.REGISTRATE
+            .item("enriched_yellowcake", Item::new)
             .register()
     ;
 

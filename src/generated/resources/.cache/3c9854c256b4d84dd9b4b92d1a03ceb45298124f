@@ -1,4 +1,4 @@
-// 1.20.1	2025-01-15T15:47:05.9757643	Registrate Provider for createnuclear [Recipes, Advancements, Loot Tables, Tags (blocks), Tags (items), Tags (fluids), Tags (entity_types), Blockstates, Item models, Lang (en_us/en_ud)]
+// 1.20.1	2025-01-15T16:28:56.0459256	Registrate Provider for createnuclear [Recipes, Advancements, Loot Tables, Tags (blocks), Tags (items), Tags (fluids), Tags (entity_types), Blockstates, Item models, Lang (en_us/en_ud)]
 5cf183e5277aea7ac5eb2bfa88737db909c6244d assets/createnuclear/blockstates/deepslate_lead_ore.json
 a6f90dfcfc0659663335d4c80129ce41d0c8e47a assets/createnuclear/blockstates/deepslate_uranium_ore.json
 e11c7fa5830b0877af69bb18e650d2b1e6f90027 assets/createnuclear/blockstates/enriched_soul_soil.json
@@ -17,8 +17,8 @@ f7504d5f748fe938bf07d2eb5d0ba46bbfa0499d assets/createnuclear/blockstates/reinfo
 57c846a957e9250bc45f2f1091bf3f78b2a77344 assets/createnuclear/blockstates/steel_block.json
 de2884054a21315d8b167f64b206be331d388420 assets/createnuclear/blockstates/uranium.json
 4557f548df100ae1d05e3b5711797225f6a39673 assets/createnuclear/blockstates/uranium_ore.json
-f6b6f61d5687720757900c30528e4127645877e1 assets/createnuclear/lang/en_ud.json
-ee4c53d25ac86b1b6c36cee7207731ed51b7a40e assets/createnuclear/lang/en_us.json
+202c25ef6796938673aa2d4bd7d3543c233e819b assets/createnuclear/lang/en_ud.json
+23fd1f0157dad4226c2ebe112b91cc4a0865c525 assets/createnuclear/lang/en_us.json
 9a589577d80aa23ac97312bda605b5512eff5167 assets/createnuclear/models/block/deepslate_lead_ore.json
 6793dd91b730f4c9abea29215de16cd0751d8cbd assets/createnuclear/models/block/deepslate_uranium_ore.json
 e1b8fdc0555a1fdabda54f66cca868e444d1110b assets/createnuclear/models/block/enriched_soul_soil.json
@@ -39,7 +39,9 @@ de649e8356e85e802df3e64df8fd663ce62ba16d assets/createnuclear/models/item/cyan_c
 34c28d31d8b93699cc6ffab724d9c51670c0f3e2 assets/createnuclear/models/item/deepslate_lead_ore.json
 1f160865067749c0bed163a84a61581631294141 assets/createnuclear/models/item/deepslate_uranium_ore.json
 5a2694d92c4708ca23ddfa67666ea26be66b9a45 assets/createnuclear/models/item/enriched_soul_soil.json
+306f5731ab788fa3cf3d75a7edfcc68b9c20613a assets/createnuclear/models/item/enriched_yellowcake.json
 875513d47ccf4e68111ec52d9abe01ec91cce20e assets/createnuclear/models/item/enriching_campfire.json
+78240d0c081d144592e76af622d0c9929569db17 assets/createnuclear/models/item/graphene.json
 3c0e762c21fa4fa5724f5570c190e89d247ee71b assets/createnuclear/models/item/graphite_rod.json
 75bd474d73be3c041ceb82627cc438b2775e9b1b assets/createnuclear/models/item/gray_cloth.json
 104ab85c7f23d9239608603e6cb2227bc60b585f assets/createnuclear/models/item/green_cloth.json

@@ -113,7 +113,7 @@ public class CNBlocks {
                     .tag(CNBlockTags.NEEDS_DIAMOND_TOOL.tag)
                     .blockstate(new ReactorInputGenerator()::generate)
                     .item()
-                    .transform(customItemModel())
+                    .transform(customItemModel("reactor", "input", "item"))
                     .register();
 
     public static final BlockEntry<ReactorCoolingFrame> REACTOR_COOLING_FRAME =

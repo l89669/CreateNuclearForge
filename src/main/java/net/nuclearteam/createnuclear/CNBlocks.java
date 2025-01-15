@@ -1,6 +1,8 @@
 package net.nuclearteam.createnuclear;
 
+import com.simibubi.create.AllTags;
 import com.simibubi.create.content.decoration.encasing.EncasedCTBehaviour;
+import com.simibubi.create.content.kinetics.BlockStressDefaults;
 import com.simibubi.create.foundation.data.AssetLookup;
 import com.simibubi.create.foundation.data.CreateRegistrate;
 import com.simibubi.create.foundation.data.SharedProperties;
@@ -12,6 +14,7 @@ import net.minecraft.data.loot.BlockLootSubProvider;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.tags.BlockTags;
 import net.minecraft.world.item.Item;
+import net.minecraft.world.item.Rarity;
 import net.minecraft.world.item.enchantment.Enchantments;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.item.enchantment.Enchantments;
@@ -34,6 +37,10 @@ import net.nuclearteam.createnuclear.CNTags.CNBlockTags;
 import net.nuclearteam.createnuclear.content.multiblock.core.ReactorCore;
 import net.nuclearteam.createnuclear.content.multiblock.gauge.ReactorGauge;
 import net.nuclearteam.createnuclear.content.multiblock.gauge.ReactorGaugeItem;
+import net.nuclearteam.createnuclear.content.multiblock.input.ReactorInput;
+import net.nuclearteam.createnuclear.content.multiblock.input.ReactorInputGenerator;
+import net.nuclearteam.createnuclear.content.multiblock.output.ReactorOutput;
+import net.nuclearteam.createnuclear.content.multiblock.output.ReactorOutputGenerator;
 import net.nuclearteam.createnuclear.content.multiblock.reactorCoolingFrame.ReactorCoolingFrame;
 import net.nuclearteam.createnuclear.content.multiblock.reinforced.ReinforcedGlassBlock;
 import net.nuclearteam.createnuclear.content.uraniumOre.UraniumOreBlock;
@@ -121,6 +128,34 @@ public class CNBlocks {
                     .tag(CNBlockTags.NEEDS_DIAMOND_TOOL.tag)
                     .simpleItem()
                     .transform(pickaxeOnly())
+                    .register();
+
+
+    public static final BlockEntry<ReactorInput> REACTOR_INPUT =
+            CreateNuclear.REGISTRATE.block("reactor_input", ReactorInput::new)
+                    .initialProperties(SharedProperties::stone)
+                    .properties(p -> p.explosionResistance(6F))
+                    .properties(p -> p.destroyTime(2F))
+                    .addLayer(() -> RenderType::cutoutMipped)
+                    .transform(pickaxeOnly())
+                    .tag(CNBlockTags.NEEDS_DIAMOND_TOOL.tag)
+                    .blockstate(new ReactorInputGenerator()::generate)
+                    .item()
+                    .transform(customItemModel("reactor", "input", "item"))
+                    .register();
+
+    public static final BlockEntry<ReactorOutput> REACTOR_OUTPUT =
+            CreateNuclear.REGISTRATE.block("reactor_output", ReactorOutput::new)
+                    .properties(p -> p.explosionResistance(6F).destroyTime(4F))
+                    .initialProperties(SharedProperties::stone)
+                    .properties(p -> p.mapColor(MapColor.COLOR_PURPLE).forceSolidOn())
+                    .tag(AllTags.AllBlockTags.SAFE_NBT.tag, CNBlockTags.NEEDS_DIAMOND_TOOL.tag)
+                    .transform(pickaxeOnly())
+                    .blockstate(new ReactorOutputGenerator()::generate)
+                    .transform(BlockStressDefaults.setCapacity(10240))
+                    .item()
+                    .properties(p -> p.rarity(Rarity.EPIC))
+                    .transform(customItemModel("reactor", "output", "item"))
                     .register();
 
     public static final BlockEntry<ReinforcedGlassBlock> REINFORCED_GLASS = CreateNuclear.REGISTRATE

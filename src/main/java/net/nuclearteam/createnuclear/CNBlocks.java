@@ -350,6 +350,14 @@ public class CNBlocks {
                     .build()
                     .register();
 
+    public static final BlockEntry<Block> STEEL_BLOCK =
+            CreateNuclear.REGISTRATE.block("steel_block", Block::new)
+                    .initialProperties(SharedProperties::stone)
+                    .simpleItem()
+                    .transform(pickaxeOnly())
+                    .tag(CNTags.forgeBlockTag("storage_blocks/steel"))
+                    .register();
+
 
     public static void register() {
         CreateNuclear.LOGGER.info("Registering ModBlocks for " + CreateNuclear.MOD_ID);

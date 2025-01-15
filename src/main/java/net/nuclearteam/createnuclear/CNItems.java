@@ -20,9 +20,29 @@ public class CNItems {
                 .item("raw_lead", Item::new)
                 .tag(CNTags.forgeItemTag("raw_ores"), CNTags.forgeItemTag("raw_materials"), CNTags.forgeItemTag("raw_materials/lead"))
                 .register(),
+
         RAW_URANIUM = CreateNuclear.REGISTRATE
                 .item("raw_uranium", Item::new)
                 .tag(CNTags.forgeItemTag("raw_ores"), CNTags.forgeItemTag("raw_materials"), CNTags.forgeItemTag("raw_materials/uranium"))
+                .register(),
+
+        URANIUM_POWDER = CreateNuclear.REGISTRATE
+                .item("uranium_powder", Item::new)
+                .register(),
+
+        STEEL_INGOT = CreateNuclear.REGISTRATE
+                .item("steel_ingot", Item::new)
+                .tag(CNTags.forgeItemTag("ingots"), CNTags.forgeItemTag("ingots/steel"))
+                .register(),
+
+        COAL_DUST = CreateNuclear.REGISTRATE
+                .item("coal_dust", Item::new)
+                .tag(CNTags.forgeItemTag("dusts"), CNTags.forgeItemTag("coal_dusts"))
+                .register(),
+
+        GRAPHITE_ROD = CreateNuclear.REGISTRATE
+                .item("graphite_rod", Item::new)
+                .tag(CNTags.forgeItemTag("rods"), CNTags.CNItemTags.COOLER.tag)
                 .register()
     ;
 

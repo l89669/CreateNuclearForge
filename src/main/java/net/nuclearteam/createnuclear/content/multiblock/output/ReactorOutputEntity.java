@@ -14,6 +14,7 @@ import net.minecraft.ChatFormatting;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.network.chat.Component;
+import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.entity.BlockEntityType;
@@ -32,6 +33,9 @@ public class ReactorOutputEntity extends GeneratingKineticBlockEntity {
     public int speed = 1;
     public float heat = 0;
 
+    // ReactorControllerBlock controller = null;
+    // ReactorControllerBlockEntity controllerEntity = null;
+
     protected ScrollValueBehaviour generatedSpeed;
 
     public ReactorOutputEntity(BlockEntityType<?> type, BlockPos pos, BlockState state) {
@@ -49,6 +53,22 @@ public class ReactorOutputEntity extends GeneratingKineticBlockEntity {
 
     }
 
+    @Override
+    public void tick() {
+        super.tick();
+
+        BlockGetter level = getLevel();
+
+        /*if (level.getBlockState(getBlockPos().above(3)).getBlock() == CNBlocks.REACTOR_CONTROLLER.get()) {
+            controller = (ReactorControllerBlock) level.getBlockState(getBlockPos().above(3)).getBlock();
+            controllerEntity = (ReactorControllerBlockEntity) level.getBlockEntity(getBlockPos().above(3));
+            if (controllerEntity != null) {
+                if (!controllerEntity.getAssembled() && getSpeed() != 0) {
+                    setSpeed(0);
+                }
+            }
+        } else setSpeed(0);*/
+    }
 
     @Override
     public boolean addToGoggleTooltip(List<Component> tooltip, boolean isPlayerSneaking) {

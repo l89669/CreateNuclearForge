@@ -1,5 +1,9 @@
 {
+<<<<<<< HEAD
   "block.createnuclear.deepslate_lead_ore": "Deepslate Lead Ore",
+=======
+  "block.createnuclear.deepslate_uranium_ore": "Deepslate Uranium Ore",
+>>>>>>> 18997be6c9a6356d17c6305bb13008dc949090d5
   "block.createnuclear.enriching_campfire": "Enriching Campfire",
   "block.createnuclear.enriching_fire": "Enriching Fire",
   "block.createnuclear.lead_block": "Lead Block",
@@ -11,13 +15,18 @@
   "block.createnuclear.reactor_gauge": "Reactor Gauge",
   "block.createnuclear.reinforced_glass": "Reinforced Glass",
   "block.createnuclear.uranium": "Uranium",
+  "block.createnuclear.uranium_ore": "Uranium Ore",
   "entity.createnuclear.irradiated_cat": "Irradiated Cat",
   "entity.createnuclear.irradiated_chicken": "Irradiated Chicken",
   "entity.createnuclear.irradiated_wolf": "Irradiated Wolf",
   "fluid.createnuclear.uranium": "Liquid Uranium",
   "item.createnuclear.cat_irradiated_spawn_egg": "Irradiated Cat Spawn Egg",
   "item.createnuclear.chicken_irradiated_spawn_egg": "Irradiated Chicken Spawn Egg",
+<<<<<<< HEAD
   "item.createnuclear.raw_lead": "Raw Lead",
+=======
+  "item.createnuclear.raw_uranium": "Raw Uranium",
+>>>>>>> 18997be6c9a6356d17c6305bb13008dc949090d5
   "item.createnuclear.uranium_bucket": "Uranium Bucket",
   "item.createnuclear.wolf_irradiated_spawn_egg": "Irradiated Wolf Spawn Egg",
   "item.createnuclear.yellowcake": "Yellowcake",

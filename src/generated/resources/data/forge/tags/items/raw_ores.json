@@ -1,5 +1,9 @@
 {
   "values": [
+<<<<<<< HEAD
     "createnuclear:raw_lead"
+=======
+    "createnuclear:raw_uranium"
+>>>>>>> 18997be6c9a6356d17c6305bb13008dc949090d5
   ]
 }

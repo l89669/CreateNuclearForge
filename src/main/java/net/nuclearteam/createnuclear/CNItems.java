@@ -19,6 +19,10 @@ public class CNItems {
         RAW_LEAD = CreateNuclear.REGISTRATE
                 .item("raw_lead", Item::new)
                 .tag(CNTags.forgeItemTag("raw_ores"), CNTags.forgeItemTag("raw_materials"), CNTags.forgeItemTag("raw_materials/lead"))
+                .register(),
+        RAW_URANIUM = CreateNuclear.REGISTRATE
+                .item("raw_uranium", Item::new)
+                .tag(CNTags.forgeItemTag("raw_ores"), CNTags.forgeItemTag("raw_materials"), CNTags.forgeItemTag("raw_materials/uranium"))
                 .register()
     ;
 

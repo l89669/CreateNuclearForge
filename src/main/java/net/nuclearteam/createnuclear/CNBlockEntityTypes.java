@@ -6,6 +6,7 @@ import net.minecraft.world.level.block.entity.BlockEntity;
 import net.nuclearteam.createnuclear.content.enriching.campfire.EnrichingCampfireBlockEntity;
 import net.nuclearteam.createnuclear.content.multiblock.casing.ReactorCasingEntity;
 import net.nuclearteam.createnuclear.content.multiblock.core.ReactorCoreEntity;
+import net.nuclearteam.createnuclear.content.multiblock.input.ReactorInputEntity;
 
 public class CNBlockEntityTypes {
     public static final BlockEntityEntry<EnrichingCampfireBlockEntity> ENRICHING_CAMPFIRE_BLOCK =
@@ -21,6 +22,11 @@ public class CNBlockEntityTypes {
     public static final BlockEntityEntry<ReactorCoreEntity> REACTOR_CORE =
             CreateNuclear.REGISTRATE.blockEntity("reactor_core", ReactorCoreEntity::new)
                     .validBlocks(CNBlocks.REACTOR_CORE)
+                    .register();
+
+    public static final BlockEntityEntry<ReactorInputEntity> REACTOR_INPUT =
+            CreateNuclear.REGISTRATE.blockEntity("reactor_input", ReactorInputEntity::new)
+                    .validBlocks(CNBlocks.REACTOR_INPUT)
                     .register();
 
     public static void register() {}

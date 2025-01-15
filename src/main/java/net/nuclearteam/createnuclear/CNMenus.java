@@ -7,6 +7,8 @@ import com.tterrag.registrate.util.nullness.NonNullSupplier;
 import net.minecraft.client.gui.screens.Screen;
 import net.minecraft.client.gui.screens.inventory.MenuAccess;
 import net.minecraft.world.inventory.AbstractContainerMenu;
+import net.nuclearteam.createnuclear.content.multiblock.input.ReactorInputMenu;
+import net.nuclearteam.createnuclear.content.multiblock.input.ReactorInputScreen;
 
 public class CNMenus {
     //public static final MenuEntry<ConfiguredReactorItemMenu> CONFIGURED_REACTOR_MENU = menu("configured_reactor_menu", ConfiguredReactorItemMenu::new, () -> ConfiguredReactorItemScreen::new);
@@ -17,6 +19,9 @@ public class CNMenus {
                 .menu(name, factory, screenFactory)
                 .register();
     }
+
+    public static final MenuEntry<ReactorInputMenu> SLOT_ITEM_STORAGE = menu("slot_item_menu", ReactorInputMenu::new, () -> ReactorInputScreen::new);
+
 
     public static void register() {}
 }

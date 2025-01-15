@@ -1,8 +1,8 @@
 package net.nuclearteam.createnuclear;
 
-import com.mojang.math.Axis;
 import com.simibubi.create.foundation.utility.VoxelShaper;
 import net.minecraft.core.Direction;
+import net.minecraft.core.Direction.Axis;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.phys.shapes.BooleanOp;
 import net.minecraft.world.phys.shapes.Shapes;
@@ -14,9 +14,9 @@ public class CNShapes {
 
     // Independent Shapers
     public static final VoxelShaper
-            REACTOR_OUTPUT = shape(0, 0, 0, 16, 14, 16).forDirectional(),
-            REACTOR_INPUT = shape(0,0,0,16,16,16).forDirectional()
-                    ;
+        REACTOR_OUTPUT = shape(0, 0, 0, 16, 14, 16).forDirectional(),
+        REACTOR_INPUT = shape(0,0,0,16,16,16).forDirectional()
+    ;
 
     private static Builder shape(VoxelShape shape) {
         return new Builder(shape);
@@ -81,7 +81,7 @@ public class CNShapes {
         }
 
         public VoxelShaper forDirectional() {
-            return forDirectional(UP);
+            return forDirectional(Direction.UP);
         }
 
     }

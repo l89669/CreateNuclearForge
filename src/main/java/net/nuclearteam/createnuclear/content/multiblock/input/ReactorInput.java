@@ -9,6 +9,7 @@ import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.context.BlockPlaceContext;
 import net.minecraft.world.level.BlockGetter;
@@ -26,6 +27,7 @@ import net.minecraft.world.phys.shapes.VoxelShape;
 import net.minecraftforge.common.property.Properties;
 import net.minecraftforge.network.NetworkHooks;
 import net.nuclearteam.createnuclear.CNBlockEntityTypes;
+import net.nuclearteam.createnuclear.CNShapes;
 import net.nuclearteam.createnuclear.CreateNuclear;
 import net.nuclearteam.createnuclear.foundation.block.HorizontalDirectionalReactorBlock;
 import org.jetbrains.annotations.NotNull;
@@ -49,7 +51,14 @@ public class ReactorInput extends HorizontalDirectionalReactorBlock implements I
 
     @Override
     public InteractionResult use(BlockState state, Level worldIn, BlockPos pos, Player player, InteractionHand handIn, BlockHitResult hit) {
-        if (worldIn.isClientSide()) return InteractionResult.SUCCESS;
+        ItemStack itemInHand = player.getItemInHand(handIn);
+
+        if (itemInHand.getItem() instanceof BlockItem) {
+            return InteractionResult.PASS;
+        }
+
+
+        if (worldIn.isClientSide()) {return InteractionResult.SUCCESS;}
 
         withBlockEntityDo(worldIn, pos, be -> NetworkHooks.openScreen((ServerPlayer) player, be, be::sendToMenu));
         return InteractionResult.PASS;

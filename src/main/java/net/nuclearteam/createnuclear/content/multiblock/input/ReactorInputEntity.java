@@ -2,9 +2,7 @@ package net.nuclearteam.createnuclear.content.multiblock.input;
 
 import com.simibubi.create.foundation.blockEntity.SmartBlockEntity;
 import com.simibubi.create.foundation.blockEntity.behaviour.BlockEntityBehaviour;
-import lib.multiblock.SimpleMultiBlockAislePatternBuilder;
 import net.minecraft.core.BlockPos;
-import net.minecraft.core.Direction;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.chat.Component;
 import net.minecraft.world.MenuProvider;
@@ -14,12 +12,11 @@ import net.minecraft.world.inventory.AbstractContainerMenu;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.minecraft.world.level.block.state.BlockState;
-import net.nuclearteam.createnuclear.CNBlocks;
 
 import javax.annotation.Nullable;
 import java.util.List;
 
-public class ReactorInputEntity extends SmartBlockEntity implements MenuProvider, SidedStorageBlockEntity {
+public class ReactorInputEntity extends SmartBlockEntity implements MenuProvider {
     protected BlockPos block;
     //protected ReactorControllerBlockEntity controller;
 
@@ -47,11 +44,6 @@ public class ReactorInputEntity extends SmartBlockEntity implements MenuProvider
             tag.put("Inventory", inventory.serializeNBT());
         }
         super.write(tag, clientPacket);
-    }
-
-    @Override
-    public Storage<ItemVariant> getItemStorage(@Nullable Direction face) {
-        return inventory;
     }
 
     @Nullable

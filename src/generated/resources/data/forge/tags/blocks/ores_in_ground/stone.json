@@ -1,9 +1,6 @@
 {
   "values": [
-<<<<<<< HEAD
-    "createnuclear:lead_ore"
-=======
+    "createnuclear:lead_ore",
     "createnuclear:uranium_ore"
->>>>>>> 18997be6c9a6356d17c6305bb13008dc949090d5
   ]
 }

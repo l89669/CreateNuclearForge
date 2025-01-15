@@ -4,6 +4,7 @@
     "createnuclear:reactor_core",
     "createnuclear:reactor_gauge",
     "createnuclear:reactor_cooling_frame",
+    "createnuclear:enriched_soul_soil",
     "createnuclear:deepslate_uranium_ore",
     "createnuclear:uranium_ore"
   ]

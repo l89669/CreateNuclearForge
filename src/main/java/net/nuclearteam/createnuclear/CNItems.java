@@ -6,6 +6,9 @@ import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.Mob;
 import net.minecraft.world.item.Item;
 import net.minecraftforge.common.ForgeSpawnEggItem;
+import net.nuclearteam.createnuclear.content.equipment.cloth.ClothItem;
+import net.nuclearteam.createnuclear.content.equipment.cloth.ClothItem.DyeItemList;
+import net.nuclearteam.createnuclear.foundation.utility.TextUtils;
 
 import java.util.function.Supplier;
 
@@ -69,6 +72,17 @@ public class CNItems {
                 .register();
 
     }
+
+    public static final DyeItemList<ClothItem> CLOTHS = new ClothItem.DyeItemList<>(color -> {
+
+        String colorName = color.getSerializedName();
+
+        return CreateNuclear.REGISTRATE.item(colorName+ "_cloth", p -> new ClothItem(p, color))
+                .tag(CNTags.CNItemTags.CLOTH.tag)
+                .lang(TextUtils.titleCaseConversion(color.getName()) + " Cloth")
+                .model((c, p) -> p.generated(c, CreateNuclear.asResource("item/cloth/" + colorName + "_cloth")))
+                .register();
+    });
 
 
     public static void register() {}

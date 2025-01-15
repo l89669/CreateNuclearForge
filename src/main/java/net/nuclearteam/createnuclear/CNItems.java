@@ -43,7 +43,17 @@ public class CNItems {
         GRAPHITE_ROD = CreateNuclear.REGISTRATE
                 .item("graphite_rod", Item::new)
                 .tag(CNTags.forgeItemTag("rods"), CNTags.CNItemTags.COOLER.tag)
-                .register()
+                .register(),
+
+        STEEL_NUGGET = CreateNuclear.REGISTRATE
+                .item("steel_nugget", Item::new)
+                .tag(CNTags.forgeItemTag("nuggets"), CNTags.forgeItemTag("nuggets/steel"))
+                .register(),
+
+    URANIUM_ROD = CreateNuclear.REGISTRATE
+            .item("uranium_rod", Item::new)
+            .tag(CNTags.forgeItemTag("rods"), CNTags.CNItemTags.FUEL.tag)
+            .register()
     ;
 
     public static final ItemEntry<ForgeSpawnEggItem> SPAWN_WOLF = registerSpawnEgg("wolf_irradiated_spawn_egg", CNEntityType.IRRADIATED_WOLF, 0x42452B,0x4C422B, "Irradiated Wolf Spawn Egg");

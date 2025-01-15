@@ -26,8 +26,10 @@
   "item.createnuclear.raw_lead": "Raw Lead",
   "item.createnuclear.raw_uranium": "Raw Uranium",
   "item.createnuclear.steel_ingot": "Steel Ingot",
+  "item.createnuclear.steel_nugget": "Steel Nugget",
   "item.createnuclear.uranium_bucket": "Uranium Bucket",
   "item.createnuclear.uranium_powder": "Uranium Powder",
+  "item.createnuclear.uranium_rod": "Uranium Rod",
   "item.createnuclear.wolf_irradiated_spawn_egg": "Irradiated Wolf Spawn Egg",
   "item.createnuclear.yellowcake": "Yellowcake",
   "itemGroup.createnuclear.main": "Create Nuclear"

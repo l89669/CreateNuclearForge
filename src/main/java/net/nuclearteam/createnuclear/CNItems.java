@@ -6,10 +6,6 @@ import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.Mob;
 import net.minecraft.world.item.Item;
 import net.minecraftforge.common.ForgeSpawnEggItem;
-import net.nuclearteam.createnuclear.content.equipment.cloth.ClothItem;
-import net.nuclearteam.createnuclear.content.equipment.cloth.ClothItem.DyeItemList;
-import net.nuclearteam.createnuclear.foundation.utility.TextUtils;
-
 
 import java.util.function.Supplier;
 
@@ -24,10 +20,40 @@ public class CNItems {
                 .item("raw_lead", Item::new)
                 .tag(CNTags.forgeItemTag("raw_ores"), CNTags.forgeItemTag("raw_materials"), CNTags.forgeItemTag("raw_materials/lead"))
                 .register(),
+
         RAW_URANIUM = CreateNuclear.REGISTRATE
                 .item("raw_uranium", Item::new)
                 .tag(CNTags.forgeItemTag("raw_ores"), CNTags.forgeItemTag("raw_materials"), CNTags.forgeItemTag("raw_materials/uranium"))
-                .register()
+                .register(),
+
+        URANIUM_POWDER = CreateNuclear.REGISTRATE
+                .item("uranium_powder", Item::new)
+                .register(),
+
+        STEEL_INGOT = CreateNuclear.REGISTRATE
+                .item("steel_ingot", Item::new)
+                .tag(CNTags.forgeItemTag("ingots"), CNTags.forgeItemTag("ingots/steel"))
+                .register(),
+
+        COAL_DUST = CreateNuclear.REGISTRATE
+                .item("coal_dust", Item::new)
+                .tag(CNTags.forgeItemTag("dusts"), CNTags.forgeItemTag("coal_dusts"))
+                .register(),
+
+        GRAPHITE_ROD = CreateNuclear.REGISTRATE
+                .item("graphite_rod", Item::new)
+                .tag(CNTags.forgeItemTag("rods"), CNTags.CNItemTags.COOLER.tag)
+                .register(),
+
+        STEEL_NUGGET = CreateNuclear.REGISTRATE
+                .item("steel_nugget", Item::new)
+                .tag(CNTags.forgeItemTag("nuggets"), CNTags.forgeItemTag("nuggets/steel"))
+                .register(),
+
+    URANIUM_ROD = CreateNuclear.REGISTRATE
+            .item("uranium_rod", Item::new)
+            .tag(CNTags.forgeItemTag("rods"), CNTags.CNItemTags.FUEL.tag)
+            .register()
     ;
 
     public static final ItemEntry<ForgeSpawnEggItem> SPAWN_WOLF = registerSpawnEgg("wolf_irradiated_spawn_egg", CNEntityType.IRRADIATED_WOLF, 0x42452B,0x4C422B, "Irradiated Wolf Spawn Egg");
@@ -43,15 +69,6 @@ public class CNItems {
                 .register();
 
     }
-
-    public static final DyeItemList<ClothItem> CLOTHS = new ClothItem.DyeItemList<>(color -> {
-        String colorName = color.getSerializedName();
-        return CreateNuclear.REGISTRATE.item(colorName+ "_cloth", p -> new ClothItem(p, color))
-                .tag(CNTags.CNItemTags.CLOTH.tag)
-                .lang(TextUtils.titleCaseConversion(color.getName()) + " Cloth")
-                .model((c, p) -> p.generated(c, CreateNuclear.asResource("item/cloth/" + colorName + "_cloth")))
-                .register();
-    });
 
 
     public static void register() {}

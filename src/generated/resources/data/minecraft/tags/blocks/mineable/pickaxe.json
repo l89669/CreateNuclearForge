@@ -3,7 +3,6 @@
     "createnuclear:reactor_casing",
     "createnuclear:reactor_core",
     "createnuclear:reactor_gauge",
-    "createnuclear:reactor_input",
     "createnuclear:reactor_cooling_frame",
     "createnuclear:enriching_campfire",
     "createnuclear:deepslate_lead_ore",
@@ -11,6 +10,7 @@
     "createnuclear:raw_lead_block",
     "createnuclear:lead_block",
     "createnuclear:deepslate_uranium_ore",
-    "createnuclear:uranium_ore"
+    "createnuclear:uranium_ore",
+    "createnuclear:steel_block"
   ]
 }

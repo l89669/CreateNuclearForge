@@ -14,7 +14,11 @@ public class CNItems {
     public static final ItemEntry<Item>
         YELLOWCAKE = CreateNuclear.REGISTRATE
             .item("yellowcake", Item::new)
-            .register()
+            .register(),
+        RAW_URANIUM = CreateNuclear.REGISTRATE
+                .item("raw_uranium", Item::new)
+                .tag(CNTags.forgeItemTag("raw_ores"), CNTags.forgeItemTag("raw_materials"), CNTags.forgeItemTag("raw_materials/uranium"))
+                .register()
     ;
 
     public static final ItemEntry<ForgeSpawnEggItem> SPAWN_WOLF = registerSpawnEgg("wolf_irradiated_spawn_egg", CNEntityType.IRRADIATED_WOLF, 0x42452B,0x4C422B, "Irradiated Wolf Spawn Egg");

@@ -4,6 +4,8 @@
     "createnuclear:reactor_core",
     "createnuclear:reactor_gauge",
     "createnuclear:reactor_cooling_frame",
-    "createnuclear:enriching_campfire"
+    "createnuclear:enriching_campfire",
+    "createnuclear:deepslate_uranium_ore",
+    "createnuclear:uranium_ore"
   ]
 }

@@ -6,6 +6,7 @@ import com.tterrag.registrate.util.entry.BlockEntityEntry;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.nuclearteam.createnuclear.content.enriching.campfire.EnrichingCampfireBlockEntity;
 import net.nuclearteam.createnuclear.content.multiblock.casing.ReactorCasingEntity;
+import net.nuclearteam.createnuclear.content.multiblock.controller.ReactorControllerBlockEntity;
 import net.nuclearteam.createnuclear.content.multiblock.core.ReactorCoreEntity;
 import net.nuclearteam.createnuclear.content.multiblock.input.ReactorInputEntity;
 import net.nuclearteam.createnuclear.content.multiblock.output.ReactorOutputEntity;
@@ -37,6 +38,11 @@ public class CNBlockEntityTypes {
                     .instance(() -> HalfShaftInstance::new, false)
                     .validBlocks(CNBlocks.REACTOR_OUTPUT)
                     .renderer(() -> ReactorOutputRenderer::new)
+                    .register();
+
+    public static final BlockEntityEntry<ReactorControllerBlockEntity> REACTOR_CONTROLLER =
+            CreateNuclear.REGISTRATE.blockEntity("reactor_controller", ReactorControllerBlockEntity::new)
+                    .validBlocks(CNBlocks.REACTOR_CONTROLLER)
                     .register();
 
     public static void register() {}

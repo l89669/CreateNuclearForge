@@ -2,6 +2,7 @@ package net.nuclearteam.createnuclear.content.multiblock.input;
 
 import com.simibubi.create.foundation.blockEntity.SmartBlockEntity;
 import com.simibubi.create.foundation.blockEntity.behaviour.BlockEntityBehaviour;
+import lib.multiblock.SimpleMultiBlockAislePatternBuilder;
 import net.minecraft.core.BlockPos;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.chat.Component;
@@ -12,9 +13,12 @@ import net.minecraft.world.inventory.AbstractContainerMenu;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.minecraft.world.level.block.state.BlockState;
+import net.nuclearteam.createnuclear.CNBlocks;
 
 import javax.annotation.Nullable;
 import java.util.List;
+
+import static net.nuclearteam.createnuclear.content.multiblock.CNMultiblock.*;
 
 public class ReactorInputEntity extends SmartBlockEntity implements MenuProvider {
     protected BlockPos block;
@@ -53,7 +57,7 @@ public class ReactorInputEntity extends SmartBlockEntity implements MenuProvider
     }
 
 
-    /*private static BlockPos FindController(char character) {
+    private static BlockPos FindController(char character) {
         return SimpleMultiBlockAislePatternBuilder.start()
                 .aisle(AAAAA, AAAAA, AAAAA, AAAAA, AAAAA)
                 .aisle(AABAA, ADADA, BACAB, ADADA, AABAA)
@@ -63,14 +67,14 @@ public class ReactorInputEntity extends SmartBlockEntity implements MenuProvider
                 .aisle(AABAA, ADADA, BACAB, ADADA, AABAA)
                 .aisle(AAAAA, AAAAA, AAAAA, AAAAA, AAOAA)
                 .where('A', a -> a.getState().is(CNBlocks.REACTOR_CASING.get()))
-                .where('B', a -> a.getState().is(CNBlocks.REACTOR_MAIN_FRAME.get()))
+                .where('B', a -> a.getState().is(CNBlocks.REACTOR_GAUGE.get()))
                 .where('C', a -> a.getState().is(CNBlocks.REACTOR_CORE.get()))
                 .where('D', a -> a.getState().is(CNBlocks.REACTOR_COOLING_FRAME.get()))
                 .where('*', a -> a.getState().is(CNBlocks.REACTOR_CONTROLLER.get()))
                 .where('O', a -> a.getState().is(CNBlocks.REACTOR_OUTPUT.get()))
                 .where('I', a -> a.getState().is(CNBlocks.REACTOR_INPUT.get()))
                 .getDistanceController(character);
-    }*/
+    }
 
     @Override
     public Component getDisplayName() {

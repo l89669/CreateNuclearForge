@@ -22,6 +22,8 @@ import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.phys.Vec3;
 import net.nuclearteam.createnuclear.CNBlocks;
 import net.nuclearteam.createnuclear.CreateNuclear;
+import net.nuclearteam.createnuclear.content.multiblock.controller.ReactorControllerBlock;
+import net.nuclearteam.createnuclear.content.multiblock.controller.ReactorControllerBlockEntity;
 
 import java.util.List;
 import java.util.Objects;
@@ -33,8 +35,8 @@ public class ReactorOutputEntity extends GeneratingKineticBlockEntity {
     public int speed = 1;
     public float heat = 0;
 
-    // ReactorControllerBlock controller = null;
-    // ReactorControllerBlockEntity controllerEntity = null;
+    ReactorControllerBlock controller = null;
+    ReactorControllerBlockEntity controllerEntity = null;
 
     protected ScrollValueBehaviour generatedSpeed;
 
@@ -59,7 +61,7 @@ public class ReactorOutputEntity extends GeneratingKineticBlockEntity {
 
         BlockGetter level = getLevel();
 
-        /*if (level.getBlockState(getBlockPos().above(3)).getBlock() == CNBlocks.REACTOR_CONTROLLER.get()) {
+        if (level.getBlockState(getBlockPos().above(3)).getBlock() == CNBlocks.REACTOR_CONTROLLER.get()) {
             controller = (ReactorControllerBlock) level.getBlockState(getBlockPos().above(3)).getBlock();
             controllerEntity = (ReactorControllerBlockEntity) level.getBlockEntity(getBlockPos().above(3));
             if (controllerEntity != null) {
@@ -67,7 +69,7 @@ public class ReactorOutputEntity extends GeneratingKineticBlockEntity {
                     setSpeed(0);
                 }
             }
-        } else setSpeed(0);*/
+        } else setSpeed(0);
     }
 
     @Override
@@ -103,16 +105,16 @@ public class ReactorOutputEntity extends GeneratingKineticBlockEntity {
         if (!hasSource() || getGeneratedSpeed() > getTheoreticalSpeed())
         {
             //CreateNuclear.LOGGER.info("Init SPEED : " + getSpeed2() + "  pos : " + getBlockPos());
-            //FindController(getBlockPos(), Objects.requireNonNull(getLevel()));
+            FindController(getBlockPos(), Objects.requireNonNull(getLevel()));
         }
     }
 
-    /*public void FindController(BlockPos pos, Level level){
+    public void FindController(BlockPos pos, Level level){
         if (level.getBlockState(pos.above(3)).getBlock() == CNBlocks.REACTOR_CONTROLLER.get()){
             ReactorControllerBlock controller = (ReactorControllerBlock)level.getBlockState(pos.above(3)).getBlock();
             controller.Verify(controller.defaultBlockState(), pos.above(3), level, level.players(), false);
         }
-    }*/
+    }
 
     public void setSpeed(int speed) {
         this.speed = speed;

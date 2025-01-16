@@ -34,6 +34,8 @@ import net.nuclearteam.createnuclear.content.enriching.campfire.EnrichingCampfir
 import net.nuclearteam.createnuclear.content.enriching.fire.EnrichingFireBlock;
 import net.nuclearteam.createnuclear.content.multiblock.casing.ReactorCasing;
 import net.nuclearteam.createnuclear.CNTags.CNBlockTags;
+import net.nuclearteam.createnuclear.content.multiblock.controller.ReactorControllerBlock;
+import net.nuclearteam.createnuclear.content.multiblock.controller.ReactorControllerGenerator;
 import net.nuclearteam.createnuclear.content.multiblock.core.ReactorCore;
 import net.nuclearteam.createnuclear.content.multiblock.gauge.ReactorGauge;
 import net.nuclearteam.createnuclear.content.multiblock.gauge.ReactorGaugeItem;
@@ -158,10 +160,24 @@ public class CNBlocks {
                     .transform(customItemModel("reactor", "output", "item"))
                     .register();
 
+    public static final BlockEntry<ReactorControllerBlock> REACTOR_CONTROLLER =
+            CreateNuclear.REGISTRATE.block("reactor_controller", ReactorControllerBlock::new)
+                    .initialProperties(SharedProperties::stone)
+                    .properties(p -> p.explosionResistance(6F))
+                    .properties(p -> p.destroyTime(4F))
+                    .transform(pickaxeOnly())
+                    .tag(BlockTags.NEEDS_DIAMOND_TOOL)
+                    .blockstate(new ReactorControllerGenerator()::generate)
+                    .item()
+                    .transform(customItemModel("reactor", "controller", "item"))
+                    .register();
+
     public static final BlockEntry<ReinforcedGlassBlock> REINFORCED_GLASS = CreateNuclear.REGISTRATE
             .block("reinforced_glass", ReinforcedGlassBlock::new)
             .initialProperties(() -> Blocks.GLASS)
             .properties(p -> p.explosionResistance(1200F).destroyTime(2F))
+            .onRegister(CreateRegistrate.connectedTextures(() -> new EncasedCTBehaviour(CNSpriteShifts.REACTOR_GLASS)))
+            .onRegister(casingConnectivity((block,cc) -> cc.makeCasing(block, CNSpriteShifts.REACTOR_GLASS)))
             .loot(RegistrateBlockLootTables::dropWhenSilkTouch)
             .tag(CNTags.forgeBlockTag("glass"), BlockTags.IMPERMEABLE)
             .blockstate((c, p) -> p.getVariantBuilder(c.getEntry())

@@ -30,9 +30,9 @@ public class CNMultiblock {
                         .where('B', a -> a.getState().is(CNBlocks.REACTOR_GAUGE.get()))
                         .where('C', a -> a.getState().is(CNBlocks.REACTOR_CORE.get()))
                         .where('D', a -> a.getState().is(CNBlocks.REACTOR_COOLING_FRAME.get()))
-                        //.where('*', a -> a.getState().is(CNBlocks.REACTOR_CONTROLLER.get()))
-                        //.where('O', a -> a.getState().is(CNBlocks.REACTOR_OUTPUT.get()))
-                        //.where('I', a -> a.getState().is(CNBlocks.REACTOR_INPUT.get()))
+                        .where('*', a -> a.getState().is(CNBlocks.REACTOR_CONTROLLER.get()))
+                        .where('O', a -> a.getState().is(CNBlocks.REACTOR_OUTPUT.get()))
+                        .where('I', a -> a.getState().is(CNBlocks.REACTOR_INPUT.get()))
                         .build()
         );
     }

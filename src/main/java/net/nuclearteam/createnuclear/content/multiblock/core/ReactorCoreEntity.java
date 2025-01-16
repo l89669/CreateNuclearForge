@@ -9,6 +9,7 @@ import net.nuclearteam.createnuclear.CNBlocks;
 import net.nuclearteam.createnuclear.CreateNuclear;
 import net.nuclearteam.createnuclear.content.multiblock.IHeat;
 import net.nuclearteam.createnuclear.content.multiblock.casing.ReactorCasingEntity;
+import net.nuclearteam.createnuclear.content.multiblock.controller.ReactorControllerBlockEntity;
 
 import static net.nuclearteam.createnuclear.content.multiblock.CNMultiblock.*;
 
@@ -26,7 +27,7 @@ public class ReactorCoreEntity extends ReactorCasingEntity {
         if (level.isClientSide()) return;
 
         BlockPos controllerPos = getBlockPosForReactor();
-        /*if (level.getBlockEntity(controllerPos) instanceof ReactorControllerEntity reactorController) {
+        if (level.getBlockEntity(controllerPos) instanceof ReactorControllerBlockEntity reactorController) {
             int heat = (int) reactorController.configuredPattern.getOrCreateTag().getDouble("heat");
             if (IHeat.HeatLevel.of(heat) == IHeat.HeatLevel.DANGER) {
                 if (countdownTicks >= 1200) { // 1200 ticks = 60 seconds
@@ -38,7 +39,7 @@ public class ReactorCoreEntity extends ReactorCasingEntity {
             } else {
                 countdownTicks = 0; // Reset the countdown if the heat level is not in danger
             }
-        }*/
+        }
     }
 
     private void explodeReactorCore(Level world, BlockPos pos) {
@@ -58,9 +59,9 @@ public class ReactorCoreEntity extends ReactorCasingEntity {
                 .where('B', a -> a.getState().is(CNBlocks.REACTOR_GAUGE.get()))
                 .where('C', a -> a.getState().is(CNBlocks.REACTOR_CORE.get()))
                 .where('D', a -> a.getState().is(CNBlocks.REACTOR_COOLING_FRAME.get()))
-                //.where('*', a -> a.getState().is(CNBlocks.REACTOR_CONTROLLER.get()))
-                //.where('O', a -> a.getState().is(CNBlocks.REACTOR_OUTPUT.get()))
-                //.where('I', a -> a.getState().is(CNBlocks.REACTOR_INPUT.get()))
+                .where('*', a -> a.getState().is(CNBlocks.REACTOR_CONTROLLER.get()))
+                .where('O', a -> a.getState().is(CNBlocks.REACTOR_OUTPUT.get()))
+                .where('I', a -> a.getState().is(CNBlocks.REACTOR_INPUT.get()))
                 .getDistanceController(character);
     }
 
@@ -80,10 +81,10 @@ public class ReactorCoreEntity extends ReactorCasingEntity {
         for (int[][] direction : directions) {
             for (int[] dir : direction) {
                 BlockPos newPos = posController.offset(dir[0], dir[1], dir[2]);
-                /*if (level.getBlockState(newPos).is(CNBlocks.REACTOR_CONTROLLER.get())) {
+                if (level.getBlockState(newPos).is(CNBlocks.REACTOR_CONTROLLER.get())) {
                     posInput = newPos;
                     break;
-                }*/
+                }
             }
         }
 

@@ -42,6 +42,9 @@ public class CreateNuclearDatagen {
             BiConsumer<String, String> langConsumer = provider::add;
 
             provideDefaultLang("interface", langConsumer);
+            provideDefaultLang("potion", langConsumer);
+            provideDefaultLang("tooltips", langConsumer);
+            provideDefaultLang("reactor", langConsumer);
             providePonderLang(langConsumer);
         });
     }

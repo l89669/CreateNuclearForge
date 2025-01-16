@@ -334,6 +334,15 @@ public class CNBlocks {
                     .build()
                     .register();
 
+    public static final BlockEntry<Block> RAW_URANIUM_BLOCK =
+            CreateNuclear.REGISTRATE.block("raw_uranium_block", Block::new)
+                    .initialProperties(SharedProperties::stone)
+                    .simpleItem()
+                    .transform(pickaxeOnly())
+                    .tag(CNTags.CNBlockTags.NEEDS_DIAMOND_TOOL.tag,
+                            CNTags.forgeBlockTag("storage_blocks/raw_uranium"))
+                    .register();
+
     public static final BlockEntry<Block> RAW_LEAD_BLOCK =
             CreateNuclear.REGISTRATE.block("raw_lead_block", Block::new)
                     .initialProperties(SharedProperties::stone)

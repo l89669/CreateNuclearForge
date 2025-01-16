@@ -269,7 +269,7 @@ public class CNBlocks {
                     .addLayer(() -> RenderType::cutoutMipped)
                     .transform(axeOrPickaxe())
                     .tag(CNBlockTags.ALL_CAMPFIRES.tag)
-                    //.loot((lt, b) -> lt.add(b, RegistrateBlockLootTables.createSilkTouchDispatchTable(b, lt.applyExplosionDecay(b, LootItem.lootTableItem(CNBlocks.ENRICHING_SOUL_SOIL)))))
+                    .loot((lt, b) -> lt.add(b, RegistrateBlockLootTables.createSilkTouchDispatchTable(b, lt.applyExplosionDecay(b, LootItem.lootTableItem(CNBlocks.ENRICHED_SOUL_SOIL)))))
                     .blockstate((c, p) ->
                         p.getVariantBuilder(c.getEntry()).forAllStatesExcept(state -> {
                             Direction facing = state.getValue(BlockStateProperties.HORIZONTAL_FACING);
@@ -288,7 +288,10 @@ public class CNBlocks {
                         )
                     )
                     .item()
-                    .model(AssetLookup.customBlockItemModel("enriching", "campfire", "block"))
+                    .model((c, p) ->
+                            p.withExistingParent(c.getName(), new ResourceLocation("item/generated"))
+                                    .texture("layer0", p.modLoc("item/enriched/campfire"))
+                    )
                     .build()
                     .tag(CNTags.CNBlockTags.FAN_PROCESSING_CATALYSTS_ENRICHED.tag)
                     .register();

@@ -27,8 +27,11 @@ import net.minecraft.world.phys.shapes.VoxelShape;
 import net.minecraftforge.common.property.Properties;
 import net.minecraftforge.network.NetworkHooks;
 import net.nuclearteam.createnuclear.CNBlockEntityTypes;
+import net.nuclearteam.createnuclear.CNBlocks;
 import net.nuclearteam.createnuclear.CNShapes;
 import net.nuclearteam.createnuclear.CreateNuclear;
+import net.nuclearteam.createnuclear.content.multiblock.controller.ReactorControllerBlock;
+import net.nuclearteam.createnuclear.content.multiblock.controller.ReactorControllerBlockEntity;
 import net.nuclearteam.createnuclear.foundation.block.HorizontalDirectionalReactorBlock;
 import org.jetbrains.annotations.NotNull;
 
@@ -68,14 +71,14 @@ public class ReactorInput extends HorizontalDirectionalReactorBlock implements I
     public void onPlace(BlockState state, Level level, BlockPos pos, BlockState oldState, boolean isMoving) {
         super.onPlace(state, level, pos, oldState, isMoving);
         List<? extends Player> players = level.players();
-        //FindController(pos, level, players, true);
+        FindController(pos, level, players, true);
     }
 
     @Override
     public void playerDestroy(Level level, Player player, BlockPos pos, BlockState state, @Nullable BlockEntity blockEntity, ItemStack tool) {
         super.playerDestroy(level, player, pos, state, blockEntity, tool);
         List<? extends Player> players = level.players();
-        //FindController(pos, level, players, false);
+        FindController(pos, level, players, false);
     }
 
     @Override
@@ -86,10 +89,10 @@ public class ReactorInput extends HorizontalDirectionalReactorBlock implements I
         pLevel.removeBlockEntity(pPos);
 
         List<? extends Player> players = pLevel.players();
-        //FindController(pPos, pLevel, players, false);
+        FindController(pPos, pLevel, players, false);
     }
 
-    /*public ReactorControllerBlock FindController(BlockPos blockPos, Level level, List<? extends Player> players, boolean first){ // Function that checks the surrounding blocks in order
+    public ReactorControllerBlock FindController(BlockPos blockPos, Level level, List<? extends Player> players, boolean first){ // Function that checks the surrounding blocks in order
         BlockPos newBlock;                                                   // to find the controller and verify the pattern
         Vec3i pos = new Vec3i(blockPos.getX(), blockPos.getY(), blockPos.getZ());
         for (int x = pos.getX()-5; x != pos.getX()+5; x+=1) {
@@ -108,7 +111,7 @@ public class ReactorInput extends HorizontalDirectionalReactorBlock implements I
             }
         }
         return null;
-    }*/
+    }
 
     @Override
     public BlockState getStateForPlacement(BlockPlaceContext context) {

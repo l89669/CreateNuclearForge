@@ -14,6 +14,7 @@ import net.minecraftforge.common.ForgeSpawnEggItem;
 import net.nuclearteam.createnuclear.content.equipment.armor.AntiRadiationArmorItem;
 import net.nuclearteam.createnuclear.content.equipment.cloth.ClothItem;
 import net.nuclearteam.createnuclear.content.equipment.cloth.ClothItem.DyeItemList;
+import net.nuclearteam.createnuclear.content.multiblock.bluePrintItem.ReactorBluePrintItem;
 import net.nuclearteam.createnuclear.foundation.utility.TextUtils;
 
 import java.util.function.Supplier;
@@ -124,6 +125,12 @@ public class CNItems {
     public static final ItemEntry<ForgeSpawnEggItem> SPAWN_CAT = registerSpawnEgg("cat_irradiated_spawn_egg", CNEntityType.IRRADIATED_CAT, 0x382C19, 0x742728, "Irradiated Cat Spawn Egg");
     public static final ItemEntry<ForgeSpawnEggItem> SPAWN_CHICKEN = registerSpawnEgg("chicken_irradiated_spawn_egg", CNEntityType.IRRADIATED_CHICKEN, 0x6B9455, 0x95393C, "Irradiated Chicken Spawn Egg");
 
+    public static final ItemEntry<ReactorBluePrintItem> REACTOR_BLUEPRINT = CreateNuclear.REGISTRATE
+            .item("reactor_blueprint_item", ReactorBluePrintItem::new)
+            .lang("Reactor Blueprint")
+            .model((c, p) -> p.generated(c, CreateNuclear.asResource("item/reactor_blueprint")))
+            .properties(p -> p.stacksTo(1))
+            .register();
 
     private static ItemEntry<ForgeSpawnEggItem> registerSpawnEgg(String name, Supplier<? extends EntityType<? extends Mob>> entity, int backgroundColor, int highlightColor, String nameItems) {
         return CreateNuclear.REGISTRATE

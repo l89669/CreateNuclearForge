@@ -7,6 +7,7 @@ import com.simibubi.create.foundation.block.connected.CTType;
 
 public class CNSpriteShifts {
     public static final CTSpriteShiftEntry REACTOR_CASING = omni("reactor/casing/reactor_casing");
+    public static final CTSpriteShiftEntry REACTOR_GLASS = omni("reactor/reinforced/glass");
 
     private static CTSpriteShiftEntry omni(String name) {
         return getCT(AllCTTypes.OMNIDIRECTIONAL, name);

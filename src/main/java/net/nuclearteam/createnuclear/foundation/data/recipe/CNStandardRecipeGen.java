@@ -27,6 +27,7 @@ import net.nuclearteam.createnuclear.CNBlocks;
 import net.nuclearteam.createnuclear.CNItems;
 import net.nuclearteam.createnuclear.CNTags;
 import net.nuclearteam.createnuclear.CreateNuclear;
+import net.nuclearteam.createnuclear.content.equipment.armor.AntiRadiationArmorItem;
 import net.nuclearteam.createnuclear.content.equipment.cloth.ClothItem;
 
 import java.util.ArrayList;
@@ -107,6 +108,48 @@ public class CNStandardRecipeGen extends CreateRecipeProvider {
             )
             ;
 
+    AntiRadiationArmorItem.DyeRecipArmorList ANTI_RADIATION_LEGGINS = new AntiRadiationArmorItem.DyeRecipArmorList(color -> create(CNItems.ANTI_RADIATION_LEGGINGS.get(color))
+            .unlockedByTag(() -> CNTags.CNItemTags.CLOTH.tag)
+            .withCategory(RecipeCategory.COMBAT)
+            .viaShaped(i -> i
+            .define('X', CNItems.LEAD_INGOT)
+            .define('Y', ClothItem.Cloths.getByColor(color).get())
+            .define('Z', CNBlocks.REINFORCED_GLASS)
+                    .pattern("YXY")
+                    .pattern("Z Z")
+                    .pattern("X X")
+                    .showNotification(true)
+            )
+                    )
+    ;
+
+    AntiRadiationArmorItem.DyeRecipArmorList ANTI_RADIATION_CHESTPLATES = new AntiRadiationArmorItem.DyeRecipArmorList(color -> create(CNItems.ANTI_RADIATION_CHESTPLATES.get(color))
+            .unlockedByTag(() -> CNTags.CNItemTags.CLOTH.tag)
+            .withCategory(RecipeCategory.COMBAT)
+            .viaShaped(i -> i
+            .define('X', CNItems.LEAD_INGOT)
+            .define('Y', ClothItem.Cloths.getByColor(color).get())
+            .define('Z', CNItems.GRAPHITE_ROD)
+                    .pattern("Y Y")
+                    .pattern("XXX")
+                    .pattern("ZXZ")
+                    .showNotification(true)
+            )
+                    );
+
+    GeneratedRecipe
+            ANTI_RADIATION_BOOTS = create(CNItems.ANTI_RADIATION_BOOTS).unlockedByTag(() -> CNTags.CNItemTags.CLOTH.tag).withCategory(RecipeCategory.COMBAT)
+            .viaShaped(b -> b
+                    .define('X', CNItems.LEAD_INGOT)
+                    .define('Y', ClothItem.Cloths.WHITE_CLOTH.getItem())
+                    .pattern("Y Y")
+                    .pattern("X X")
+                    .showNotification(true)
+            )
+            ;
+
+
+
     private String CRAFTING_ITEMS = enterFolder("crafting/items/armors");
 
     String currentFolder = "";
@@ -146,6 +189,8 @@ public class CNStandardRecipeGen extends CreateRecipeProvider {
         }
         return result;
     }
+
+
 
     class GeneratedRecipeBuilder {
 

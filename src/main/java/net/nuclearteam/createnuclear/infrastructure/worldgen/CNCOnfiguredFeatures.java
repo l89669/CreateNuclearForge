@@ -10,6 +10,7 @@ import net.minecraft.world.level.levelgen.feature.configurations.OreConfiguratio
 import net.minecraft.world.level.levelgen.feature.configurations.OreConfiguration.TargetBlockState;
 import net.minecraft.world.level.levelgen.structure.templatesystem.RuleTest;
 import net.minecraft.world.level.levelgen.structure.templatesystem.TagMatchTest;
+import net.nuclearteam.createnuclear.CNBlocks;
 import net.nuclearteam.createnuclear.CreateNuclear;
 import static net.minecraft.data.worldgen.features.FeatureUtils.register;
 
@@ -29,11 +30,17 @@ public class CNCOnfiguredFeatures {
         RuleTest stoneOreReplaceables = new TagMatchTest(BlockTags.STONE_ORE_REPLACEABLES);
         RuleTest deepslateOreReplaceables = new TagMatchTest(BlockTags.DEEPSLATE_ORE_REPLACEABLES);
 
-        List<TargetBlockState> uraniumTargetStates = List.of();
+        List<TargetBlockState> uraniumTargetStates = List.of(
+                OreConfiguration.target(stoneOreReplaceables, CNBlocks.URANIUM_ORE.getDefaultState()),
+                OreConfiguration.target(deepslateOreReplaceables, CNBlocks.DEEPSLATE_URANIUM_ORE.getDefaultState())
+        );
 
         register(ctx, URANIUM_ORE, Feature.ORE, new OreConfiguration(uraniumTargetStates, 7));
 
-        List<TargetBlockState> leadTargetStates = List.of();
+        List<TargetBlockState> leadTargetStates = List.of(
+                OreConfiguration.target(stoneOreReplaceables, CNBlocks.LEAD_ORE.getDefaultState()),
+                OreConfiguration.target(deepslateOreReplaceables, CNBlocks.DEEPSLATE_LEAD_ORE.getDefaultState())
+        );
 
         register(ctx, LEAD_ORE, Feature.ORE, new OreConfiguration(leadTargetStates, 7));
     }

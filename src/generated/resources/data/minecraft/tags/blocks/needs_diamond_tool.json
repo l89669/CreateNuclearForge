@@ -1,0 +1,13 @@
+{
+  "values": [
+    "createnuclear:reactor_casing",
+    "createnuclear:reactor_core",
+    "createnuclear:reactor_gauge",
+    "createnuclear:reactor_cooling_frame",
+    "createnuclear:reactor_input",
+    "createnuclear:reactor_output",
+    "createnuclear:enriched_soul_soil",
+    "createnuclear:deepslate_uranium_ore",
+    "createnuclear:uranium_ore"
+  ]
+}

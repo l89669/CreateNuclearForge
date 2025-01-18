@@ -57,6 +57,8 @@ public class CreateNuclear {
         CNFluids.register();
         CNEntityType.register();
 
+        CNDamagesTypes.register(forgeEventBus);
+
         modEventBus.addListener(CreateNuclear::init);
         modEventBus.addListener(EventPriority.LOWEST, CreateNuclearDatagen::gatherData);
         forgeEventBus.addListener(CNFluids::handleFluidEffect);

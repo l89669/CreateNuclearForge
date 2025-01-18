@@ -39,6 +39,7 @@ import net.minecraft.world.phys.BlockHitResult;
 import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.VoxelShape;
 import net.nuclearteam.createnuclear.CNBlockEntityTypes;
+import net.nuclearteam.createnuclear.CNDamagesTypes;
 import org.jetbrains.annotations.Nullable;
 
 public class EnrichingCampfireBlock extends BaseEntityBlock implements SimpleWaterloggedBlock, IBE<EnrichingCampfireBlockEntity> {
@@ -64,8 +65,8 @@ public class EnrichingCampfireBlock extends BaseEntityBlock implements SimpleWat
     @Override
     public void entityInside(BlockState state, Level level, BlockPos pos, Entity entity) {
         if (state.getValue(LIT).booleanValue() && entity instanceof LivingEntity && !EnchantmentHelper.hasFrostWalker((LivingEntity)entity)) {
-            //((LivingEntity) entity).addEffect(new MobEffectInstance(CNEffects.RADIATION.get(), 100, 0));
-            entity.hurt(level.damageSources().inFire(), this.fireDamage); // a remplacé
+            ((LivingEntity) entity).addEffect(new MobEffectInstance(CNDamagesTypes.RADIATION.get(), 100, 0));
+            //entity.hurt(level.damageSources().inFire(), this.fireDamage); // a remplacé
         }
         super.entityInside(state, level, pos, entity);
     }

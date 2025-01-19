@@ -57,6 +57,9 @@ public class CreateNuclear {
         CNFluids.register();
         CNEntityType.register();
 
+        CNEffects.register(modEventBus);
+        CNPotions.register(modEventBus);
+
         modEventBus.addListener(CreateNuclear::init);
         modEventBus.addListener(EventPriority.LOWEST, CreateNuclearDatagen::gatherData);
         forgeEventBus.addListener(CNFluids::handleFluidEffect);
@@ -66,7 +69,7 @@ public class CreateNuclear {
     }
 
     public static void init(final FMLCommonSetupEvent event) {
-
+        event.enqueueWork(CNPotions::registerPotionsRecipes);
     }
 
 

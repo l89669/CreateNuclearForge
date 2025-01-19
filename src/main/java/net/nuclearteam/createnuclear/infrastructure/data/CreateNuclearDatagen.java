@@ -10,6 +10,8 @@ import net.minecraft.data.PackOutput;
 import net.minecraftforge.common.data.ExistingFileHelper;
 import net.minecraftforge.data.event.GatherDataEvent;
 import net.nuclearteam.createnuclear.CreateNuclear;
+import net.nuclearteam.createnuclear.foundation.data.recipe.CNProcessingRecipeGen;
+import net.nuclearteam.createnuclear.foundation.data.recipe.CNStandardRecipeGen;
 
 import java.util.Map.Entry;
 import java.util.concurrent.CompletableFuture;
@@ -32,6 +34,10 @@ public class CreateNuclearDatagen {
             GeneratedEntriesProvider generatedEntriesProvider = new GeneratedEntriesProvider(output, lookupProvider);
             lookupProvider = generatedEntriesProvider.getRegistryProvider();
             generator.addProvider(true, generatedEntriesProvider);
+
+            generator.addProvider(true, new CNStandardRecipeGen(output));
+            CNProcessingRecipeGen.registerAll(generator, output);
+
         }
     }
 

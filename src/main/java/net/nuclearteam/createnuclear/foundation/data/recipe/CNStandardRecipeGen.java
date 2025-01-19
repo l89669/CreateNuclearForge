@@ -38,7 +38,7 @@ public class CNStandardRecipeGen extends CreateRecipeProvider {
 
     private String CRAFTING = enterFolder("crafting");
     GeneratedRecipe
-            WHITE_CLOTH_FROM_STRING = create(ClothItem.Cloths.WHITE_CLOTH::getItem).unlockedBy(() -> Items.STRING)
+        WHITE_CLOTH_FROM_STRING = create(ClothItem.Cloths.WHITE_CLOTH::getItem).unlockedBy(() -> Items.STRING)
             .viaShaped(b -> b
                     .define('#', Items.STRING)
                     .pattern("###")
@@ -46,58 +46,58 @@ public class CNStandardRecipeGen extends CreateRecipeProvider {
                     .showNotification(true)
             ),
 
-    WHITE_CLOTH_FROM_WOOL = create(ClothItem.Cloths.WHITE_CLOTH::getItem).returns(6).unlockedBy(() -> Items.WHITE_WOOL).withSuffix("_wool")
+        WHITE_CLOTH_FROM_WOOL = create(ClothItem.Cloths.WHITE_CLOTH::getItem).returns(6).unlockedBy(() -> Items.WHITE_WOOL).withSuffix("_wool")
             .viaShaped(b -> b
                     .define('#', Blocks.WHITE_WOOL)
                     .pattern("###")
                     .pattern("###")
                     .showNotification(true)
             ),
-            ENRICHED_SOUL_SOIL = create(CNBlocks.ENRICHED_SOUL_SOIL).unlockedBy(() -> Items.NETHER_STAR)
-                    .viaShaped(b -> b
-                            .define('S', Blocks.SOUL_SOIL)
-                            .define('O', Blocks.OBSIDIAN)
-                            .define('N', Items.NETHER_STAR)
-                            .pattern("SOS")
-                            .pattern("ONO")
-                            .pattern("SOS")
-                            .showNotification(true)
-                    ),
 
-    ENRICHING_CAMPFIRE = create(CNBlocks.ENRICHING_CAMPFIRE).unlockedBy(CNBlocks.ENRICHED_SOUL_SOIL::get)
+        ENRICHED_SOUL_SOIL = create(CNBlocks.ENRICHED_SOUL_SOIL).unlockedBy(() -> Items.NETHER_STAR)
             .viaShaped(b -> b
-                    .define('E', CNBlocks.ENRICHED_SOUL_SOIL)
-                    .define('L', ItemTags.LOGS)
-                    .define('S', Tags.Items.RODS_WOODEN)
-                    .pattern(" S ")
-                    .pattern("SES")
-                    .pattern("LLL")
-                    .showNotification(true)
+                .define('S', Blocks.SOUL_SOIL)
+                .define('O', Blocks.OBSIDIAN)
+                .define('N', Items.NETHER_STAR)
+                .pattern("SOS")
+                .pattern("ONO")
+                .pattern("SOS")
+                .showNotification(true)
+            ),
+
+        ENRICHING_CAMPFIRE = create(CNBlocks.ENRICHING_CAMPFIRE).unlockedBy(CNBlocks.ENRICHED_SOUL_SOIL::get)
+            .viaShaped(b -> b
+                .define('E', CNBlocks.ENRICHED_SOUL_SOIL)
+                .define('L', ItemTags.LOGS)
+                .define('S', Tags.Items.RODS_WOODEN)
+                .pattern(" S ")
+                .pattern("SES")
+                .pattern("LLL")
+                .showNotification(true)
             ),
 
 
 
-    LEAD_COMPACTING = metalCompacting(ImmutableList.of(CNItems.LEAD_NUGGET, CNItems.LEAD_INGOT, CNBlocks.LEAD_BLOCK),
+        LEAD_COMPACTING = metalCompacting(ImmutableList.of(CNItems.LEAD_NUGGET, CNItems.LEAD_INGOT, CNBlocks.LEAD_BLOCK),
             ImmutableList.of(() -> CNTags.forgeItemTag("nuggets/lead"), () -> CNTags.forgeItemTag("ingots/lead"), () -> CNTags.forgeItemTag("storage_blocks/lead"))),
 
-    STEEL_COMPACTING = metalCompacting(ImmutableList.of(CNItems.STEEL_NUGGET, CNItems.STEEL_INGOT, CNBlocks.STEEL_BLOCK),
+        STEEL_COMPACTING = metalCompacting(ImmutableList.of(CNItems.STEEL_NUGGET, CNItems.STEEL_INGOT, CNBlocks.STEEL_BLOCK),
             ImmutableList.of(() -> CNTags.forgeItemTag("nuggets/steel"), () -> CNTags.forgeItemTag("ingots/steel"), () -> CNTags.forgeItemTag("storage_blocks/steel"))),
 
-    RAW_LEAD_BLOCK = create(CNBlocks.RAW_LEAD_BLOCK).unlockedBy(CNItems.RAW_LEAD::get)
+        RAW_LEAD_BLOCK = create(CNBlocks.RAW_LEAD_BLOCK).unlockedBy(CNItems.RAW_LEAD::get)
             .viaShaped(b -> b.define('R', CNItems.RAW_LEAD.get())
-                    .pattern("RRR")
-                    .pattern("RRR")
-                    .pattern("RRR")
-                    .showNotification(true)
+                .pattern("RRR")
+                .pattern("RRR")
+                .pattern("RRR")
+                .showNotification(true)
             )
-
-            ;
+        ;
 
 
     private String CRAFTING_REACTOR = enterFolder("crafting/reactor");
 
     GeneratedRecipe
-            REINFORCED_GLASS = create(CNBlocks.REINFORCED_GLASS).unlockedBy(CNBlocks.REACTOR_CASING::get)
+        REINFORCED_GLASS = create(CNBlocks.REINFORCED_GLASS).unlockedBy(CNBlocks.REACTOR_CASING::get)
             .viaShaped(b -> b
                     .define('G', Blocks.GLASS)
                     .define('S', CNItems.LEAD_INGOT)
@@ -106,24 +106,26 @@ public class CNStandardRecipeGen extends CreateRecipeProvider {
                     .pattern("SGS")
                     .showNotification(true)
             )
-            ;
+    ;
 
-    AntiRadiationArmorItem.DyeRecipArmorList ANTI_RADIATION_LEGGINS = new AntiRadiationArmorItem.DyeRecipArmorList(color -> create(CNItems.ANTI_RADIATION_LEGGINGS.get(color))
+    private String CRAFTING_ITEMS = enterFolder("crafting/items/armors");
+
+    AntiRadiationArmorItem.DyeRecipArmorList
+        ANTI_RADIATION_HELMET = new AntiRadiationArmorItem.DyeRecipArmorList(color -> create(CNItems.ANTI_RADIATION_HELMETS.get(color))
             .unlockedByTag(() -> CNTags.CNItemTags.CLOTH.tag)
             .withCategory(RecipeCategory.COMBAT)
             .viaShaped(i -> i
-            .define('X', CNItems.LEAD_INGOT)
-            .define('Y', ClothItem.Cloths.getByColor(color).get())
-            .define('Z', CNBlocks.REINFORCED_GLASS)
+                    .define('X', CNItems.LEAD_INGOT)
+                    .define('Y', ClothItem.Cloths.getByColor(color).get())
+                    .define('Z', CNBlocks.REINFORCED_GLASS)
                     .pattern("YXY")
-                    .pattern("Z Z")
-                    .pattern("X X")
+                    .pattern("XZX")
                     .showNotification(true)
             )
-                    )
-    ;
+        ),
 
-    AntiRadiationArmorItem.DyeRecipArmorList ANTI_RADIATION_CHESTPLATES = new AntiRadiationArmorItem.DyeRecipArmorList(color -> create(CNItems.ANTI_RADIATION_CHESTPLATES.get(color))
+
+        ANTI_RADIATION_CHESTPLATES = new AntiRadiationArmorItem.DyeRecipArmorList(color -> create(CNItems.ANTI_RADIATION_CHESTPLATES.get(color))
             .unlockedByTag(() -> CNTags.CNItemTags.CLOTH.tag)
             .withCategory(RecipeCategory.COMBAT)
             .viaShaped(i -> i
@@ -135,10 +137,25 @@ public class CNStandardRecipeGen extends CreateRecipeProvider {
                     .pattern("ZXZ")
                     .showNotification(true)
             )
-                    );
+        ),
+
+        ANTI_RADIATION_LEGGINS = new AntiRadiationArmorItem.DyeRecipArmorList(color -> create(CNItems.ANTI_RADIATION_LEGGINGS.get(color))
+                .unlockedByTag(() -> CNTags.CNItemTags.CLOTH.tag)
+                .withCategory(RecipeCategory.COMBAT)
+                .viaShaped(i -> i
+                        .define('X', CNItems.LEAD_INGOT)
+                        .define('Y', ClothItem.Cloths.getByColor(color).get())
+                        .define('Z', CNBlocks.REINFORCED_GLASS)
+                        .pattern("YXY")
+                        .pattern("Z Z")
+                        .pattern("X X")
+                        .showNotification(true)
+                )
+        )
+    ;
 
     GeneratedRecipe
-            ANTI_RADIATION_BOOTS = create(CNItems.ANTI_RADIATION_BOOTS).unlockedByTag(() -> CNTags.CNItemTags.CLOTH.tag).withCategory(RecipeCategory.COMBAT)
+        ANTI_RADIATION_BOOTS = create(CNItems.ANTI_RADIATION_BOOTS).unlockedByTag(() -> CNTags.CNItemTags.CLOTH.tag).withCategory(RecipeCategory.COMBAT)
             .viaShaped(b -> b
                     .define('X', CNItems.LEAD_INGOT)
                     .define('Y', ClothItem.Cloths.WHITE_CLOTH.getItem())
@@ -146,11 +163,17 @@ public class CNStandardRecipeGen extends CreateRecipeProvider {
                     .pattern("X X")
                     .showNotification(true)
             )
-            ;
+        ;
+
+    private final String BLAST_FURNACE = enterFolder("blast_furnace");
+    GeneratedRecipe
+        URANIUM_ORE_TO_URANIUM_POWDER = blastFurnaceRecipeTags(() -> CNItems.RAW_URANIUM::get, () -> CNTags.CNItemTags.URANIUM_ORES.tag, "_for_uranium_ore", 4),
+        RAW_LEAD_ORES = blastFurnaceRecipeTags(() -> CNItems.LEAD_INGOT::get, () -> CNTags.CNItemTags.LEAD_ORES.tag, "_for_lead_ore", 1),
+        RAW_LEAD = blastFurnaceRecipe(CNItems.LEAD_INGOT::get, CNItems.RAW_LEAD::get, "_for_raw_lead", 1)
+    ;
 
 
 
-    private String CRAFTING_ITEMS = enterFolder("crafting/items/armors");
 
     String currentFolder = "";
 
@@ -188,6 +211,54 @@ public class CNStandardRecipeGen extends CreateRecipeProvider {
                             .define('#', currentIngredient.get()));
         }
         return result;
+    }
+
+    GeneratedRecipe blastFurnaceRecipe(Supplier<? extends ItemLike> result, Supplier<? extends ItemLike> ingredient, String suffix, int count) {
+        return create(result::get).withSuffix(suffix)
+                .returns(count)
+                .viaCooking(ingredient::get)
+                .rewardXP(.1f)
+                .inBlastFurnace();
+    }
+
+    GeneratedRecipe blastFurnaceRecipeTags(Supplier<? extends ItemLike> result, Supplier<TagKey<Item>> ingredient, String suffix, int count) {
+        return create(result::get).withSuffix(suffix)
+                .returns(count)
+                .viaCookingTag(ingredient)
+                .rewardXP(.1f)
+                .inBlastFurnace();
+    }
+
+    GeneratedRecipe smokerRecipe(Supplier<? extends ItemLike> result, Supplier<? extends ItemLike> ingredient, String suffix, int count) {
+        return create(result::get).withSuffix(suffix)
+                .returns(count)
+                .viaCooking(ingredient::get)
+                .rewardXP(.0f)
+                .inSmoker();
+    }
+
+    GeneratedRecipe smokerRecipeTags(Supplier<? extends ItemLike> result, Supplier<TagKey<Item>> ingredient, String suffix, int count) {
+        return create(result::get).withSuffix(suffix)
+                .returns(count)
+                .viaCookingTag(ingredient)
+                .rewardXP(.0f)
+                .inSmoker();
+    }
+
+    GeneratedRecipe furnaceRecipe(Supplier<? extends ItemLike> result, Supplier<? extends ItemLike> ingredient, String suffix, int count) {
+        return create(result::get).withSuffix(suffix)
+                .returns(count)
+                .viaCooking(ingredient::get)
+                .rewardXP(.1f)
+                .inFurnace();
+    }
+
+    GeneratedRecipe furnaceRecipeTags(Supplier<? extends ItemLike> result, Supplier<TagKey<Item>> ingredient, String suffix, int count) {
+        return create(result::get).withSuffix(suffix)
+                .returns(count)
+                .viaCookingTag(ingredient)
+                .rewardXP(.1f)
+                .inFurnace();
     }
 
 

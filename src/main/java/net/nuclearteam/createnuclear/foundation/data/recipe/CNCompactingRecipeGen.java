@@ -7,7 +7,7 @@ import net.nuclearteam.createnuclear.CNFluids;
 import net.nuclearteam.createnuclear.CNItems;
 import net.nuclearteam.createnuclear.CreateNuclear;
 
-public class CNCompactingRecipeGen extends ProcessingRecipeGen {
+public class CNCompactingRecipeGen extends CNProcessingRecipeGen {
     GeneratedRecipe
             YELLOWCAKE = create(CreateNuclear.asResource("uranium_fluid_to_yellowcake"), b -> b.require(CNFluids.URANIUM.get(), 8100).output(CNItems.YELLOWCAKE, 1));
 

@@ -48,7 +48,6 @@ public class CreateNuclear {
         REGISTRATE.registerEventListeners(modEventBus);
 
         CNTags.init();
-        CNEffects.register(forgeEventBus);
         CNCreativeModeTabs.register(modEventBus);
         CNBlocks.register();
         CNBlockEntityTypes.register();
@@ -58,7 +57,8 @@ public class CreateNuclear {
         CNFluids.register();
         CNEntityType.register();
 
-        CNPotions.registerPotionsRecipes();
+        CNEffects.register(modEventBus);
+        CNPotions.register(modEventBus);
 
         modEventBus.addListener(CreateNuclear::init);
         modEventBus.addListener(EventPriority.LOWEST, CreateNuclearDatagen::gatherData);
@@ -69,7 +69,7 @@ public class CreateNuclear {
     }
 
     public static void init(final FMLCommonSetupEvent event) {
-
+        event.enqueueWork(CNPotions::registerPotionsRecipes);
     }
 
 

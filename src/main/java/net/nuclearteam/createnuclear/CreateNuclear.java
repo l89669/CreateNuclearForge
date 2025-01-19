@@ -19,6 +19,7 @@ import net.minecraftforge.fml.ModLoadingContext;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
+import net.nuclearteam.createnuclear.content.kinetics.fan.processing.CNFanProcessingTypes;
 import net.nuclearteam.createnuclear.infrastructure.data.CreateNuclearDatagen;
 import org.slf4j.Logger;
 
@@ -48,7 +49,6 @@ public class CreateNuclear {
         REGISTRATE.registerEventListeners(modEventBus);
 
         CNTags.init();
-        CNCreativeModeTabs.register(modEventBus);
         CNBlocks.register();
         CNBlockEntityTypes.register();
         CNItems.register();
@@ -56,9 +56,12 @@ public class CreateNuclear {
         CNMenus.register();
         CNFluids.register();
         CNEntityType.register();
+        CNFanProcessingTypes.register();
 
+        CNCreativeModeTabs.register(modEventBus);
         CNEffects.register(modEventBus);
         CNPotions.register(modEventBus);
+        CNRecipeTypes.register(modEventBus);
 
         modEventBus.addListener(CreateNuclear::init);
         modEventBus.addListener(EventPriority.LOWEST, CreateNuclearDatagen::gatherData);

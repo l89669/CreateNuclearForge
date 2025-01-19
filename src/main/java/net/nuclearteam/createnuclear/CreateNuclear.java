@@ -48,7 +48,6 @@ public class CreateNuclear {
         REGISTRATE.registerEventListeners(modEventBus);
 
         CNTags.init();
-        CNEffects.register(forgeEventBus);
         CNCreativeModeTabs.register(modEventBus);
         CNBlocks.register();
         CNBlockEntityTypes.register();
@@ -57,8 +56,8 @@ public class CreateNuclear {
         CNMenus.register();
         CNFluids.register();
         CNEntityType.register();
-
-        CNPotions.registerPotionsRecipes();
+        CNEffects.register(modEventBus);
+        //CNPotions.registerPotionsRecipes();
 
         modEventBus.addListener(CreateNuclear::init);
         modEventBus.addListener(EventPriority.LOWEST, CreateNuclearDatagen::gatherData);

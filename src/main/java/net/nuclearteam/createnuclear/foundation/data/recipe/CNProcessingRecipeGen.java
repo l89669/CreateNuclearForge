@@ -23,7 +23,7 @@ import java.util.function.UnaryOperator;
 
 public abstract class CNProcessingRecipeGen extends CreateRecipeProvider {
 
-    protected static final List<CNCompactingRecipeGen> GENERATORS = new ArrayList<>();
+    protected static final List<CNProcessingRecipeGen> GENERATORS = new ArrayList<>();
 
     public static void registerAll(DataGenerator gen, PackOutput output) {
 

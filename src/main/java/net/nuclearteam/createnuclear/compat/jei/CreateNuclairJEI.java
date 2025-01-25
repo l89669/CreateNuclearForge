@@ -47,6 +47,7 @@ import java.util.function.Consumer;
 import java.util.function.Function;
 import java.util.function.Predicate;
 import java.util.function.Supplier;
+import java.util.stream.Stream;
 
 import static com.simibubi.create.compat.jei.CreateJEI.consumeAllRecipes;
 
@@ -269,11 +270,11 @@ public class CreateNuclairJEI implements IModPlugin {
     }
 
     public static <T extends Recipe<?>> void consumeTypedRecipes(Consumer<T> consumer, RecipeType<?> type) {
-        List<Recipe<?>> map = (List<Recipe<?>>) Minecraft.getInstance()
+        Stream<Recipe<?>> map = Minecraft.getInstance()
                 .getConnection()
-                .getRecipeManager().getRecipes();
+                .getRecipeManager().getRecipes().stream();
         if (map != null) {
-            map.stream().forEach(recipe -> consumer.accept((T) recipe));
+            map.forEach(recipe -> consumer.accept((T) recipe));
         }
     }
 

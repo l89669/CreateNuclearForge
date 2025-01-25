@@ -12,7 +12,7 @@ import net.minecraft.util.Mth;
 import net.nuclearteam.createnuclear.CreateNuclear;
 
 public class IrradiatedCatModel<T extends IrradiatedCat> extends AgeableListModel<T> {
-    public static final ModelLayerLocation LAYER_LOCATION = new ModelLayerLocation(CreateNuclear.asResource("irradiated_cat_model"), "main");
+    public static final ModelLayerLocation LAYER_LOCATION = new ModelLayerLocation(CreateNuclear.asResource("irradiatedcatmodel"), "main");
 
     private final ModelPart pustule3;
     private final ModelPart pustule2;

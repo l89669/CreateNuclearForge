@@ -28,7 +28,7 @@ public class CNEntityType {
     .attributes(IrradiatedCat::createAttributes)
     .register();
 
-    public static final EntityEntry<IrradiatedChicken> IRRADIATED_CHICKEN = CreateNuclear.REGISTRATE
+   public static final EntityEntry<IrradiatedChicken> IRRADIATED_CHICKEN = CreateNuclear.REGISTRATE
     .entity("irradiated_chicken", IrradiatedChicken::new, MobCategory.CREATURE)
     .loot((tb, e) -> tb.add(e, LootTable.lootTable()))
     .tag(CNEntityTags.IRRADIATED_IMMUNE.tag)

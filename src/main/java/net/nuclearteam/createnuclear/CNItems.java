@@ -35,59 +35,59 @@ public class CNItems {
             .register(),
 
         RAW_LEAD = CreateNuclear.REGISTRATE
-                .item("raw_lead", Item::new)
-                .tag(CNTags.forgeItemTag("raw_ores"), CNTags.forgeItemTag("raw_materials"), CNTags.forgeItemTag("raw_materials/lead"))
-                .register(),
+            .item("raw_lead", Item::new)
+            .tag(CNTags.forgeItemTag("raw_ores"), CNTags.forgeItemTag("raw_materials"), CNTags.forgeItemTag("raw_materials/lead"))
+            .register(),
 
         RAW_URANIUM = CreateNuclear.REGISTRATE
-                .item("raw_uranium", Item::new)
-                .tag(CNTags.forgeItemTag("raw_ores"), CNTags.forgeItemTag("raw_materials"), CNTags.forgeItemTag("raw_materials/uranium"))
-                .register(),
+            .item("raw_uranium", Item::new)
+            .tag(CNTags.forgeItemTag("raw_ores"), CNTags.forgeItemTag("raw_materials"), CNTags.forgeItemTag("raw_materials/uranium"))
+            .register(),
 
         URANIUM_POWDER = CreateNuclear.REGISTRATE
-                .item("uranium_powder", Item::new)
-                .register(),
+            .item("uranium_powder", Item::new)
+            .register(),
 
         STEEL_INGOT = CreateNuclear.REGISTRATE
-                .item("steel_ingot", Item::new)
-                .tag(CNTags.forgeItemTag("ingots"), CNTags.forgeItemTag("ingots/steel"))
-                .register(),
+            .item("steel_ingot", Item::new)
+            .tag(CNTags.forgeItemTag("ingots"), CNTags.forgeItemTag("ingots/steel"))
+            .register(),
 
         COAL_DUST = CreateNuclear.REGISTRATE
-                .item("coal_dust", Item::new)
-                .tag(CNTags.forgeItemTag("dusts"), CNTags.forgeItemTag("coal_dusts"))
-                .register(),
+            .item("coal_dust", Item::new)
+            .tag(CNTags.forgeItemTag("dusts"), CNTags.forgeItemTag("coal_dusts"))
+            .register(),
 
         GRAPHITE_ROD = CreateNuclear.REGISTRATE
-                .item("graphite_rod", Item::new)
-                .tag(CNTags.forgeItemTag("rods"), CNTags.CNItemTags.COOLER.tag)
-                .register(),
+            .item("graphite_rod", Item::new)
+            .tag(CNTags.forgeItemTag("rods"), CNTags.CNItemTags.COOLER.tag)
+            .register(),
 
         LEAD_INGOT = CreateNuclear.REGISTRATE
-                .item("lead_ingot", Item::new)
-                .tag(CNTags.forgeItemTag("ingots"), CNTags.forgeItemTag("ingots/lead"))
-                .register(),
+            .item("lead_ingot", Item::new)
+            .tag(CNTags.forgeItemTag("ingots"), CNTags.forgeItemTag("ingots/lead"))
+            .register(),
 
         STEEL_NUGGET = CreateNuclear.REGISTRATE
-                .item("steel_nugget", Item::new)
-                .tag(CNTags.forgeItemTag("nuggets"), CNTags.forgeItemTag("nuggets/steel"))
-                .register(),
+            .item("steel_nugget", Item::new)
+            .tag(CNTags.forgeItemTag("nuggets"), CNTags.forgeItemTag("nuggets/steel"))
+            .register(),
 
-    URANIUM_ROD = CreateNuclear.REGISTRATE
+        URANIUM_ROD = CreateNuclear.REGISTRATE
             .item("uranium_rod", Item::new)
             .tag(CNTags.forgeItemTag("rods"), CNTags.CNItemTags.FUEL.tag)
             .register(),
 
-    LEAD_NUGGET = CreateNuclear.REGISTRATE
+        LEAD_NUGGET = CreateNuclear.REGISTRATE
             .item("lead_nugget", Item::new)
             .tag(CNTags.forgeItemTag("nuggets"), CNTags.forgeItemTag("nuggets/lead"))
             .register(),
 
-    GRAPHENE = CreateNuclear.REGISTRATE
+        GRAPHENE = CreateNuclear.REGISTRATE
             .item("graphene", Item::new)
             .register(),
 
-    ENRICHED_YELLOWCAKE = CreateNuclear.REGISTRATE
+        ENRICHED_YELLOWCAKE = CreateNuclear.REGISTRATE
             .item("enriched_yellowcake", Item::new)
             .register()
     ;

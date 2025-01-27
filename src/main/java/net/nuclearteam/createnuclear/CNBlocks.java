@@ -263,6 +263,7 @@ public class CNBlocks {
                     .properties(p -> p.instrument(NoteBlockInstrument.BASS))
                     .properties(p -> p.strength(2.0F))
                     .properties(p -> p.sound(SoundType.WOOD))
+                    .properties(p -> p.lightLevel(EnrichingCampfireBlock::getLight))
                     .properties(Properties::noOcclusion)
                     .properties(Properties::ignitedByLava)
                     //.properties(Properties::replaceable)

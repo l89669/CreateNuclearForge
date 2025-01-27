@@ -34,7 +34,6 @@ public abstract class CNProcessingRecipeGen extends CreateRecipeProvider {
         GENERATORS.add(new CNMixingRecipeGen(output));
         GENERATORS.add(new CNPressingRecipeGen(output));
 
-
         gen.addProvider(true, new DataProvider() {
             @Override
             public CompletableFuture<?> run(CachedOutput dc) {

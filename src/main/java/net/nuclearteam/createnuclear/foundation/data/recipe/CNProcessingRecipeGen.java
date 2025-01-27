@@ -28,7 +28,11 @@ public abstract class CNProcessingRecipeGen extends CreateRecipeProvider {
     public static void registerAll(DataGenerator gen, PackOutput output) {
 
         GENERATORS.add(new CNCompactingRecipeGen(output));
-        GENERATORS.add(new EnrichedRecipeGen(output));
+        GENERATORS.add(new CNMechanicalCraftingRecipeGen(output));
+        GENERATORS.add(new CNItemApplicationRecipeGen(output));
+        GENERATORS.add(new CNCrushingRecipeGen(output));
+        GENERATORS.add(new CNMixingRecipeGen(output));
+        GENERATORS.add(new CNPressingRecipeGen(output));
 
         gen.addProvider(true, new DataProvider() {
             @Override

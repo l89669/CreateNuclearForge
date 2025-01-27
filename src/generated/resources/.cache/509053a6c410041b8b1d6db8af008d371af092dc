@@ -1,2 +1,4 @@
-// 1.20.1	2025-01-19T15:10:27.9137651	CreateNuclearForge Processing Recipe
+// 1.20.1	2025-01-19T19:04:40.1620745	CreateNuclearForge Processing Recipe
 4516b5574960b0f83f2c191949e62d85039028c7 data/createnuclear/recipes/compacting/uranium_fluid_to_yellowcake.json
+e42be7d17c5e057e62c4b1176cbf43319a157f51 data/createnuclear/recipes/enriched/enriched_yellowcake.json
+74555eb2cce0827f99dc5c4ff91362bdaecad725 data/createnuclear/recipes/enriched/enriching_campfire.json

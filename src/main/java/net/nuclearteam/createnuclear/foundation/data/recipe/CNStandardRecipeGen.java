@@ -4,6 +4,8 @@ import com.google.common.base.Supplier;
 import com.google.common.collect.ImmutableList;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
+import com.simibubi.create.AllBlocks;
+import com.simibubi.create.AllItems;
 import com.simibubi.create.foundation.data.recipe.CreateRecipeProvider;
 import com.simibubi.create.foundation.utility.RegisteredObjects;
 import com.tterrag.registrate.util.entry.ItemProviderEntry;
@@ -90,6 +92,26 @@ public class CNStandardRecipeGen extends CreateRecipeProvider {
                 .pattern("RRR")
                 .pattern("RRR")
                 .showNotification(true)
+            ),
+
+        RAW_URANIUM_BLOCK = create(CNBlocks.RAW_URANIUM_BLOCK).unlockedBy(CNItems.RAW_URANIUM::get)
+            .viaShaped(b -> b.define('R', CNItems.RAW_URANIUM.get())
+                .pattern("RRR")
+                .pattern("RRR")
+                .pattern("RRR")
+                .showNotification(true)
+            ),
+
+    REACTOR_BLUEPRINT_ITEM = create(CNItems.REACTOR_BLUEPRINT).unlockedBy(CNBlocks.REACTOR_CONTROLLER::get)
+            .viaShaped(b -> b
+                    .define('S', CNTags.forgeItemTag("ingots/steel"))
+                    .define('D', AllBlocks.DISPLAY_BOARD)
+                    .define('P', AllItems.PRECISION_MECHANISM)
+                    .define('E', AllItems.EMPTY_SCHEMATIC)
+                    .pattern("SDS")
+                    .pattern("SPS")
+                    .pattern("SES")
+                    .showNotification(true)
             )
         ;
 

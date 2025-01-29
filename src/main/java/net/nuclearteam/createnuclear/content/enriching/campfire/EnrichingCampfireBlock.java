@@ -209,4 +209,8 @@ public class EnrichingCampfireBlock extends BaseEntityBlock implements SimpleWat
     public boolean isPathfindable(BlockState p_60475_, BlockGetter p_60476_, BlockPos p_60477_, PathComputationType p_60478_) {
         return false;
     }
+
+    public static int getLight(BlockState state) {
+        return state.getValue(LIT) ? 15 : 0;
+    }
 }

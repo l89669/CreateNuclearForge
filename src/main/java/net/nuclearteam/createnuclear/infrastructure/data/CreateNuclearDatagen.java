@@ -12,6 +12,7 @@ import net.minecraftforge.data.event.GatherDataEvent;
 import net.nuclearteam.createnuclear.CreateNuclear;
 import net.nuclearteam.createnuclear.foundation.data.recipe.CNProcessingRecipeGen;
 import net.nuclearteam.createnuclear.foundation.data.recipe.CNStandardRecipeGen;
+import net.nuclearteam.createnuclear.foundation.ponder.CNPonderIndex;
 
 import java.util.Map.Entry;
 import java.util.concurrent.CompletableFuture;
@@ -69,5 +70,8 @@ public class CreateNuclearDatagen {
         }
     }
 
-    private static void providePonderLang(BiConsumer<String, String> consumer) {}
+    private static void providePonderLang(BiConsumer<String, String> consumer) {
+        CNPonderIndex.register();
+
+    }
 }

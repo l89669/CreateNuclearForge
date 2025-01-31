@@ -1,4 +1,4 @@
-// 1.20.1	2025-01-31T09:26:37.6571363	CreateNuclearForge Processing Recipe
+// 1.20.1	2025-01-31T20:26:37.8812682	CreateNuclearForge Processing Recipe
 d02fe65c0c4f06b58fa7565d7254902de5018e8b data/createnuclear/advancements/recipes/building_blocks/shapeless/cloth/black_cloth.json
 9690e12858db1c546576ce70847e723c005f814e data/createnuclear/advancements/recipes/building_blocks/shapeless/cloth/blue_cloth.json
 3bebcd85a99be0ddec8db66c5734232ac4bbd2ad data/createnuclear/advancements/recipes/building_blocks/shapeless/cloth/brown_cloth.json
@@ -28,6 +28,8 @@ a68afd8036c827e4ee599ad27d3ef0d4466f69b3 data/createnuclear/advancements/recipes
 420333091a2e425a6db6fb157266c5626ac2d9b3 data/createnuclear/recipes/crushing/granite.json
 b30e8150263d60763dc539802491251cab90eca5 data/createnuclear/recipes/crushing/raw_uranium.json
 cf17713133d3e05e99164e2ea6649de3aef017fd data/createnuclear/recipes/crushing/raw_uranium_block.json
+e42be7d17c5e057e62c4b1176cbf43319a157f51 data/createnuclear/recipes/enriched/enriched_yellowcake.json
+74555eb2cce0827f99dc5c4ff91362bdaecad725 data/createnuclear/recipes/enriched/enriching_campfire.json
 5cee3df3d7c7cd41d6a94a36b713dddc77f2acc4 data/createnuclear/recipes/item_application/reactor_casing_from_steel_and_brass_casing.json
 f2d3a2dbcb9135e31261cc8408f11cd07038a826 data/createnuclear/recipes/item_application/reactor_input_from_hopper_and_reactor_casing.json
 91c07d7804d0960aaa17a6258f00f1731ca458f5 data/createnuclear/recipes/item_application/reactor_output_from_shaft_and_reactor_casing.json

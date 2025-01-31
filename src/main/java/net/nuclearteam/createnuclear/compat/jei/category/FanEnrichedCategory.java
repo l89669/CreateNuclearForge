@@ -9,8 +9,8 @@ import net.minecraft.network.chat.Component;
 import net.nuclearteam.createnuclear.CNBlocks;
 import net.nuclearteam.createnuclear.content.kinetics.fan.processing.EnrichedRecipe;
 
-public class FanEnrichedCategoryJEI extends ProcessingViaFanCategory.MultiOutput<EnrichedRecipe> {
-    public FanEnrichedCategoryJEI(Info<EnrichedRecipe> info) {
+public class FanEnrichedCategory extends ProcessingViaFanCategory.MultiOutput<EnrichedRecipe> {
+    public FanEnrichedCategory(Info<EnrichedRecipe> info) {
         super(info);
     }
 

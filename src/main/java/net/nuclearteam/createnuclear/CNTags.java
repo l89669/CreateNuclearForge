@@ -1,5 +1,6 @@
 package net.nuclearteam.createnuclear;
 
+import com.simibubi.create.AllTags;
 import com.simibubi.create.foundation.utility.Lang;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.core.registries.Registries;
@@ -13,6 +14,7 @@ import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.crafting.RecipeSerializer;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.material.Fluid;
@@ -271,6 +273,48 @@ public class CNTags {
         private static void init() {}
     }
 
+    public enum CNRecipeSerializerTags {
+
+        AUTOMATION_IGNORE,
+
+        ;
+
+        public final TagKey<RecipeSerializer<?>> tag;
+        public final boolean alwaysDatagen;
+
+        CNRecipeSerializerTags() {
+            this(MOD);
+        }
+
+        CNRecipeSerializerTags(NameSpace namespace) {
+            this(namespace, namespace.optionalDefault, namespace.alwayDatagenDefault);
+        }
+
+        CNRecipeSerializerTags(NameSpace namespace, String path) {
+            this(namespace, path, namespace.optionalDefault, namespace.alwayDatagenDefault);
+        }
+
+        CNRecipeSerializerTags(NameSpace namespace, boolean optional, boolean alwaysDatagen) {
+            this(namespace, null, optional, alwaysDatagen);
+        }
+
+        CNRecipeSerializerTags(NameSpace namespace, String path, boolean optional, boolean alwaysDatagen) {
+            ResourceLocation id = new ResourceLocation(namespace.id, path == null ? Lang.asId(name()) : path);
+            if (optional) {
+                tag = optionalTag(ForgeRegistries.RECIPE_SERIALIZERS, id);
+            } else {
+                tag = TagKey.create(Registries.RECIPE_SERIALIZER, id);
+            }
+            this.alwaysDatagen = alwaysDatagen;
+        }
+
+        public boolean matches(RecipeSerializer<?> recipeSerializer) {
+            return ForgeRegistries.RECIPE_SERIALIZERS.getHolder(recipeSerializer).orElseThrow().is(tag);
+        }
+
+        private static void init() {}
+    }
+
 
     public static void init() {
         CreateNuclear.LOGGER.info("Registering mod tags for " + CreateNuclear.MOD_ID);
@@ -278,5 +322,6 @@ public class CNTags {
         CNItemTags.init();
         CNFluidTags.init();
         CNEntityTags.init();
+        CNRecipeSerializerTags.init();
     }
 }

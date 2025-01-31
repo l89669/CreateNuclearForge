@@ -10,6 +10,7 @@ import net.minecraft.data.PackOutput;
 import net.minecraftforge.common.data.ExistingFileHelper;
 import net.minecraftforge.data.event.GatherDataEvent;
 import net.nuclearteam.createnuclear.CreateNuclear;
+import net.nuclearteam.createnuclear.foundation.Advancement.CNAdvancement;
 import net.nuclearteam.createnuclear.foundation.data.recipe.CNProcessingRecipeGen;
 import net.nuclearteam.createnuclear.foundation.data.recipe.CNStandardRecipeGen;
 import net.nuclearteam.createnuclear.foundation.ponder.CNPonderIndex;
@@ -35,9 +36,10 @@ public class CreateNuclearDatagen {
             GeneratedEntriesProvider generatedEntriesProvider = new GeneratedEntriesProvider(output, lookupProvider);
             lookupProvider = generatedEntriesProvider.getRegistryProvider();
             generator.addProvider(true, generatedEntriesProvider);
-
             generator.addProvider(true, new CNStandardRecipeGen(output));
+            generator.addProvider(true, new CNAdvancement(output));
             CNProcessingRecipeGen.registerAll(generator, output);
+
 
         }
     }
@@ -52,6 +54,7 @@ public class CreateNuclearDatagen {
             provideDefaultLang("potion", langConsumer);
             provideDefaultLang("tooltips", langConsumer);
             provideDefaultLang("reactor", langConsumer);
+            CNAdvancement.provideLang(langConsumer);
             providePonderLang(langConsumer);
         });
     }

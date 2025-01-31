@@ -14,6 +14,7 @@ import net.minecraft.data.PackOutput;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.crafting.Ingredient;
 import net.minecraft.world.level.ItemLike;
+import net.nuclearteam.createnuclear.foundation.Advancement.CNAdvancement;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -27,6 +28,7 @@ public abstract class CNProcessingRecipeGen extends CreateRecipeProvider {
 
     public static void registerAll(DataGenerator gen, PackOutput output) {
 
+
         GENERATORS.add(new CNCompactingRecipeGen(output));
         GENERATORS.add(new CNMechanicalCraftingRecipeGen(output));
         GENERATORS.add(new CNItemApplicationRecipeGen(output));
@@ -34,6 +36,7 @@ public abstract class CNProcessingRecipeGen extends CreateRecipeProvider {
         GENERATORS.add(new CNMixingRecipeGen(output));
         GENERATORS.add(new CNPressingRecipeGen(output));
         GENERATORS.add(new CNShapelessRecipeGen(output));
+
 
         gen.addProvider(true, new DataProvider() {
             @Override

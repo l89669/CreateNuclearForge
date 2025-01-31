@@ -57,13 +57,7 @@ public class CreateNuclearJEI implements IModPlugin {
         allCategories.clear();
 
         CreateRecipeCategory<?>
-            /*enriched = builder(EnrichedRecipe.class)
-                .addTypedRecipes(CNRecipeTypes.ENRICHED)
-                .catalystStack(ProcessingViaFanCategory.getFan("fan_enriched"))
-                .doubleItemIcon(AllItems.PROPELLER.get(), CNBlocks.ENRICHING_CAMPFIRE.get())
-                .emptyBackground(178, 72)
-                .build("fan_enriched", FanEnrichedCategory::new),*/
-        hauntingTEST = builder(EnrichedRecipe.class)
+            enriched = builder(EnrichedRecipe.class)
                 .addTypedRecipes(CNRecipeTypes.ENRICHED)
                 .catalystStack(ProcessingViaFanCategory.getFan("fan_enriched"))
                 .doubleItemIcon(AllItems.PROPELLER.get(), CNBlocks.ENRICHING_CAMPFIRE.get())

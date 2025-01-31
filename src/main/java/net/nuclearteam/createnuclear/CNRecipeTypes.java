@@ -60,8 +60,8 @@ public enum CNRecipeTypes implements IRecipeTypeInfo {
         type = typeObject;
     }
 
-    CNRecipeTypes(ProcessingRecipeFactory<?> processingRecipeFactory) {
-        this(() -> new ProcessingRecipeSerializer<>(processingRecipeFactory));
+    CNRecipeTypes(ProcessingRecipeFactory<?> processingFactory) {
+        this(() -> new ProcessingRecipeSerializer<>(processingFactory));
     }
 
     public static void register(IEventBus modEventBus) {
@@ -94,12 +94,13 @@ public enum CNRecipeTypes implements IRecipeTypeInfo {
 
     public static boolean shouldIgnoreInAutomation(Recipe<?> recipe) {
         RecipeSerializer<?> serializer = recipe.getSerializer();
-        if (serializer != null && AllTags.AllRecipeSerializerTags.AUTOMATION_IGNORE.matches(serializer)) return true;
+        if (serializer != null && CNTags.CNRecipeSerializerTags.AUTOMATION_IGNORE.matches(serializer))
+            return true;
         return !CAN_BE_AUTOMATED.test(recipe);
     }
 
     private static class Registers {
         private static final DeferredRegister<RecipeSerializer<?>> SERIALIZER_REGISTER = DeferredRegister.create(ForgeRegistries.RECIPE_SERIALIZERS, CreateNuclear.MOD_ID);
-        private static final DeferredRegister<RecipeType<?>> TYPE_REGISTER = DeferredRegister.create(Registries.RECIPE_TYPE,CreateNuclear.MOD_ID);
+        private static final DeferredRegister<RecipeType<?>> TYPE_REGISTER = DeferredRegister.create(Registries.RECIPE_TYPE, CreateNuclear.MOD_ID);
     }
 }

@@ -1,12 +1,16 @@
 package net.nuclearteam.createnuclear.compat.jei;
 
 
+import javax.annotation.Nonnull;
 import javax.annotation.ParametersAreNonnullByDefault;
 
 import com.simibubi.create.AllItems;
+import com.simibubi.create.AllRecipeTypes;
 import com.simibubi.create.compat.jei.*;
 import com.simibubi.create.compat.jei.category.CreateRecipeCategory;
+import com.simibubi.create.compat.jei.category.FanHauntingCategory;
 import com.simibubi.create.compat.jei.category.ProcessingViaFanCategory;
+import com.simibubi.create.content.kinetics.fan.processing.HauntingRecipe;
 import com.simibubi.create.foundation.config.ConfigBase;
 import com.simibubi.create.foundation.item.ItemHelper;
 import com.simibubi.create.foundation.recipe.IRecipeTypeInfo;
@@ -17,7 +21,6 @@ import mezz.jei.api.IModPlugin;
 import mezz.jei.api.JeiPlugin;
 import mezz.jei.api.constants.RecipeTypes;
 import mezz.jei.api.gui.drawable.IDrawable;
-import mezz.jei.api.helpers.IPlatformFluidHelper;
 import mezz.jei.api.recipe.category.IRecipeCategory;
 import mezz.jei.api.registration.*;
 import mezz.jei.api.runtime.IIngredientManager;
@@ -25,13 +28,14 @@ import net.minecraft.client.Minecraft;
 import net.minecraft.core.RegistryAccess;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.Items;
 import net.minecraft.world.item.crafting.Recipe;
 import net.minecraft.world.item.crafting.RecipeType;
 import net.minecraft.world.level.ItemLike;
 import net.nuclearteam.createnuclear.CNBlocks;
 import net.nuclearteam.createnuclear.CNRecipeTypes;
 import net.nuclearteam.createnuclear.CreateNuclear;
-import net.nuclearteam.createnuclear.compat.jei.category.FanEnrichedCategoryJEI;
+import net.nuclearteam.createnuclear.compat.jei.category.FanEnrichedCategory;
 import net.nuclearteam.createnuclear.content.kinetics.fan.processing.EnrichedRecipe;
 
 import java.util.*;
@@ -39,7 +43,6 @@ import java.util.function.Consumer;
 import java.util.function.Function;
 import java.util.function.Predicate;
 import java.util.function.Supplier;
-import java.util.stream.Stream;
 
 @JeiPlugin
 @SuppressWarnings("unused")
@@ -54,12 +57,18 @@ public class CreateNuclearJEI implements IModPlugin {
         allCategories.clear();
 
         CreateRecipeCategory<?>
-            enriched = builder(EnrichedRecipe.class)
+            /*enriched = builder(EnrichedRecipe.class)
                 .addTypedRecipes(CNRecipeTypes.ENRICHED)
                 .catalystStack(ProcessingViaFanCategory.getFan("fan_enriched"))
                 .doubleItemIcon(AllItems.PROPELLER.get(), CNBlocks.ENRICHING_CAMPFIRE.get())
                 .emptyBackground(178, 72)
-                .build("fan_enriched", FanEnrichedCategoryJEI::new)
+                .build("fan_enriched", FanEnrichedCategory::new),*/
+        hauntingTEST = builder(EnrichedRecipe.class)
+                .addTypedRecipes(CNRecipeTypes.ENRICHED)
+                .catalystStack(ProcessingViaFanCategory.getFan("fan_enriched"))
+                .doubleItemIcon(AllItems.PROPELLER.get(), CNBlocks.ENRICHING_CAMPFIRE.get())
+                .emptyBackground(178, 72)
+                .build("fan_enriched", FanEnrichedCategory::new)
         ;
     }
 
@@ -68,6 +77,7 @@ public class CreateNuclearJEI implements IModPlugin {
     }
 
     @Override
+    @Nonnull
     public ResourceLocation getPluginUid() {
         return ID;
     }
@@ -95,8 +105,7 @@ public class CreateNuclearJEI implements IModPlugin {
 
     private class CategoryBuilder<T extends Recipe<?>> {
         private final Class<? extends T> recipeClass;
-        private Predicate<CRecipes
-                > predicate = cRecipes -> true;
+        private Predicate<CRecipes> predicate = cRecipes -> true;
 
         private IDrawable background;
         private IDrawable icon;
@@ -239,7 +248,7 @@ public class CreateNuclearJEI implements IModPlugin {
                     return recipes;
                 };
             } else {
-                recipesSupplier = Collections::emptyList;
+                recipesSupplier = () -> Collections.emptyList();
             }
 
             CreateRecipeCategory.Info<T> info = new CreateRecipeCategory.Info<>(
@@ -260,11 +269,11 @@ public class CreateNuclearJEI implements IModPlugin {
     }
 
     public static <T extends Recipe<?>> void consumeTypedRecipes(Consumer<T> consumer, RecipeType<?> type) {
-        Stream<Recipe<?>> map = Minecraft.getInstance()
+        Map<ResourceLocation, Recipe<?>> map = Minecraft.getInstance()
                 .getConnection()
-                .getRecipeManager().getRecipes().stream();
+                .getRecipeManager().recipes.get(type);
         if (map != null) {
-            map.forEach(recipe -> consumer.accept((T) recipe));
+            map.values().forEach(recipe -> consumer.accept((T) recipe));
         }
     }
 

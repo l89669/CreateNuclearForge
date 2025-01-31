@@ -3,18 +3,11 @@ package net.nuclearteam.createnuclear.compat.jei;
 
 import javax.annotation.ParametersAreNonnullByDefault;
 
-import com.simibubi.create.AllFluids;
 import com.simibubi.create.AllItems;
 import com.simibubi.create.compat.jei.*;
 import com.simibubi.create.compat.jei.category.CreateRecipeCategory;
 import com.simibubi.create.compat.jei.category.ProcessingViaFanCategory;
-import com.simibubi.create.content.equipment.blueprint.BlueprintScreen;
-import com.simibubi.create.content.fluids.potion.PotionFluid;
-import com.simibubi.create.content.logistics.filter.AbstractFilterScreen;
-import com.simibubi.create.content.redstone.link.controller.LinkedControllerScreen;
-import com.simibubi.create.content.trains.schedule.ScheduleScreen;
 import com.simibubi.create.foundation.config.ConfigBase;
-import com.simibubi.create.foundation.gui.menu.AbstractSimiContainerScreen;
 import com.simibubi.create.foundation.item.ItemHelper;
 import com.simibubi.create.foundation.recipe.IRecipeTypeInfo;
 import com.simibubi.create.foundation.utility.Lang;
@@ -23,7 +16,6 @@ import com.simibubi.create.infrastructure.config.CRecipes;
 import mezz.jei.api.IModPlugin;
 import mezz.jei.api.JeiPlugin;
 import mezz.jei.api.constants.RecipeTypes;
-import mezz.jei.api.forge.ForgeTypes;
 import mezz.jei.api.gui.drawable.IDrawable;
 import mezz.jei.api.helpers.IPlatformFluidHelper;
 import mezz.jei.api.recipe.category.IRecipeCategory;
@@ -49,12 +41,10 @@ import java.util.function.Predicate;
 import java.util.function.Supplier;
 import java.util.stream.Stream;
 
-import static com.simibubi.create.compat.jei.CreateJEI.consumeAllRecipes;
-
 @JeiPlugin
 @SuppressWarnings("unused")
 @ParametersAreNonnullByDefault
-public class CreateNuclairJEI implements IModPlugin {
+public class CreateNuclearJEI implements IModPlugin {
     private static final ResourceLocation ID = CreateNuclear.asResource("jei_plugin");
 
     private final List<CreateRecipeCategory<?>> allCategories = new ArrayList<>();
@@ -158,15 +148,15 @@ public class CreateNuclairJEI implements IModPlugin {
         }
 
         public CategoryBuilder<T> addTypedRecipes(Supplier<RecipeType<? extends T>> recipeType) {
-            return addRecipeListConsumer(recipes -> CreateNuclairJEI.<T>consumeTypedRecipes(recipes::add, recipeType.get()));
+            return addRecipeListConsumer(recipes -> CreateNuclearJEI.<T>consumeTypedRecipes(recipes::add, recipeType.get()));
         }
 
         public CategoryBuilder<T> addTypedRecipes(Supplier<RecipeType<? extends T>> recipeType, Function<Recipe<?>, T> converter) {
-            return addRecipeListConsumer(recipes -> CreateNuclairJEI.<T>consumeTypedRecipes(recipe -> recipes.add(converter.apply(recipe)), recipeType.get()));
+            return addRecipeListConsumer(recipes -> CreateNuclearJEI.<T>consumeTypedRecipes(recipe -> recipes.add(converter.apply(recipe)), recipeType.get()));
         }
 
         public CategoryBuilder<T> addTypedRecipesIf(Supplier<RecipeType<? extends T>> recipeType, Predicate<Recipe<?>> pred) {
-            return addRecipeListConsumer(recipes -> CreateNuclairJEI.<T>consumeTypedRecipes(recipe -> {
+            return addRecipeListConsumer(recipes -> CreateNuclearJEI.<T>consumeTypedRecipes(recipe -> {
                 if (pred.test(recipe)) {
                     recipes.add(recipe);
                 }
@@ -177,7 +167,7 @@ public class CreateNuclairJEI implements IModPlugin {
                                                            Supplier<RecipeType<? extends T>> excluded) {
             return addRecipeListConsumer(recipes -> {
                 List<Recipe<?>> excludedRecipes = getTypedRecipes(excluded.get());
-                CreateNuclairJEI.<T>consumeTypedRecipes(recipe -> {
+                CreateNuclearJEI.<T>consumeTypedRecipes(recipe -> {
                     for (Recipe<?> excludedRecipe : excludedRecipes) {
                         if (doInputsMatch(recipe, excludedRecipe)) {
                             return;

@@ -1,6 +1,9 @@
 package net.nuclearteam.createnuclear.foundation.data.recipe;
 
+import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
+import com.simibubi.create.AllRecipeTypes;
+import com.simibubi.create.foundation.recipe.IRecipeTypeInfo;
 import com.simibubi.create.foundation.utility.RegisteredObjects;
 import com.tterrag.registrate.util.entry.ItemProviderEntry;
 import net.minecraft.advancements.critereon.ItemPredicate;
@@ -14,21 +17,23 @@ import net.minecraft.world.item.crafting.AbstractCookingRecipe;
 import net.minecraft.world.item.crafting.Ingredient;
 import net.minecraft.world.item.crafting.RecipeSerializer;
 import net.minecraft.world.level.ItemLike;
+import net.minecraftforge.common.crafting.CraftingHelper;
+import net.minecraftforge.common.crafting.conditions.ICondition;
+import net.minecraftforge.common.crafting.conditions.ModLoadedCondition;
+import net.minecraftforge.common.crafting.conditions.NotCondition;
 import net.nuclearteam.createnuclear.CNBlocks;
 import net.nuclearteam.createnuclear.CNItems;
 import net.nuclearteam.createnuclear.CNTags;
 import net.nuclearteam.createnuclear.CreateNuclear;
 import net.nuclearteam.createnuclear.content.equipment.cloth.ClothItem;
 
-import javax.json.spi.JsonProvider;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.function.Supplier;
 import java.util.function.UnaryOperator;
 
-// il faut trouver l'équivalent forge de "DefaultResourceConditions" et "ConditionJsonProvider"
-/*public class CNShapelessRecipeGen extends CNProcessingRecipeGen {
+public class CNShapelessRecipeGen extends CNProcessingRecipeGen {
 
     private String SHAPELESS = enterFolder("shapeless");
     GeneratedRecipe
@@ -129,7 +134,7 @@ import java.util.function.UnaryOperator;
         private String suffix;
         private Supplier<? extends ItemLike> result;
         private ResourceLocation compatDatagenOutput;
-        List<ConditionJsonProvider> recipeConditions;
+        List<ICondition> recipeConditions;
         private RecipeCategory category;
 
         private Supplier<ItemPredicate> unlockedBy;
@@ -173,14 +178,14 @@ import java.util.function.UnaryOperator;
         }
 
         GeneratedRecipeBuilder whenModLoaded(String modid) {
-            return withCondition(DefaultResourceConditions.allModsLoaded(modid));
+            return withCondition(new ModLoadedCondition(modid));
         }
 
         GeneratedRecipeBuilder whenModMissing(String modid) {
-            return withCondition(DefaultResourceConditions.not(DefaultResourceConditions.allModsLoaded(modid)));
+            return withCondition(new NotCondition(new ModLoadedCondition(modid)));
         }
 
-        GeneratedRecipeBuilder withCondition(ConditionJsonProvider condition) {
+        GeneratedRecipeBuilder withCondition(ICondition condition) {
             recipeConditions.add(condition);
             return this;
         }
@@ -333,14 +338,18 @@ import java.util.function.UnaryOperator;
         super(output);
     }
 
+    @Override
+    protected IRecipeTypeInfo getRecipeType() {
+        return AllRecipeTypes.COMPACTING;
+    }
+
     private static class ModdedCookingRecipeResult implements FinishedRecipe {
 
         private FinishedRecipe wrapped;
         private ResourceLocation outputOverride;
-        private List<ConditionJsonProvider> conditions;
+        private List<ICondition> conditions;
 
-        public ModdedCookingRecipeResult(FinishedRecipe wrapped, ResourceLocation outputOverride,
-                                         List<ConditionJsonProvider> conditions) {
+        public ModdedCookingRecipeResult(FinishedRecipe wrapped, ResourceLocation outputOverride, List<ICondition> conditions) {
             this.wrapped = wrapped;
             this.outputOverride = outputOverride;
             this.conditions = conditions;
@@ -371,7 +380,9 @@ import java.util.function.UnaryOperator;
             wrapped.serializeRecipeData(object);
             object.addProperty("result", outputOverride.toString());
 
-            ConditionJsonProvider.write(object, conditions.toArray(new ConditionJsonProvider[0]));
+            JsonArray conds = new JsonArray();
+            conditions.forEach(c -> conds.add(CraftingHelper.serialize(c)));
+            object.add("conditions", conds);
         }
     }
-}*/
+}

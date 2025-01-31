@@ -33,6 +33,7 @@ public abstract class CNProcessingRecipeGen extends CreateRecipeProvider {
         GENERATORS.add(new CNCrushingRecipeGen(output));
         GENERATORS.add(new CNMixingRecipeGen(output));
         GENERATORS.add(new CNPressingRecipeGen(output));
+        GENERATORS.add(new CNShapelessRecipeGen(output));
 
         gen.addProvider(true, new DataProvider() {
             @Override

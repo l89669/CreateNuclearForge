@@ -24,7 +24,7 @@ println "Java: ${System.getProperty 'java.version'}, " +
 
 
 mixin {
-    add sourceSets.main, 'createnuclear.forge.refmap.json'
+    // add sourceSets.main, 'createnuclear.forge.refmap.json'
     config 'createnuclear.forge.mixins.json'
 
     debug.verbose = true

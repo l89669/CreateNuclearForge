@@ -40,8 +40,6 @@ import java.util.List;
 
 public class ReactorInput extends HorizontalDirectionalReactorBlock implements IWrenchable, IBE<ReactorInputEntity> {
 
-    public static final DirectionProperty FACING = BlockStateProperties.FACING;
-
     public ReactorInput(Properties properties) {
         super(properties);
     }

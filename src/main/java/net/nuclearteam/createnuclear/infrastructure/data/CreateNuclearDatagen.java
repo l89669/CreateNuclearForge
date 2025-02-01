@@ -2,6 +2,7 @@ package net.nuclearteam.createnuclear.infrastructure.data;
 
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
+import com.simibubi.create.foundation.ponder.PonderLocalization;
 import com.simibubi.create.foundation.utility.FilesHelper;
 import com.tterrag.registrate.providers.ProviderType;
 import net.minecraft.core.HolderLookup;
@@ -75,6 +76,8 @@ public class CreateNuclearDatagen {
 
     private static void providePonderLang(BiConsumer<String, String> consumer) {
         CNPonderIndex.register();
+        PonderLocalization.generateSceneLang();
+        PonderLocalization.provideLang(CreateNuclear.MOD_ID, consumer);
 
     }
 }

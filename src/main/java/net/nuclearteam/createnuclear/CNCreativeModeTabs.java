@@ -18,7 +18,7 @@ public class CNCreativeModeTabs {
     public static final RegistryObject<CreativeModeTab> MAIN = REGISTER.register("main",
         CreativeModeTab.builder()
                 .title(Component.translatable("itemGroup.createnuclear.main"))
-                .icon(() -> CNItems.YELLOWCAKE.asItem().getDefaultInstance())
+                .icon(() -> CNItems.URANIUM_POWDER.asItem().getDefaultInstance())
                 .displayItems((pPram, pOutp) -> {
                     for (RegistryEntry<Item> entry : CreateNuclear.REGISTRATE.getAll(Registries.ITEM)) {
                         pOutp.accept(entry.get());

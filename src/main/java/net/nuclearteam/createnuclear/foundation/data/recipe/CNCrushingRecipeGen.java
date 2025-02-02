@@ -1,7 +1,6 @@
 package net.nuclearteam.createnuclear.foundation.data.recipe;
 
 import com.simibubi.create.AllRecipeTypes;
-import com.simibubi.create.AllTags;
 import com.simibubi.create.content.processing.recipe.ProcessingRecipe;
 import com.simibubi.create.content.processing.recipe.ProcessingRecipeBuilder;
 import com.simibubi.create.content.processing.recipe.ProcessingRecipeSerializer;
@@ -17,6 +16,7 @@ import net.minecraftforge.common.crafting.conditions.NotCondition;
 import net.minecraftforge.common.crafting.conditions.TagEmptyCondition;
 import net.nuclearteam.createnuclear.CNBlocks;
 import net.nuclearteam.createnuclear.CNItems;
+import net.nuclearteam.createnuclear.CNTags;
 import net.nuclearteam.createnuclear.CreateNuclear;
 
 import java.util.function.Supplier;
@@ -79,7 +79,7 @@ public class CNCrushingRecipeGen extends CNProcessingRecipeGen {
             String tagPath = "raw_materials/" + name;
             return b.duration(255)
                     .withCondition(new NotCondition(new TagEmptyCondition("forge", tagPath)))
-                    .require(AllTags.forgeItemTag(tagPath))
+                    .require(CNTags.forgeItemTag(tagPath))
                     .output(result.get(), 9);
         });
     }

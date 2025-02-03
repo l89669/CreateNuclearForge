@@ -22,13 +22,13 @@ public class CNMixingRecipeGen extends CNProcessingRecipeGen {
             .require(CNTags.forgeItemTag("coal_dusts"))
             .require(Tags.Items.INGOTS_IRON)
             .output(CNItems.STEEL_INGOT)
-    ),
+        ),
 
-    URANIUM_FLUID = create("uranium_fluid", b -> b
-            .require(CNItems.URANIUM_POWDER)
-            .output(CNFluids.URANIUM.get(), 2025)
-    )
-            ;
+        URANIUM_FLUID = create("uranium_fluid", b -> b
+                .require(CNItems.URANIUM_POWDER)
+                .output(CNFluids.URANIUM.get(), 25)
+        )
+    ;
 
     <T extends ProcessingRecipe<?>> GeneratedRecipe create(String name, UnaryOperator<ProcessingRecipeBuilder<T>> transform) {
         return create(CreateNuclear.asResource(name), transform);

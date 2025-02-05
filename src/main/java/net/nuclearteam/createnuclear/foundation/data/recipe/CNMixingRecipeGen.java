@@ -18,7 +18,7 @@ import java.util.function.UnaryOperator;
 public class CNMixingRecipeGen extends CNProcessingRecipeGen {
 
     GeneratedRecipe
-            STEEL = create("steel", b -> b
+        STEEL = create("steel", b -> b
             .require(CNTags.forgeItemTag("coal_dusts"))
             .require(Tags.Items.INGOTS_IRON)
             .output(CNItems.STEEL_INGOT)

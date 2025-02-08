@@ -55,7 +55,7 @@ public class CNFluids {
         if (entity.isAlive() && !(entity.isSpectator() || entity instanceof Player player && player.isCreative())) {
             if (entity.tickCount % 20 == 0) return;
             if (entity.isInFluidType(URANIUM.getType())) {
-                entity.addEffect(new MobEffectInstance(CNEffects.RADIATION.get(), 100, 300)); // change this
+                entity.addEffect(new MobEffectInstance(CNEffects.RADIATION.get(), 100, 0));
             }
         }
 

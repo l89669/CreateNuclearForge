@@ -14,6 +14,7 @@ import net.minecraft.data.PackOutput;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.crafting.Ingredient;
 import net.minecraft.world.level.ItemLike;
+import net.nuclearteam.createnuclear.CreateNuclear;
 import net.nuclearteam.createnuclear.foundation.Advancement.CNAdvancement;
 
 import java.util.ArrayList;
@@ -85,7 +86,7 @@ public abstract class CNProcessingRecipeGen extends CreateRecipeProvider {
      */
     <T extends ProcessingRecipe<?>> GeneratedRecipe create(Supplier<ItemLike> singleIngredient,
                                                            UnaryOperator<ProcessingRecipeBuilder<T>> transform) {
-        return create(Create.ID, singleIngredient, transform);
+        return create(CreateNuclear.MOD_ID, singleIngredient, transform);
     }
 
     protected <T extends ProcessingRecipe<?>> GeneratedRecipe createWithDeferredId(Supplier<ResourceLocation> name,
@@ -113,6 +114,15 @@ public abstract class CNProcessingRecipeGen extends CreateRecipeProvider {
      */
     <T extends ProcessingRecipe<?>> GeneratedRecipe create(String name,
                                                            UnaryOperator<ProcessingRecipeBuilder<T>> transform) {
+        return create(CreateNuclear.asResource(name), transform);
+    }
+
+    /**
+     * Create a new processing recipe, with recipe definitions provided by the
+     * function
+     */
+    <T extends ProcessingRecipe<?>> GeneratedRecipe createC(String name,
+                                                           UnaryOperator<ProcessingRecipeBuilder<T>> transform) {
         return create(Create.asResource(name), transform);
     }
 
@@ -126,7 +136,7 @@ public abstract class CNProcessingRecipeGen extends CreateRecipeProvider {
         return () -> {
             ResourceLocation registryName = RegisteredObjects.getKeyOrThrow(item.get()
                     .asItem());
-            return Create.asResource(registryName.getPath() + suffix);
+            return CreateNuclear.asResource(registryName.getPath() + suffix);
         };
     }
 

@@ -5,9 +5,11 @@ import com.simibubi.create.foundation.block.IBE;
 import com.simibubi.create.foundation.item.ItemHelper;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Vec3i;
+import net.minecraft.nbt.CompoundTag;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
+import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.item.ItemStack;
@@ -71,6 +73,19 @@ public class ReactorInput extends HorizontalDirectionalReactorBlock implements I
         List<? extends Player> players = level.players();
         FindController(pos, level, players, true);
     }
+
+    // @Override // ! may be useless
+    // public void setPlacedBy(Level worldIn, BlockPos pos, BlockState state, LivingEntity placer, ItemStack stack) {
+    //     super.setPlacedBy(worldIn, pos, state, placer, stack);
+    //     if (worldIn.isClientSide)
+    //         return;
+    //     if (stack == null)
+    //         return;
+    //     withBlockEntityDo(worldIn, pos, be -> {
+    //         CompoundTag orCreateTag = stack.getOrCreateTag();
+    //         be.readInventory(orCreateTag.getCompound("Inventory"));
+    //     });
+    // }
 
     @Override
     public void playerDestroy(Level level, Player player, BlockPos pos, BlockState state, @Nullable BlockEntity blockEntity, ItemStack tool) {

@@ -1,6 +1,8 @@
 package net.nuclearteam.createnuclear.foundation.data.recipe;
 
+import com.simibubi.create.AllItems;
 import com.simibubi.create.AllRecipeTypes;
+import com.simibubi.create.Create;
 import com.simibubi.create.content.processing.recipe.ProcessingRecipe;
 import com.simibubi.create.content.processing.recipe.ProcessingRecipeBuilder;
 import com.simibubi.create.content.processing.recipe.ProcessingRecipeSerializer;
@@ -38,7 +40,10 @@ public class CNCrushingRecipeGen extends CNProcessingRecipeGen {
             .output(1f, Blocks.RED_SAND)
         ),
 
-        RAW_URANIUM = moddedRawOre(CompatMetals.URANIUM, CNItems.URANIUM_POWDER::get),
+        FIX_RAW_URANIUM_FOR_FORGE = createFix(CreateNuclear.MOD_ID, () -> AllItems.CRUSHED_URANIUM::get, b -> b
+                .duration(255)
+                .output(1, CNItems.URANIUM_POWDER, 9)
+        ),
         RAW_URANIUM_BLOCK = create(() -> CNBlocks.RAW_URANIUM_BLOCK, b -> b.duration(250)
             .output(1, CNItems.URANIUM_POWDER,81))
     ;
@@ -67,20 +72,23 @@ public class CNCrushingRecipeGen extends CNProcessingRecipeGen {
         return generatedRecipe;
     }
 
+    protected <T extends ProcessingRecipe<?>> GeneratedRecipe createFix(String namespace,
+                                                                     Supplier<ItemLike> singleIngredient, UnaryOperator<ProcessingRecipeBuilder<T>> transform) {
+        ProcessingRecipeSerializer<T> serializer = getSerializer();
+        GeneratedRecipe generatedRecipe = c -> {
+            ItemLike itemLike = singleIngredient.get();
+            transform
+                    .apply(new ProcessingRecipeBuilder<>(serializer.getFactory(),
+                            new ResourceLocation(namespace, "fix/" + RegisteredObjects.getKeyOrThrow(itemLike.asItem())
+                                    .getPath())).withItemIngredients(Ingredient.of(itemLike)))
+                    .build(c);
+        };
+        all.add(generatedRecipe);
+        return generatedRecipe;
+    }
+
     <T extends ProcessingRecipe<?>> GeneratedRecipe create(Supplier<ItemLike> singleIngredient,
                                                            UnaryOperator<ProcessingRecipeBuilder<T>> transform) {
         return create(CreateNuclear.MOD_ID, singleIngredient, transform);
-    }
-
-
-    protected GeneratedRecipe moddedRawOre(CompatMetals metal, Supplier<ItemLike> result) {
-        String name = metal.getName();
-        return create("raw_" + name, b -> {
-            String tagPath = "raw_materials/" + name;
-            return b.duration(255)
-                    .withCondition(new NotCondition(new TagEmptyCondition("forge", tagPath)))
-                    .require(CNTags.forgeItemTag(tagPath))
-                    .output(result.get(), 9);
-        });
     }
 }

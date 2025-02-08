@@ -2,7 +2,7 @@
   "type": "create:compacting",
   "ingredients": [
     {
-      "amount": 8100,
+      "amount": 100,
       "fluid": "createnuclear:uranium",
       "nbt": {}
     }

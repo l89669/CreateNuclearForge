@@ -112,14 +112,19 @@ public class ReactorControllerBlockEntity extends SmartBlockEntity implements II
             tooltip.add(componentSpacing.plainCopy().append(Lang.translateDirect("gui.gauge.info_header")));
             IHeat.HeatLevel.getName("reactor_controller").style(ChatFormatting.GRAY).forGoggles(tooltip);
 
-            if (fuelItem != null || coolerItem != null) {
-                IHeat.HeatLevel.getFormattedHeatText(configuredPattern.getOrCreateTag().getInt("heat")).forGoggles(tooltip);
-                if (fuelItem != null) IHeat.HeatLevel.getFormattedItemText(fuelItem).forGoggles(tooltip);
-                if (coolerItem != null) IHeat.HeatLevel.getFormattedItemText(coolerItem).forGoggles(tooltip);
+            if (fuelItem.isEmpty()) {
+                // if rod empty we initialize it at 1 (and display it as 0) to avoid having air item displayed instead of the rod
+                IHeat.HeatLevel.getFormattedItemText(new ItemStack(CNItems.URANIUM_ROD.asItem(), 1), true).forGoggles(tooltip);
+            } else {
+                IHeat.HeatLevel.getFormattedItemText(fuelItem, false).forGoggles(tooltip);
             }
-            /*else {
-                IHeat.HeatLevel.getFormattedItemText(new ItemStack(Items.AIR, 0)).forGoggles(tooltip);
-            }*/
+
+            if (fuelItem.isEmpty()) {
+                // if rod empty we initialize it at 1 (and display it as 0) to avoid having air item displayed instead of the rod
+                IHeat.HeatLevel.getFormattedItemText(new ItemStack(CNItems.GRAPHITE_ROD.asItem(), 1), true).forGoggles(tooltip);
+            } else {
+                IHeat.HeatLevel.getFormattedItemText(coolerItem, false).forGoggles(tooltip);
+            }
         }
 
         return true;

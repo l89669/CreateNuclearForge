@@ -53,12 +53,13 @@ public interface IHeat extends IWrenchable {
 
         public static HeatLevel of(int heat) {
             if (heat < 0) return NONE;
+
             heat = Math.abs(heat);
 
-            if (heat > 0 && heat < 100) return SAFETY;
-            if (heat >= 100/*126*/ && heat <= 190/*134*/) return CAUTION;
-            if (heat >= 190/*126*/ && heat <= 199/*134*/) return WARNING;
-            if (heat >= 200) return DANGER;
+            if (heat > 0 && heat < 500) return SAFETY;
+            if (heat >= 501 && heat <= 800) return CAUTION;
+            if (heat >= 801 && heat <= 1000) return WARNING;
+            if (heat >= 1001) return DANGER;
 
             return NONE;
         }
@@ -86,7 +87,7 @@ public interface IHeat extends IWrenchable {
             LangBuilder builder = Lang.builder(CreateNuclear.MOD_ID);
 
             String tooltip = itemRod.is(CNItemTags.FUEL.tag)
-                ? "uranium"
+                    ? "uranium"
                 : itemRod.is(CNItemTags.COOLER.tag)
                     ? "graphene"
                     : "unknown";

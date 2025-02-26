@@ -1,18 +1,13 @@
 package net.nuclearteam.createnuclear.content.multiblock.controller;
 
 import com.simibubi.create.content.equipment.goggles.IHaveGoggleInformation;
-import com.simibubi.create.content.logistics.vault.ItemVaultItem;
-import com.simibubi.create.content.schematics.requirement.ItemRequirement;
-import com.simibubi.create.foundation.blockEntity.IMultiBlockEntityContainer;
 import com.simibubi.create.foundation.blockEntity.SmartBlockEntity;
 import com.simibubi.create.foundation.blockEntity.behaviour.BlockEntityBehaviour;
-import com.simibubi.create.foundation.item.ItemHelper;
 import com.simibubi.create.foundation.utility.IInteractionChecker;
 import com.simibubi.create.foundation.utility.Lang;
 import lib.multiblock.SimpleMultiBlockAislePatternBuilder;
 import net.minecraft.ChatFormatting;
 import net.minecraft.core.BlockPos;
-import net.minecraft.core.Direction;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.nbt.ListTag;
 import net.minecraft.nbt.Tag;
@@ -27,10 +22,6 @@ import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.minecraft.world.level.block.state.BlockState;
-import net.minecraft.world.level.storage.loot.providers.nbt.StorageNbtProvider;
-import net.minecraftforge.common.capabilities.ForgeCapabilities;
-import net.minecraftforge.common.util.LazyOptional;
-import net.minecraftforge.items.IItemHandler;
 import net.nuclearteam.createnuclear.CNBlocks;
 import net.nuclearteam.createnuclear.CNItems;
 import net.nuclearteam.createnuclear.CreateNuclear;
@@ -39,11 +30,8 @@ import net.nuclearteam.createnuclear.content.multiblock.input.ReactorInputEntity
 import net.nuclearteam.createnuclear.content.multiblock.output.ReactorOutput;
 import net.nuclearteam.createnuclear.content.multiblock.output.ReactorOutputEntity;
 
-import javax.annotation.Nullable;
-import java.util.LinkedHashSet;
 import java.util.List;
 
-import static com.simibubi.create.content.equipment.goggles.IHaveGoggleInformation.componentSpacing;
 import static net.nuclearteam.createnuclear.content.multiblock.CNMultiblock.*;
 import static net.nuclearteam.createnuclear.content.multiblock.controller.ReactorControllerBlock.ASSEMBLED;
 
@@ -65,10 +53,18 @@ public class ReactorControllerBlockEntity extends SmartBlockEntity implements II
     public State powered = State.OFF;
     public float reactorPower;
     public float lastReactorPower;
-    public int countUraniumRod;
-    public int countGraphiteRod;
+    int overFlowHeatTimer = 0;
+    int overFlowLimiter = 30;
+    double overHeat = 0;
+    public int baseUraniumHeat = 25;
+    public int baseGraphiteHeat = -10;
+    public int proximityUraniumHeat = 5;
+    public int proximityGraphiteHeat = -5;
+    public int maxUraniumPerGraphite = 3;
     public int graphiteTimer = 3600;
     public int uraniumTimer = 3600;
+    public int countUraniumRod;
+    public int countGraphiteRod;
     public int heat;
     public double total;
     public CompoundTag screen_pattern = new CompoundTag();
@@ -76,6 +72,19 @@ public class ReactorControllerBlockEntity extends SmartBlockEntity implements II
 
     private ItemStack fuelItem;
     private ItemStack coolerItem;
+
+    private int[][] formattedPattern = new int[][]{
+            {99,99,99,0,1,2,99,99,99},
+            {99,99,3,4,5,6,7,99,99},
+            {99,8,9,10,11,12,13,14,99},
+            {15,16,17,18,19,20,21,22,23},
+            {24,25,26,27,28,29,30,31,32},
+            {33,34,35,36,37,38,39,40,41},
+            {99,42,43,44,45,46,47,48,99},
+            {99,99,49,50,51,52,53,99,99},
+            {99,99,99,54,55,56,99,99,99}
+    };
+    private int[][] offsets = { {1, 0}, {-1, 0}, {0, 1}, {0, -1} };
 
 
 
@@ -103,13 +112,18 @@ public class ReactorControllerBlockEntity extends SmartBlockEntity implements II
             tooltip.add(componentSpacing.plainCopy().append(Lang.translateDirect("gui.gauge.info_header")));
             IHeat.HeatLevel.getName("reactor_controller").style(ChatFormatting.GRAY).forGoggles(tooltip);
 
-            if (fuelItem != null || coolerItem != null) {
-                IHeat.HeatLevel.getFormattedHeatText(configuredPattern.getOrCreateTag().getInt("heat")).forGoggles(tooltip);
-                if (fuelItem != null) IHeat.HeatLevel.getFormattedItemText(fuelItem).forGoggles(tooltip);
-                if (coolerItem != null) IHeat.HeatLevel.getFormattedItemText(coolerItem).forGoggles(tooltip);
+            if (fuelItem.isEmpty()) {
+                // if rod empty we initialize it at 1 (and display it as 0) to avoid having air item displayed instead of the rod
+                IHeat.HeatLevel.getFormattedItemText(new ItemStack(CNItems.URANIUM_ROD.asItem(), 1), true).forGoggles(tooltip);
+            } else {
+                IHeat.HeatLevel.getFormattedItemText(fuelItem, false).forGoggles(tooltip);
             }
-            else {
-                IHeat.HeatLevel.getFormattedItemText(new ItemStack(Items.AIR, 0)).forGoggles(tooltip);
+
+            if (fuelItem.isEmpty()) {
+                // if rod empty we initialize it at 1 (and display it as 0) to avoid having air item displayed instead of the rod
+                IHeat.HeatLevel.getFormattedItemText(new ItemStack(CNItems.GRAPHITE_ROD.asItem(), 1), true).forGoggles(tooltip);
+            } else {
+                IHeat.HeatLevel.getFormattedItemText(coolerItem, false).forGoggles(tooltip);
             }
         }
 
@@ -160,7 +174,7 @@ public class ReactorControllerBlockEntity extends SmartBlockEntity implements II
         compound.putString("state", powered.name());
         compound.put("screen_pattern", screen_pattern);
 */
-        compound.putDouble("total", calculateProgres());
+        compound.putDouble("total", calculateProgress());
         super.write(compound, clientPacket);
     }
 
@@ -205,18 +219,16 @@ public class ReactorControllerBlockEntity extends SmartBlockEntity implements II
                 ListTag inventoryTag = tag.getCompound("Inventory").getList("Items", Tag.TAG_COMPOUND);
                 fuelItem = ItemStack.of(inventoryTag.getCompound(0));
                 coolerItem = ItemStack.of(inventoryTag.getCompound(1));
-                if (fuelItem.getCount() >= countUraniumRod && fuelItem.getCount() > 0 && coolerItem.getCount() >= countGraphiteRod && coolerItem.getCount() > 0) {
+                if (fuelItem.getCount() > 0 && coolerItem.getCount() > 0) {
+                    configuredPattern.getOrCreateTag().putDouble("heat", calculateHeat(tag));
                     if (updateTimers()) {
-                        be.inventory.extractItem(0, configuredPattern.getOrCreateTag().getInt("countUraniumRod"), false);
-                        be.inventory.extractItem(1, configuredPattern.getOrCreateTag().getInt("countGraphiteRod"), false);
-                        // ItemHelper.extract(be.inventory, ItemRequirement.ItemUseType.CONSUME, ItemHelper.ExtractionCountMode.EXACTLY, fuelItem.getCount(), false);
-                        // ItemHelper.extract(be.inventory, coolerItem);
-                        total = calculateProgres();
-                        configuredPattern.getOrCreateTag().putDouble("heat", calculateHeat() / 100);
+                        be.inventory.extractItem(0, 1, false);
+                        be.inventory.extractItem(1, 1, false);
+                        total = calculateProgress();
                         int heat = (int) configuredPattern.getOrCreateTag().getDouble("heat");
 
                         if (IHeat.HeatLevel.of(heat) == IHeat.HeatLevel.SAFETY || IHeat.HeatLevel.of(heat) == IHeat.HeatLevel.CAUTION || IHeat.HeatLevel.of(heat) == IHeat.HeatLevel.WARNING) {
-                            this.rotate(getBlockState(), new BlockPos(getBlockPos().getX(), getBlockPos().getY() + FindController('O').getY(), getBlockPos().getZ()), getLevel(), heat);
+                            this.rotate(getBlockState(), new BlockPos(getBlockPos().getX(), getBlockPos().getY() + FindController('O').getY(), getBlockPos().getZ()), getLevel(), heat/4);
                         } else {
                             this.rotate(getBlockState(), new BlockPos(getBlockPos().getX(), getBlockPos().getY() + FindController('O').getY(), getBlockPos().getZ()), getLevel(), 0);
                         }
@@ -225,6 +237,27 @@ public class ReactorControllerBlockEntity extends SmartBlockEntity implements II
                 } else {
                     this.rotate(getBlockState(), new BlockPos(getBlockPos().getX(), getBlockPos().getY() + FindController('O').getY(), getBlockPos().getZ()), getLevel(), 0);
                 }
+
+                /*if (fuelItem.getCount() > 0 && coolerItem.getCount() > 0) {
+                    configuredPattern.getOrCreateTag().putDouble("heat", calculateHeat(tag));
+                    if (updateTimers()) {
+                        TransferUtil.extract(be.inventory, ItemVariant.of(fuelItem), 1);
+                        TransferUtil.extract(be.inventory, ItemVariant.of(coolerItem), 1);
+                        total = calculateProgress();
+                        int heat = (int) configuredPattern.getOrCreateTag().getDouble("heat");
+
+                        if (IHeat.HeatLevel.of(heat) == IHeat.HeatLevel.SAFETY || IHeat.HeatLevel.of(heat) == IHeat.HeatLevel.CAUTION || IHeat.HeatLevel.of(heat) == IHeat.HeatLevel.WARNING) {
+                            //j'ai divisé la chaleur par 4, car maintenant on a mis la chaleur sur 1000 et non plus sur 200 en ayant rajouté 1/5 de bonus
+                            this.rotate(getBlockState(), new BlockPos(getBlockPos().getX(), getBlockPos().getY() + FindController('O').getY(), getBlockPos().getZ()), getLevel(), heat/4);
+                        } else {
+                            this.rotate(getBlockState(), new BlockPos(getBlockPos().getX(), getBlockPos().getY() + FindController('O').getY(), getBlockPos().getZ()), getLevel(), 0);
+                        }
+                        return;
+                    }
+                } else {
+                    this.rotate(getBlockState(), new BlockPos(getBlockPos().getX(), getBlockPos().getY() + FindController('O').getY(), getBlockPos().getZ()), getLevel(), 0);
+                }
+                */
 
                 this.notifyUpdate();
             }
@@ -237,35 +270,97 @@ public class ReactorControllerBlockEntity extends SmartBlockEntity implements II
 
     private boolean updateTimers() {
 
-        double constTotal = calculateProgres();
+        double constTotal = calculateProgress();
 
         total -= 10;
         return total <= 0;//(total/constTotal) <= 0;
     }
 
-    private double calculateProgres() {
+    private double calculateProgress() {
         countGraphiteRod = configuredPattern.getOrCreateTag().getInt("countGraphiteRod");
         countUraniumRod = configuredPattern.getOrCreateTag().getInt("countUraniumRod");
         graphiteTimer = configuredPattern.getOrCreateTag().getInt("graphiteTime");
         uraniumTimer = configuredPattern.getOrCreateTag().getInt("uraniumTime");
 
-        double totalGraphiteRodLife = graphiteTimer * countGraphiteRod;
-        double totalUraniumRodLife = uraniumTimer * countUraniumRod;
+        double totalGraphiteRodLife = (double) graphiteTimer / countGraphiteRod;
+        double totalUraniumRodLife = (double) uraniumTimer / countUraniumRod;
 
         return totalGraphiteRodLife + totalUraniumRodLife;
     }
 
-    private double calculateHeat() {
+    private double calculateHeat(CompoundTag tag) {
         countGraphiteRod = configuredPattern.getOrCreateTag().getInt("countGraphiteRod");
         countUraniumRod = configuredPattern.getOrCreateTag().getInt("countUraniumRod");
-        graphiteTimer = configuredPattern.getOrCreateTag().getInt("graphiteTime");
-        uraniumTimer = configuredPattern.getOrCreateTag().getInt("uraniumTime");
+        heat = 0;
 
-        double totalGraphiteRodLife = graphiteTimer * countGraphiteRod;
-        double totalUraniumRodLife = uraniumTimer * countUraniumRod;
+        // if more than maxUraniumPerGraphite of the rods are uranium, the reactor will overheat
+        if (countUraniumRod > countGraphiteRod * maxUraniumPerGraphite) {
+            overFlowHeatTimer++;
+            if (overFlowHeatTimer >= overFlowLimiter) {
+                overHeat+=1;
+                overFlowHeatTimer= 0;
+                if (overFlowLimiter > 2) {
+                    overFlowLimiter -= 1;
+                }
+            }
+        } else {
+            overFlowHeatTimer = 0;
+            overFlowLimiter = 30;
+            if (overHeat > 0) {
+                overHeat -= 2;
+            } else {
+                overHeat = 0;
+            }
+        }
+        // the offsets for the four directions (down, up, right, left) is int[][] offsets = { {1, 0}, {-1, 0}, {0, 1}, {0, -1} }; (defined at the top of the class)
+        String currentRod = "";
+        ListTag list = inventory.getStackInSlot(0).getOrCreateTag().getCompound("pattern").getList("Items", Tag.TAG_COMPOUND);
+        for (int i = 0; i < list.size(); i++) {
+            if (list.getCompound(i).getString("id").equals("createnuclear:uranium_rod")) {
+                heat += baseUraniumHeat;
+                currentRod = "u";
+            } else if (list.getCompound(i).getString("id").equals("createnuclear:graphite_rod")) {
+                heat += baseGraphiteHeat;
+                currentRod = "g";
+            }
+            for (int j = 0; j < formattedPattern.length; j++) {
+                for (int k = 0; k < formattedPattern[j].length; k++) {
+                    // Skip if the current pattern value is 99
+                    if (formattedPattern[j][k] == 99) continue;
 
+                    // Check if the current slot matches the pattern
+                    if (list.getCompound(i).getInt("Slot") != formattedPattern[j][k]) continue;
 
-        return totalUraniumRodLife - totalGraphiteRodLife;
+                    // For each neighbor (up, down, right, left)
+                    for (int[] offset : offsets) {
+                        int nj = j + offset[0];
+                        int nk = k + offset[1];
+
+                        // Check if the indices are within the array boundaries
+                        if (nj < 0 || nj >= formattedPattern.length || nk < 0 || nk >= formattedPattern[j].length)
+                            continue;
+
+                        int neighborSlot = formattedPattern[nj][nk];
+
+                        // Loop through the list to find the neighbor slot
+                        for (int l = 0; l < list.size(); l++) {
+                            if (list.getCompound(l).getInt("Slot") == neighborSlot) {
+                                // If currentRod equals "u", apply the corresponding heat
+                                if (currentRod.equals("u")) {
+                                    String id = list.getCompound(l).getString("id");
+                                    if (id.equals("createnuclear:uranium_rod")) {
+                                        heat += proximityUraniumHeat;
+                                    } else if (id.equals("createnuclear:graphite_rod")) {
+                                        heat += proximityGraphiteHeat;
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+        return heat + overHeat;
     }
 
     private BlockPos getBlockPosForReactor(char character) {

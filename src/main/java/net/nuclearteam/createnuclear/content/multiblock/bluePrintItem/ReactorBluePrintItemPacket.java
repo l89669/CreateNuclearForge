@@ -71,7 +71,6 @@ public class ReactorBluePrintItemPacket extends SimplePacketBase {
             c.uraniumTime = this.uraniumTime;
             c.progress = this.progress;
             c.heat = this.heat;
-            //CreateNuclear.LOGGER.warn("doomBidule " + c.progress + " heat: " + c.heat);
             c.sendUpdate = true;
         });
         return true;

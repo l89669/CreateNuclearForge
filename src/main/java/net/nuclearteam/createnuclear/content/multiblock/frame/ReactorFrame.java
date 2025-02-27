@@ -1,4 +1,4 @@
-package net.nuclearteam.createnuclear.content.multiblock.gauge;
+package net.nuclearteam.createnuclear.content.multiblock.frame;
 
 import com.simibubi.create.content.equipment.wrench.IWrenchable;
 import com.simibubi.create.foundation.utility.Lang;
@@ -27,10 +27,10 @@ import org.jetbrains.annotations.Nullable;
 
 import java.util.List;
 
-public class ReactorGauge extends Block implements IWrenchable {
+public class ReactorFrame extends Block implements IWrenchable {
     public static final Property<Part> PART = EnumProperty.create("part", Part.class);
 
-    public ReactorGauge(Properties properties) {
+    public ReactorFrame(Properties properties) {
         super(properties);
     }
 

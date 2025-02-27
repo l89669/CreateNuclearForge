@@ -16,7 +16,6 @@ import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
-import net.minecraft.world.item.Items;
 import net.minecraft.world.level.Explosion;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.entity.BlockEntity;
@@ -111,6 +110,8 @@ public class ReactorControllerBlockEntity extends SmartBlockEntity implements II
         if(!configuredPattern.getOrCreateTag().isEmpty()) {
             tooltip.add(componentSpacing.plainCopy().append(Lang.translateDirect("gui.gauge.info_header")));
             IHeat.HeatLevel.getName("reactor_controller").style(ChatFormatting.GRAY).forGoggles(tooltip);
+
+            IHeat.HeatLevel.getFormattedHeatText(configuredPattern.getOrCreateTag().getInt("heat")).forGoggles(tooltip);
 
             if (fuelItem.isEmpty()) {
                 // if rod empty we initialize it at 1 (and display it as 0) to avoid having air item displayed instead of the rod
@@ -418,9 +419,9 @@ public class ReactorControllerBlockEntity extends SmartBlockEntity implements II
                 .aisle(AABAA, ADADA, BACAB, ADADA, AABAA)
                 .aisle(AAAAA, AAAAA, AAAAA, AAAAA, AAOAA)
                 .where('A', a -> a.getState().is(CNBlocks.REACTOR_CASING.get()))
-                .where('B', a -> a.getState().is(CNBlocks.REACTOR_GAUGE.get()))
+                .where('B', a -> a.getState().is(CNBlocks.REACTOR_FRAME.get()))
                 .where('C', a -> a.getState().is(CNBlocks.REACTOR_CORE.get()))
-                .where('D', a -> a.getState().is(CNBlocks.REACTOR_COOLING_FRAME.get()))
+                .where('D', a -> a.getState().is(CNBlocks.REACTOR_COOLER.get()))
                 .where('*', a -> a.getState().is(CNBlocks.REACTOR_CONTROLLER.get()))
                 .where('O', a -> a.getState().is(CNBlocks.REACTOR_OUTPUT.get()))
                 .where('I', a -> a.getState().is(CNBlocks.REACTOR_INPUT.get()))

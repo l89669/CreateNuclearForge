@@ -137,7 +137,7 @@ public class CNStandardRecipeGen extends CreateRecipeProvider {
             .unlockedByTag(() -> CNTags.CNItemTags.CLOTH.tag)
             .withCategory(RecipeCategory.COMBAT)
             .viaShaped(i -> i
-                    .define('X', CNItems.LEAD_INGOT)
+                    .define('X', CNTags.forgeItemTag("ingots/lead"))
                     .define('Y', ClothItem.Cloths.getByColor(color).get())
                     .define('Z', CNBlocks.REINFORCED_GLASS)
                     .pattern("YXY")
@@ -151,7 +151,7 @@ public class CNStandardRecipeGen extends CreateRecipeProvider {
             .unlockedByTag(() -> CNTags.CNItemTags.CLOTH.tag)
             .withCategory(RecipeCategory.COMBAT)
             .viaShaped(i -> i
-            .define('X', CNItems.LEAD_INGOT)
+            .define('X', CNTags.forgeItemTag("ingots/lead"))
             .define('Y', ClothItem.Cloths.getByColor(color).get())
             .define('Z', CNItems.GRAPHITE_ROD)
                     .pattern("Y Y")
@@ -165,7 +165,7 @@ public class CNStandardRecipeGen extends CreateRecipeProvider {
                 .unlockedByTag(() -> CNTags.CNItemTags.CLOTH.tag)
                 .withCategory(RecipeCategory.COMBAT)
                 .viaShaped(i -> i
-                        .define('X', CNItems.LEAD_INGOT)
+                        .define('X', CNTags.forgeItemTag("ingots/lead"))
                         .define('Y', ClothItem.Cloths.getByColor(color).get())
                         .define('Z', CNBlocks.REINFORCED_GLASS)
                         .pattern("YXY")
@@ -179,7 +179,7 @@ public class CNStandardRecipeGen extends CreateRecipeProvider {
     GeneratedRecipe
         ANTI_RADIATION_BOOTS = create(CNItems.ANTI_RADIATION_BOOTS).unlockedByTag(() -> CNTags.CNItemTags.CLOTH.tag).withCategory(RecipeCategory.COMBAT)
             .viaShaped(b -> b
-                    .define('X', CNItems.LEAD_INGOT)
+                    .define('X', CNTags.forgeItemTag("ingots/lead"))
                     .define('Y', ClothItem.Cloths.WHITE_CLOTH.getItem())
                     .pattern("Y Y")
                     .pattern("X X")

@@ -1,4 +1,4 @@
-package net.nuclearteam.createnuclear.content.multiblock.reactorCoolingFrame;
+package net.nuclearteam.createnuclear.content.multiblock.reactorCooler;
 
 import com.simibubi.create.content.equipment.wrench.IWrenchable;
 import net.minecraft.core.BlockPos;
@@ -17,8 +17,8 @@ import net.nuclearteam.createnuclear.content.multiblock.controller.ReactorContro
 import javax.annotation.Nullable;
 import java.util.List;
 
-public class ReactorCoolingFrame extends Block implements IWrenchable {
-    public ReactorCoolingFrame(Properties properties) {
+public class ReactorCooler extends Block implements IWrenchable {
+    public ReactorCooler(Properties properties) {
         super(properties);
     }
 
@@ -52,7 +52,6 @@ public class ReactorCoolingFrame extends Block implements IWrenchable {
                 for (int z = pos.getZ()-5; z != pos.getZ()+5; z+=1) {
                     newBlock = new BlockPos(x, y, z);
                     if (level.getBlockState(newBlock).is(CNBlocks.REACTOR_CONTROLLER.get())) { // verifying the pattern
-                        CreateNuclear.LOGGER.info("ReactorController FOUND!!!!!!!!!!: ");      // from the controller
                         ReactorControllerBlock controller = (ReactorControllerBlock) level.getBlockState(newBlock).getBlock();
                         controller.Verify(level.getBlockState(newBlock), newBlock, level, players, first);
                         ReactorControllerBlockEntity entity = controller.getBlockEntity(level, newBlock);
@@ -60,7 +59,6 @@ public class ReactorCoolingFrame extends Block implements IWrenchable {
                             return controller;
                         }
                     }
-                    //else CreateNuclear.LOGGER.info("newBlock: " + level.getBlockState(newBlock).getBlock());
                 }
             }
         }

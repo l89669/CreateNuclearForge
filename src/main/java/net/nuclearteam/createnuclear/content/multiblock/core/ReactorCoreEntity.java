@@ -30,11 +30,10 @@ public class ReactorCoreEntity extends ReactorCasingEntity {
         if (level.getBlockEntity(controllerPos) instanceof ReactorControllerBlockEntity reactorController) {
             int heat = (int) reactorController.configuredPattern.getOrCreateTag().getDouble("heat");
             if (IHeat.HeatLevel.of(heat) == IHeat.HeatLevel.DANGER) {
-                if (countdownTicks >= 1200) { // 1200 ticks = 60 seconds
+                if (countdownTicks >= 600) { // 300 ticks = 15 secondes
                     explodeReactorCore(level, getBlockPos());
                 } else {
                     countdownTicks++;
-                    CreateNuclear.LOGGER.warn("Countdown: " + countdownTicks + " ticks");
                 }
             } else {
                 countdownTicks = 0; // Reset the countdown if the heat level is not in danger
@@ -56,9 +55,9 @@ public class ReactorCoreEntity extends ReactorCasingEntity {
                 .aisle(AABAA, ADADA, BACAB, ADADA, AABAA)
                 .aisle(AAAAA, AAAAA, AAAAA, AAAAA, AAOAA)
                 .where('A', a -> a.getState().is(CNBlocks.REACTOR_CASING.get()))
-                .where('B', a -> a.getState().is(CNBlocks.REACTOR_GAUGE.get()))
+                .where('B', a -> a.getState().is(CNBlocks.REACTOR_FRAME.get()))
                 .where('C', a -> a.getState().is(CNBlocks.REACTOR_CORE.get()))
-                .where('D', a -> a.getState().is(CNBlocks.REACTOR_COOLING_FRAME.get()))
+                .where('D', a -> a.getState().is(CNBlocks.REACTOR_COOLER.get()))
                 .where('*', a -> a.getState().is(CNBlocks.REACTOR_CONTROLLER.get()))
                 .where('O', a -> a.getState().is(CNBlocks.REACTOR_OUTPUT.get()))
                 .where('I', a -> a.getState().is(CNBlocks.REACTOR_INPUT.get()))

@@ -4,7 +4,7 @@
 	"textures": {
 		"0": "createnuclear:block/reactor/casing/casing_inner",
 		"1": "createnuclear:block/reactor/casing/casing_top",
-		"2": "createnuclear:block/reactor/gauge/window",
+		"2": "createnuclear:block/reactor/frame/window",
 		"3": "createnuclear:block/reactor/casing/reactor_casing",
 		"4": "createnuclear:fluid/uranium_still",
 		"5": "createnuclear:fluid/uranium_flow",

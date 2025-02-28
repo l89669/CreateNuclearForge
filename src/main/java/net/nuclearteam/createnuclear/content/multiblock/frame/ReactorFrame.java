@@ -1,4 +1,4 @@
-package net.nuclearteam.createnuclear.content.multiblock.gauge;
+package net.nuclearteam.createnuclear.content.multiblock.frame;
 
 import com.simibubi.create.content.equipment.wrench.IWrenchable;
 import com.simibubi.create.foundation.utility.Lang;
@@ -27,10 +27,10 @@ import org.jetbrains.annotations.Nullable;
 
 import java.util.List;
 
-public class ReactorGauge extends Block implements IWrenchable {
+public class ReactorFrame extends Block implements IWrenchable {
     public static final Property<Part> PART = EnumProperty.create("part", Part.class);
 
-    public ReactorGauge(Properties properties) {
+    public ReactorFrame(Properties properties) {
         super(properties);
     }
 
@@ -127,12 +127,10 @@ public class ReactorGauge extends Block implements IWrenchable {
                 for (int z = pos.getZ()-5; z != pos.getZ()+5; z+=1) {
                     newBlock = new BlockPos(x, y, z);
                     if (level.getBlockState(newBlock).is(CNBlocks.REACTOR_CONTROLLER.get())) { // verifying the pattern
-                        CreateNuclear.LOGGER.info("ReactorController FOUND!!!!!!!!!!: ");      // from the controller
                         ReactorControllerBlock controller = (ReactorControllerBlock) level.getBlockState(newBlock).getBlock();
                         controller.Verify(level.getBlockState(newBlock), newBlock, level, players, first);
                         return controller;
                     }
-                    //else CreateNuclear.LOGGER.info("newBlock: " + level.getBlockState(newBlock).getBlock());
                 }
             }
         }

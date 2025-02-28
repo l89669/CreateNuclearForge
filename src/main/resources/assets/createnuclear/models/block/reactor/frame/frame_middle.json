@@ -2,11 +2,11 @@
 	"credit": "Made with Blockbench",
 	"parent": "block/block",
 	"textures": {
-		"0": "createnuclear:block/reactor/gauge/window",
+		"0": "createnuclear:block/reactor/frame/window",
 		"1": "createnuclear:fluid/uranium_flow",
 		"2": "createnuclear:fluid/uranium_still",
 		"3": "createnuclear:block/reactor/casing/reactor_casing",
-		"particle": "createnuclear:block/reactor/gauge/window"
+		"particle": "createnuclear:block/reactor/frame/window"
 	},
 	"elements": [
 		{

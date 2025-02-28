@@ -13,19 +13,14 @@ import net.minecraft.core.Direction;
 import net.minecraft.data.loot.BlockLootSubProvider;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.tags.BlockTags;
-import net.minecraft.world.item.Item;
-import net.minecraft.world.item.Rarity;
 import net.minecraft.world.item.enchantment.Enchantments;
 import net.minecraft.world.level.block.Block;
-import net.minecraft.world.item.enchantment.Enchantments;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.SoundType;
 import net.minecraft.world.level.block.state.BlockBehaviour.Properties;
 import net.minecraft.world.level.block.state.properties.BlockStateProperties;
 import net.minecraft.world.level.block.state.properties.NoteBlockInstrument;
 import net.minecraft.world.level.material.MapColor;
-import net.minecraft.world.level.storage.loot.entries.LootItem;
-import net.minecraft.world.level.storage.loot.functions.ApplyBonusCount;
 import net.minecraft.world.level.storage.loot.entries.LootItem;
 import net.minecraft.world.level.storage.loot.functions.ApplyBonusCount;
 import net.minecraftforge.client.model.generators.ConfiguredModel;
@@ -37,13 +32,13 @@ import net.nuclearteam.createnuclear.CNTags.CNBlockTags;
 import net.nuclearteam.createnuclear.content.multiblock.controller.ReactorControllerBlock;
 import net.nuclearteam.createnuclear.content.multiblock.controller.ReactorControllerGenerator;
 import net.nuclearteam.createnuclear.content.multiblock.core.ReactorCore;
-import net.nuclearteam.createnuclear.content.multiblock.gauge.ReactorGauge;
-import net.nuclearteam.createnuclear.content.multiblock.gauge.ReactorGaugeItem;
+import net.nuclearteam.createnuclear.content.multiblock.frame.ReactorFrame;
+import net.nuclearteam.createnuclear.content.multiblock.frame.ReactorframeItem;
 import net.nuclearteam.createnuclear.content.multiblock.input.ReactorInput;
 import net.nuclearteam.createnuclear.content.multiblock.input.ReactorInputGenerator;
 import net.nuclearteam.createnuclear.content.multiblock.output.ReactorOutput;
 import net.nuclearteam.createnuclear.content.multiblock.output.ReactorOutputGenerator;
-import net.nuclearteam.createnuclear.content.multiblock.reactorCoolingFrame.ReactorCoolingFrame;
+import net.nuclearteam.createnuclear.content.multiblock.reactorCooler.ReactorCooler;
 import net.nuclearteam.createnuclear.content.multiblock.reinforced.ReinforcedGlassBlock;
 import net.nuclearteam.createnuclear.content.uraniumOre.UraniumOreBlock;
 
@@ -51,7 +46,6 @@ import static com.simibubi.create.foundation.data.CreateRegistrate.casingConnect
 import static com.simibubi.create.foundation.data.ModelGen.customItemModel;
 import static com.simibubi.create.foundation.data.TagGen.axeOrPickaxe;
 import static com.simibubi.create.foundation.data.TagGen.pickaxeOnly;
-import static net.nuclearteam.createnuclear.content.multiblock.gauge.ReactorGauge.Part.*;
 
 
 public class CNBlocks {
@@ -88,8 +82,8 @@ public class CNBlocks {
                     .simpleItem()
                     .register();
 
-    public static final BlockEntry<ReactorGauge> REACTOR_GAUGE =
-            CreateNuclear.REGISTRATE.block("reactor_gauge", ReactorGauge::new)
+    public static final BlockEntry<ReactorFrame> REACTOR_FRAME =
+            CreateNuclear.REGISTRATE.block("reactor_frame", ReactorFrame::new)
                     .initialProperties(SharedProperties::stone)
                     .properties(p -> p.explosionResistance(3F).destroyTime(2F))
                     .addLayer(() -> RenderType::cutoutMipped)
@@ -98,8 +92,8 @@ public class CNBlocks {
                     .blockstate((c, p) ->
                         p.getVariantBuilder(c.getEntry())
                         .forAllStatesExcept(state -> {
-                            ReactorGauge.Part part = state.getValue(ReactorGauge.PART);
-                            String baseFile = "block/reactor/gauge/gauge_";
+                            ReactorFrame.Part part = state.getValue(ReactorFrame.PART);
+                            String baseFile = "block/reactor/frame/frame_";
                             ModelFile start = p.models().getExistingFile(p.modLoc(baseFile + "top"));
                             ModelFile middle = p.models().getExistingFile(p.modLoc(baseFile + "middle"));
                             ModelFile bottom = p.models().getExistingFile(p.modLoc(baseFile + "bottom"));
@@ -114,18 +108,18 @@ public class CNBlocks {
                             .build();
                         })
                     )
-                    .item(ReactorGaugeItem::new)
-                    .model(AssetLookup.customBlockItemModel("reactor", "gauge", "item"))
+                    .item(ReactorframeItem::new)
+                    .model(AssetLookup.customBlockItemModel("reactor", "frame", "item"))
                     .build()
                     .register();
 
-    public static final BlockEntry<ReactorCoolingFrame> REACTOR_COOLING_FRAME =
-            CreateNuclear.REGISTRATE.block("reactor_cooling_frame", ReactorCoolingFrame::new)
+    public static final BlockEntry<ReactorCooler> REACTOR_COOLER =
+            CreateNuclear.REGISTRATE.block("reactor_cooler", ReactorCooler::new)
                     .properties(p -> p.explosionResistance(3F)
                             .destroyTime(4F))
                     .blockstate((c,p) ->
                             p.getVariantBuilder(c.getEntry()).forAllStates((state) -> ConfiguredModel.builder()
-                                    .modelFile(p.models().getExistingFile(p.modLoc("block/reactor/cooling_frame/block")))
+                                    .modelFile(p.models().getExistingFile(p.modLoc("block/reactor/cooler/block")))
                                     .build()))
                     .tag(CNBlockTags.NEEDS_DIAMOND_TOOL.tag)
                     .simpleItem()

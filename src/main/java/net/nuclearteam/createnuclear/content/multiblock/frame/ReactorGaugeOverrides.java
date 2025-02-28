@@ -1,4 +1,4 @@
-package net.nuclearteam.createnuclear.content.multiblock.gauge;
+package net.nuclearteam.createnuclear.content.multiblock.frame;
 
 import com.tterrag.registrate.providers.DataGenContext;
 import com.tterrag.registrate.providers.RegistrateItemModelProvider;
@@ -6,7 +6,7 @@ import net.minecraft.world.item.Item;
 import net.minecraftforge.client.model.generators.ItemModelBuilder;
 
 public class ReactorGaugeOverrides {
-    public static ItemModelBuilder addOverrideModels(DataGenContext<Item, ReactorGaugeItem> c, RegistrateItemModelProvider p) {
+    public static ItemModelBuilder addOverrideModels(DataGenContext<Item, ReactorframeItem> c, RegistrateItemModelProvider p) {
         ItemModelBuilder builder = p.generated(c);
         /*CreateNuclear.LOGGER.warn(" " + builder.override()
                 .model(p.getBuilder("block/reactor_main_frame/reactor_gauge_none")

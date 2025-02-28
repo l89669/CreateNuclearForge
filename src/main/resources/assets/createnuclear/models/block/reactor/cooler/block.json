@@ -2,9 +2,9 @@
   "credit": "Made with Blockbench",
   "parent": "block/cube",
   "textures": {
-    "0": "createnuclear:block/reactor/cooling_frame/cooling_frame",
-    "2": "createnuclear:block/reactor/cooling_frame/cooling_frame_top",
-    "particle": "createnuclear:block/reactor/cooling_frame/cooling_frame"
+    "0": "createnuclear:block/reactor/cooler/cooler_frame",
+    "2": "createnuclear:block/reactor/cooler/cooler_frame_top",
+    "particle": "createnuclear:block/reactor/cooler/cooler_frame"
   },
   "elements": [
     {

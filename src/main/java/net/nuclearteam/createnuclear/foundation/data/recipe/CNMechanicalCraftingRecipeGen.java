@@ -3,7 +3,6 @@ package net.nuclearteam.createnuclear.foundation.data.recipe;
 import com.simibubi.create.AllBlocks;
 import com.simibubi.create.AllItems;
 import com.simibubi.create.AllRecipeTypes;
-import com.simibubi.create.foundation.data.recipe.CreateRecipeProvider;
 import com.simibubi.create.foundation.data.recipe.MechanicalCraftingRecipeBuilder;
 import com.simibubi.create.foundation.recipe.IRecipeTypeInfo;
 import com.simibubi.create.foundation.utility.RegisteredObjects;
@@ -42,7 +41,7 @@ public class CNMechanicalCraftingRecipeGen extends CNProcessingRecipeGen {
                             .patternLine(" U   ")
                             .patternLine("U    ")
                     ),
-            REACTOR_MAIN_FRAME = create(CNBlocks.REACTOR_GAUGE::get)
+            REACTOR_MAIN_FRAME = create(CNBlocks.REACTOR_FRAME::get)
                     .recipe(b -> b
                             .key('C', Ingredient.of(CNBlocks.REACTOR_CASING))
                             .key('G', Ingredient.of(CNBlocks.REINFORCED_GLASS))
@@ -70,7 +69,7 @@ public class CNMechanicalCraftingRecipeGen extends CNProcessingRecipeGen {
                     .patternLine("CCCCC")
             ),
 
-    REACTOR_COOLING_FRAME= create(CNBlocks.REACTOR_COOLING_FRAME::get)
+    REACTOR_COOLING_FRAME= create(CNBlocks.REACTOR_COOLER::get)
             .recipe(b -> b
                     .key('C', Ingredient.of(CNBlocks.REACTOR_CASING))
                     .key('I', Ingredient.of(Blocks.BLUE_ICE))

@@ -1,4 +1,4 @@
-package net.nuclearteam.createnuclear.content.multiblock.reactorCoolingFrame;
+package net.nuclearteam.createnuclear.content.multiblock.reactorCooler;
 
 import com.simibubi.create.content.equipment.wrench.IWrenchable;
 import net.minecraft.core.BlockPos;
@@ -17,8 +17,8 @@ import net.nuclearteam.createnuclear.content.multiblock.controller.ReactorContro
 import javax.annotation.Nullable;
 import java.util.List;
 
-public class ReactorCoolingFrame extends Block implements IWrenchable {
-    public ReactorCoolingFrame(Properties properties) {
+public class ReactorCooler extends Block implements IWrenchable {
+    public ReactorCooler(Properties properties) {
         super(properties);
     }
 

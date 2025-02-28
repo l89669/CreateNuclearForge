@@ -2,14 +2,14 @@
   "type": "create:mechanical_crafting",
   "acceptMirrored": true,
   "key": {
-    "B": {
-      "item": "createnuclear:uranium_bucket"
-    },
     "C": {
       "item": "createnuclear:reactor_casing"
     },
     "G": {
       "item": "createnuclear:reinforced_glass"
+    },
+    "I": {
+      "item": "minecraft:blue_ice"
     },
     "S": {
       "item": "createnuclear:steel_ingot"
@@ -18,11 +18,11 @@
   "pattern": [
     "CCCCC",
     "CSGSC",
-    "CGBGC",
+    "CIGIC",
     "CSGSC",
     "CCCCC"
   ],
   "result": {
-    "item": "createnuclear:reactor_gauge"
+    "item": "createnuclear:reactor_cooler"
   }
 }

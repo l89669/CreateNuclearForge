@@ -3,7 +3,9 @@ package net.nuclearteam.createnuclear;
 import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
+import net.minecraft.world.item.PotionItem;
 import net.minecraft.world.item.alchemy.Potion;
+import net.minecraft.world.item.alchemy.PotionBrewing;
 import net.minecraft.world.item.alchemy.PotionUtils;
 import net.minecraft.world.item.alchemy.Potions;
 import net.minecraft.world.item.crafting.Ingredient;
@@ -30,22 +32,8 @@ public class CNPotions {
     }
 
     public static void registerPotionsRecipes() {
-        BrewingRecipeRegistry.addRecipe(
-                Ingredient.of(PotionUtils.setPotion(new ItemStack(Items.POTION), Potions.AWKWARD)),
-                Ingredient.of(CNItems.ENRICHED_YELLOWCAKE.get()),
-                PotionUtils.setPotion(new ItemStack(Items.POTION), POTION_1.get())
-        );
-        BrewingRecipeRegistry.addRecipe(
-                Ingredient.of(PotionUtils.setPotion(new ItemStack(Items.POTION), POTION_1.get())),
-                Ingredient.of(Items.REDSTONE),
-                PotionUtils.setPotion(new ItemStack(Items.POTION), POTION_AUGMENT_1.get())
-        );
-
-        BrewingRecipeRegistry.addRecipe(
-                Ingredient.of(PotionUtils.setPotion(new ItemStack(Items.POTION), POTION_1.get())),
-                Ingredient.of(Items.GLOWSTONE_DUST),
-                PotionUtils.setPotion(new ItemStack(Items.POTION), POTION_2.get())
-        );
-
+        PotionBrewing.addMix(Potions.AWKWARD, CNItems.ENRICHED_YELLOWCAKE.get(), POTION_1.get());
+        PotionBrewing.addMix(POTION_1.get(), Items.REDSTONE, POTION_AUGMENT_1.get());
+        PotionBrewing.addMix(POTION_1.get(), Items.GLOWSTONE_DUST, POTION_2.get());
     }
 }

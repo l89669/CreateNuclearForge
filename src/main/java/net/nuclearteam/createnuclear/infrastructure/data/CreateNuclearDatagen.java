@@ -2,9 +2,9 @@ package net.nuclearteam.createnuclear.infrastructure.data;
 
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
-import com.simibubi.create.foundation.ponder.PonderLocalization;
 import com.simibubi.create.foundation.utility.FilesHelper;
 import com.tterrag.registrate.providers.ProviderType;
+import net.createmod.ponder.foundation.PonderIndex;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.data.DataGenerator;
 import net.minecraft.data.PackOutput;
@@ -14,7 +14,7 @@ import net.nuclearteam.createnuclear.CreateNuclear;
 import net.nuclearteam.createnuclear.foundation.Advancement.CNAdvancement;
 import net.nuclearteam.createnuclear.foundation.data.recipe.CNProcessingRecipeGen;
 import net.nuclearteam.createnuclear.foundation.data.recipe.CNStandardRecipeGen;
-import net.nuclearteam.createnuclear.foundation.ponder.CNPonderIndex;
+import net.nuclearteam.createnuclear.foundation.ponder.CreateNuclearPonderPlugin;
 
 import java.util.Map.Entry;
 import java.util.concurrent.CompletableFuture;
@@ -75,9 +75,8 @@ public class CreateNuclearDatagen {
     }
 
     private static void providePonderLang(BiConsumer<String, String> consumer) {
-        CNPonderIndex.register();
-        PonderLocalization.generateSceneLang();
-        PonderLocalization.provideLang(CreateNuclear.MOD_ID, consumer);
+        PonderIndex.addPlugin(new CreateNuclearPonderPlugin());
+        PonderIndex.getLangAccess().provideLang(CreateNuclear.MOD_ID, consumer);
 
     }
 }

@@ -1,8 +1,5 @@
 package net.nuclearteam.createnuclear;
 
-import com.simibubi.create.AllTags;
-import com.simibubi.create.content.kinetics.fan.processing.HauntingRecipe;
-import com.simibubi.create.content.processing.recipe.ProcessingRecipe;
 import com.simibubi.create.content.processing.recipe.ProcessingRecipeBuilder.ProcessingRecipeFactory;
 import com.simibubi.create.content.processing.recipe.ProcessingRecipeSerializer;
 import com.simibubi.create.foundation.recipe.IRecipeTypeInfo;
@@ -18,8 +15,8 @@ import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
 import net.minecraftforge.registries.RegistryObject;
 import net.nuclearteam.createnuclear.content.kinetics.fan.processing.EnrichedRecipe;
-import com.simibubi.create.foundation.utility.Lang;
 import net.minecraft.world.level.Level;
+import net.nuclearteam.createnuclear.foundation.utility.CreateNuclearLang;
 
 import javax.annotation.Nullable;
 import java.util.Optional;
@@ -41,7 +38,7 @@ public enum CNRecipeTypes implements IRecipeTypeInfo {
     private final Supplier<RecipeType<?>> type;
 
     CNRecipeTypes(Supplier<RecipeSerializer<?>> serializerSupplier, Supplier<RecipeType<?>> typeSupplier, boolean registerType) {
-        String name = Lang.asId(name());
+        String name = CreateNuclearLang.asId(name());
         id = CreateNuclear.asResource(name);
         serializerObject = Registers.SERIALIZER_REGISTER.register(name, serializerSupplier);
         if (registerType) {
@@ -54,7 +51,7 @@ public enum CNRecipeTypes implements IRecipeTypeInfo {
     }
 
     CNRecipeTypes(Supplier<RecipeSerializer<?>> serializerSupplier) {
-        String name = Lang.asId(name());
+        String name = CreateNuclearLang.asId(name());
         id = CreateNuclear.asResource(name);
         serializerObject = Registers.SERIALIZER_REGISTER.register(name, serializerSupplier);
         typeObject = Registers.TYPE_REGISTER.register(name, () -> RecipeType.simple(id));

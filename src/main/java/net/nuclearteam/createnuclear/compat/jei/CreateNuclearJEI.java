@@ -1,42 +1,44 @@
 package net.nuclearteam.createnuclear.compat.jei;
 
 
-import javax.annotation.Nonnull;
-import javax.annotation.ParametersAreNonnullByDefault;
-
 import com.simibubi.create.AllItems;
-import com.simibubi.create.AllRecipeTypes;
-import com.simibubi.create.compat.jei.*;
+import com.simibubi.create.compat.jei.DoubleItemIcon;
+import com.simibubi.create.compat.jei.EmptyBackground;
+import com.simibubi.create.compat.jei.ItemIcon;
+import com.simibubi.create.compat.jei.ToolboxColoringRecipeMaker;
 import com.simibubi.create.compat.jei.category.CreateRecipeCategory;
-import com.simibubi.create.compat.jei.category.FanHauntingCategory;
 import com.simibubi.create.compat.jei.category.ProcessingViaFanCategory;
-import com.simibubi.create.content.kinetics.fan.processing.HauntingRecipe;
-import com.simibubi.create.foundation.config.ConfigBase;
 import com.simibubi.create.foundation.item.ItemHelper;
 import com.simibubi.create.foundation.recipe.IRecipeTypeInfo;
-import com.simibubi.create.foundation.utility.Lang;
 import com.simibubi.create.infrastructure.config.AllConfigs;
 import com.simibubi.create.infrastructure.config.CRecipes;
 import mezz.jei.api.IModPlugin;
 import mezz.jei.api.JeiPlugin;
 import mezz.jei.api.constants.RecipeTypes;
 import mezz.jei.api.gui.drawable.IDrawable;
+import mezz.jei.api.recipe.RecipeType;
 import mezz.jei.api.recipe.category.IRecipeCategory;
-import mezz.jei.api.registration.*;
+import mezz.jei.api.registration.IRecipeCatalystRegistration;
+import mezz.jei.api.registration.IRecipeCategoryRegistration;
+import mezz.jei.api.registration.IRecipeRegistration;
 import mezz.jei.api.runtime.IIngredientManager;
+import net.createmod.catnip.config.ConfigBase;
 import net.minecraft.client.Minecraft;
 import net.minecraft.core.RegistryAccess;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.ItemStack;
-import net.minecraft.world.item.Items;
 import net.minecraft.world.item.crafting.Recipe;
-import net.minecraft.world.item.crafting.RecipeType;
 import net.minecraft.world.level.ItemLike;
 import net.nuclearteam.createnuclear.CNBlocks;
 import net.nuclearteam.createnuclear.CNRecipeTypes;
 import net.nuclearteam.createnuclear.CreateNuclear;
 import net.nuclearteam.createnuclear.compat.jei.category.FanEnrichedCategory;
 import net.nuclearteam.createnuclear.content.kinetics.fan.processing.EnrichedRecipe;
+import net.nuclearteam.createnuclear.foundation.utility.CreateNuclearLang;
+
+import javax.annotation.Nonnull;
+import javax.annotation.ParametersAreNonnullByDefault;
+
 
 import java.util.*;
 import java.util.function.Consumer;
@@ -247,7 +249,7 @@ public class CreateNuclearJEI implements IModPlugin {
 
             CreateRecipeCategory.Info<T> info = new CreateRecipeCategory.Info<>(
                     new mezz.jei.api.recipe.RecipeType<>(CreateNuclear.asResource(name), recipeClass),
-                    Lang.translateDirect("recipe." + name), background, icon, recipesSupplier, catalysts);
+                    CreateNuclearLang.translateDirect("recipe." + name), background, icon, recipesSupplier, catalysts);
             CreateRecipeCategory<T> category = factory.create(info);
             allCategories.add(category);
             return category;

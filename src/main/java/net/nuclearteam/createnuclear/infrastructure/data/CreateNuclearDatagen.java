@@ -29,19 +29,21 @@ public class CreateNuclearDatagen {
         CompletableFuture<HolderLookup.Provider> lookupProvider = event.getLookupProvider();
         ExistingFileHelper existingFileHelper = event.getExistingFileHelper();
 
-        if (event.includeClient()) {
 
-        }
+        GeneratedEntriesProvider generatedEntriesProvider = new GeneratedEntriesProvider(output, lookupProvider);
+        lookupProvider = generatedEntriesProvider.getRegistryProvider();
+        generator.addProvider(event.includeClient(), generatedEntriesProvider);
+        generator.addProvider(event.includeClient(), new CNStandardRecipeGen(output));
+        generator.addProvider(event.includeClient(), new CNAdvancement(output));
+        CNProcessingRecipeGen.registerAll(generator, output);
+
+
+        /*if (event.includeClient()) {
+
+        }*/
 
         if (event.includeServer()) {
-            GeneratedEntriesProvider generatedEntriesProvider = new GeneratedEntriesProvider(output, lookupProvider);
-            lookupProvider = generatedEntriesProvider.getRegistryProvider();
-            generator.addProvider(true, generatedEntriesProvider);
-            generator.addProvider(true, new CNStandardRecipeGen(output));
-            generator.addProvider(true, new CNAdvancement(output));
             CNProcessingRecipeGen.registerAll(generator, output);
-
-
         }
     }
 

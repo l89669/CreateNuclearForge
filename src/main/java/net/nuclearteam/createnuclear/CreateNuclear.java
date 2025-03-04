@@ -2,6 +2,7 @@ package net.nuclearteam.createnuclear;
 
 
 import com.mojang.logging.LogUtils;
+import com.simibubi.create.CreateBuildInfo;
 import com.simibubi.create.foundation.data.CreateRegistrate;
 import com.simibubi.create.foundation.item.ItemDescription;
 import com.simibubi.create.foundation.item.KineticStats;
@@ -20,6 +21,7 @@ import net.minecraftforge.fml.ModLoadingContext;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
+import net.minecraftforge.registries.RegisterEvent;
 import net.nuclearteam.createnuclear.content.kinetics.fan.processing.CNFanProcessingTypes;
 import net.nuclearteam.createnuclear.infrastructure.data.CreateNuclearDatagen;
 import org.slf4j.Logger;
@@ -41,6 +43,8 @@ public class CreateNuclear {
     }
 
     public static void onInitialize() {
+        LOGGER.info("{} {} initializing! Commit hash: {}", MOD_ID, CreateBuildInfo.VERSION, CreateBuildInfo.GIT_COMMIT);
+
         ModLoadingContext modLoadingContext = ModLoadingContext.get();
 
         IEventBus modEventBus = FMLJavaModLoadingContext.get()
@@ -48,6 +52,7 @@ public class CreateNuclear {
         IEventBus forgeEventBus = MinecraftForge.EVENT_BUS;
 
         REGISTRATE.registerEventListeners(modEventBus);
+
 
         CNTags.init();
         CNBlocks.register();
@@ -57,7 +62,6 @@ public class CreateNuclear {
         CNMenus.register();
         CNFluids.register();
         CNEntityType.register();
-        CNFanProcessingTypes.register();
 
         CNCreativeModeTabs.register(modEventBus);
         CNEffects.register(modEventBus);
@@ -65,6 +69,7 @@ public class CreateNuclear {
         CNRecipeTypes.register(modEventBus);
 
         modEventBus.addListener(CreateNuclear::init);
+        modEventBus.addListener(CreateNuclear::onRegister);
         modEventBus.addListener(EventPriority.LOWEST, CreateNuclearDatagen::gatherData);
         forgeEventBus.addListener(CNFluids::handleFluidEffect);
 
@@ -74,6 +79,11 @@ public class CreateNuclear {
 
     public static void init(final FMLCommonSetupEvent event) {
         event.enqueueWork(CNPotions::registerPotionsRecipes);
+    }
+
+    public static void onRegister(final RegisterEvent event) {
+        CNFanProcessingTypes.register();
+
     }
 
 
